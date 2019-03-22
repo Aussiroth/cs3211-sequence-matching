@@ -34,11 +34,10 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__1119;
-    static ::x10::lang::String sl__1117;
-    static ::x10::lang::String sl__1120;
-    static ::x10::lang::String sl__1118;
-    static ::x10::lang::String sl__1121;
+    static ::x10::lang::String sl__1639;
+    static ::x10::lang::String sl__1640;
+    static ::x10::lang::String sl__1641;
+    static ::x10::lang::String sl__1642;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -79,6 +78,10 @@ class SW : public ::x10::lang::X10Class   {
       ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* directions,
       x10_long gap_opening, x10_long gap_extension, x10_long row,
       x10_long col);
+    static void backtrack(::x10::lang::String* string1, ::x10::lang::String* string2,
+                          ::x10::array::Array_2<x10_long>* matrix,
+                          ::x10::array::Array_2<x10_long>* directions,
+                          ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       x10_long simScore, x10_long gap_opening,
                       x10_long gap_extension);

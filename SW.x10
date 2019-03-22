@@ -58,9 +58,42 @@ public class SW {
     return new Pair[Long, Long](max, gap);
   }
 
+  public static def backtrack(string1:String, string2:String,
+        matrix:Array_2[Long], directions:Array_2[Long], maxCoordinates:Pair[Long, Long]) {
+    var i:Long = maxCoordinates.first;
+    var j:Long = maxCoordinates.second;
+    var result1:String = "";
+    var result2:String = "";
+    while (matrix(i, j) != 0) {
+      if (directions(i,j) == 0) {
+        result1 = string1.charAt(Int.operator_as(i - 1)) + result1;
+        result2 = string2.charAt(Int.operator_as(j - 1)) + result2;
+        i -= 1;
+        j -= 1;
+      } else if (directions(i, j) > 0) {
+        for (k in (0..(directions(i, j) - 1))) {
+          result2 = '-' + result2;
+          result1 = string1.charAt(Int.operator_as(i - k - 1)) + result1;
+        }
+        i -= directions(i, j);
+      } else {
+        for (k in (0..(directions(i, j) - 1))) {
+          result1 = '-' + result1;
+          result2 = string2.charAt(Int.operator_as(j - k - 1)) + result2;
+        }
+        j -= directions(i, j);
+      }
+    }
+    Console.OUT.println(result1);
+    Console.OUT.println(result2);
+  }
+
   public static def match(string1:String, string2:String, simScore:Long, gap_opening:Long, gap_extension:Long) {
     val matrix = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, 0);
     val directions = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, -1);
+    var globalMax:Long = Long.MIN_VALUE;
+    var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
+    
     for (i in 1..(S1_SIZE)) {
       for (j in 1..(S2_SIZE)) {
         var max:Long = Long.MIN_VALUE;
@@ -93,6 +126,11 @@ public class SW {
 
         max = max < 0 ? 0 : max;
         
+        if (max > globalMax) {
+          globalMax = max;
+          maxCoordinates = new Pair[Long, Long](i, j);
+        }
+
         matrix(i, j) = max;
         directions(i, j) = dir;
       }
@@ -104,6 +142,8 @@ public class SW {
       }
       Console.OUT.println();
     }
+
+    backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
   
