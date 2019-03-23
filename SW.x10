@@ -16,17 +16,17 @@ public class SW {
   static val UP = 1;
   static val LEFT = 2;
   
-  public static def checkUpwards(matrix:Array_2[Long], directions:Array_2[Long], gap_opening:Long, 
-        gap_extension:Long, row:Long, col: Long) {
+  public static def checkUpwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
+        gapExtension:Long, row:Long, col: Long) {
     
     var max:Long = Long.MIN_VALUE;
     var gap:Long = -1;
 
     for (i in 0..(row - 1)) {
-      var score:Long = matrix(i, col) + gap_extension * (row - i);
+      var score:Long = matrix(i, col) + gapExtension * (row - i);
       
       if (directions(i, col) <= 0) {
-        score += gap_opening;  
+        score += gapOpening;  
       }
       
       if (score > max) {
@@ -37,17 +37,17 @@ public class SW {
     return new Pair[Long, Long](max, gap);
   }
   
-  public static def checkLeftwards(matrix:Array_2[Long], directions:Array_2[Long], gap_opening:Long, 
-        gap_extension:Long, row:Long, col: Long) {
+  public static def checkLeftwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
+        gapExtension:Long, row:Long, col: Long) {
     
     var max:Long = Long.MIN_VALUE;
     var gap:Long = -1;
 
     for (j in 0..(col - 1)) {
       
-      var score:Long = matrix(row, j) + gap_extension * (col - j);
+      var score:Long = matrix(row, j) + gapExtension * (col - j);
       if (directions(row, j) >= 0) {
-        score += gap_opening;  
+        score += gapOpening;  
       }
 
       if (score > max) {
@@ -88,7 +88,7 @@ public class SW {
     Console.OUT.println(result2);
   }
 
-  public static def match(string1:String, string2:String, simScore:Long, gap_opening:Long, gap_extension:Long) {
+  public static def match(string1:String, string2:String, simScore:Long, gapOpening:Long, gapExtension:Long) {
     val matrix = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, 0);
     val directions = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
@@ -110,14 +110,14 @@ public class SW {
           dir = 0;
         }
 
-        var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gap_opening, gap_extension, i, j);
+        var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
         var upScore:Long = upResult.first;
         if (upScore > max) {
           max = upScore;
           dir = upResult.second;
         }
 
-        var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gap_opening, gap_extension, i, j);
+        var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
         var leftScore:Long = leftResult.first;
         if (leftScore > max) {
           max = leftScore;
@@ -151,11 +151,11 @@ public class SW {
     val indexMap = new Rail[Long](100);
     val blosum = new Array_2[Long](NUM_AMINO_ACIDS, NUM_AMINO_ACIDS);
     
-    val gap_opening = -0;
-    val gap_extension = -2;
+    val gapOpening = -0;
+    val gapExtension = -2;
     val string1 = "GGTTGACTA";
     val string2 = "TGTTACGG";
     var simScore:Long = 3;
-    match(string1, string2, simScore, gap_opening, gap_extension);
+    match(string1, string2, simScore, gapOpening, gapExtension);
   }
 }
