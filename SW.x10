@@ -169,43 +169,67 @@ public class SW {
 
   
   public static def main (args:Rail[String]) {
+    var firstStringFile:String = args(0);
+    var secondStringFile:String = args(1);
+    var matchFile:String = args(2);
+    var gapOpening:Long = Int.parse(args(3));
+    var gapExtension:Long = Int.parse(args(4));
+    
+    var string1:String = "";
+    var string2:String = "";
+
+    val FIRST_STRING_FILE = new File(firstStringFile);
+    val reader1 = new FileReader(FIRST_STRING_FILE);
+    var line:String;
+    line = reader1.readLine();
+    while (true) {
+      try {
+        line = reader1.readLine();
+      }
+      catch (Exception) {
+        break;
+      }
+      string1 = string1 + line;
+    }
+    val SECOND_STRING_FILE = new File(secondStringFile);
+    val reader2 = new FileReader(SECOND_STRING_FILE);
+    line = reader2.readLine();
+    while (true) {
+      try {
+        line = reader2.readLine();
+      }
+      catch (Exception) {
+        break;
+      }
+      string2 = string2 + line;
+    }
+ 
     val indexMap = new Rail[Long](100);
     val blosum = new Array_2[Long](127, 127, 0);
-    // val blosum = new HashMap[Char, HashMap[Char, Long]]();
     
-    val FILE = new File("BLOSUMDNA");
-    val reader = new FileReader(FILE);
-
-    var line:String;
-
+    val MATCH_FILE = new File(matchFile);
+    val matchReader = new FileReader(MATCH_FILE);
     val headerOrder = new ArrayList[Char]();
-    while (((line = reader.readLine()) != null) && (line.trim().charAt(Int.operator_as(0)) == '#'));
+    while (((line = matchReader.readLine()) != null) && (line.trim().charAt(Int.operator_as(0)) == '#'));
     
     val headerLine = splitString(line.trim());
-    Console.OUT.println(headerLine);
     for (i in 0..(headerLine.size() - 1)) {
       headerOrder.add(headerLine.get(i).charAt(Int.operator_as(0)));
     }
-    Console.OUT.println(headerOrder);
     while (true) {
       try {
-        line = reader.readLine();
+        line = matchReader.readLine();
       }
       catch (Exception) {
         break;
       }
       val currLine = splitString(line.trim());
       var currChar:Char = currLine.get(0).charAt(Int.operator_as(0));
-     for (i in 1..(currLine.size()-1)) {
+      for (i in 1..(currLine.size()-1)) {
         blosum(currChar.ord(), headerOrder.get(i-1).ord()) = Int.parse(currLine.get(i));
       }
     }
     
-    val gapOpening = -0;
-    val gapExtension = -2;
-    val string1 = "GGTTGACTA";
-    val string2 = "TGTTACGG";
-    var simScore:Long = 3;
     match(string1, string2, blosum, gapOpening, gapExtension);
   }
 }

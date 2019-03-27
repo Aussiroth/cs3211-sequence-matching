@@ -46,12 +46,8 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__2188;
-    static ::x10::lang::String sl__2189;
-    static ::x10::lang::String sl__2192;
-    static ::x10::lang::String sl__2191;
-    static ::x10::lang::String sl__2193;
-    static ::x10::lang::String sl__2190;
+    static ::x10::lang::String sl__2196;
+    static ::x10::lang::String sl__2197;
 };
 
 class SW : public ::x10::lang::X10Class   {
