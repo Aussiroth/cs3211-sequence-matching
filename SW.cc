@@ -13,24 +13,14 @@
 #include <x10/io/Console.h>
 #include <x10/lang/Any.h>
 #include <x10/lang/Rail.h>
-#include <x10/io/File.h>
-#include <x10/io/FileReader.h>
 #include <x10/compiler/Synthetic.h>
 #include <x10/lang/String.h>
 
+//#line 11 "SW.x10"
+
 //#line 12 "SW.x10"
 
-//#line 15 "SW.x10"
-
-//#line 16 "SW.x10"
-
-//#line 18 "SW.x10"
-
-//#line 19 "SW.x10"
-
-//#line 20 "SW.x10"
-
-//#line 22 "SW.x10"
+//#line 14 "SW.x10"
 ::x10::util::Pair<x10_long, x10_long> SW::checkUpwards(::x10::array::Array_2<x10_long>* matrix,
                                                        ::x10::array::Array_2<x10_long>* directions,
                                                        x10_long gapOpening,
@@ -38,476 +28,639 @@
                                                        x10_long row,
                                                        x10_long col) {
     
-    //#line 25 "SW.x10"
+    //#line 17 "SW.x10"
     x10_long max = (x10_long)0x8000000000000000LL;
     
-    //#line 26 "SW.x10"
+    //#line 18 "SW.x10"
     x10_long gap = ((x10_long)-1ll);
     
-    //#line 28 "SW.x10"
-    x10_long i__1539min__1701 = ((x10_long)0ll);
-    x10_long i__1539max__1702 = ((row) - (((x10_long)1ll)));
+    //#line 20 "SW.x10"
+    x10_long i__2096min__2312 = ((x10_long)0ll);
+    x10_long i__2096max__2313 = ((row) - (((x10_long)1ll)));
     {
-        x10_long i__1703;
-        for (i__1703 = i__1539min__1701; ((i__1703) <= (i__1539max__1702));
-             i__1703 = ((i__1703) + (((x10_long)1ll)))) {
-            x10_long i__1704 = i__1703;
+        x10_long i__2314;
+        for (i__2314 = i__2096min__2312; ((i__2314) <= (i__2096max__2313));
+             i__2314 = ((i__2314) + (((x10_long)1ll)))) {
+            x10_long i__2315 = i__2314;
             
-            //#line 29 "SW.x10"
-            x10_long score__1700 = ((::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
-                                       i__1704, col)) + (((gapExtension) * (((row) - (i__1704))))));
+            //#line 21 "SW.x10"
+            x10_long score__2311 = ((::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
+                                       i__2315, col)) + (((gapExtension) * (((row) - (i__2315))))));
             
-            //#line 31 "SW.x10"
+            //#line 23 "SW.x10"
             if (((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
-                    i__1704, col)) <= (((x10_long)0ll))))
+                    i__2315, col)) <= (((x10_long)0ll))))
             {
                 
-                //#line 32 "SW.x10"
-                score__1700 = ((score__1700) + (gapOpening));
+                //#line 24 "SW.x10"
+                score__2311 = ((score__2311) + (gapOpening));
             }
             
-            //#line 35 "SW.x10"
-            if (((score__1700) > (max))) {
+            //#line 27 "SW.x10"
+            if (((score__2311) > (max))) {
                 
-                //#line 36 "SW.x10"
-                max = score__1700;
+                //#line 28 "SW.x10"
+                max = score__2311;
                 
-                //#line 37 "SW.x10"
-                gap = ((row) - (i__1704));
+                //#line 29 "SW.x10"
+                gap = ((row) - (i__2315));
             }
             
         }
     }
     
-    //#line 40 "SW.x10"
+    //#line 32 "SW.x10"
     return ::x10::util::Pair<x10_long, x10_long>::_make(max,
                                                         gap);
     
 }
 
-//#line 43 "SW.x10"
+//#line 35 "SW.x10"
 ::x10::util::Pair<x10_long, x10_long> SW::checkLeftwards(
   ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* directions,
   x10_long gapOpening, x10_long gapExtension, x10_long row,
   x10_long col) {
     
-    //#line 46 "SW.x10"
+    //#line 38 "SW.x10"
     x10_long max = (x10_long)0x8000000000000000LL;
     
-    //#line 47 "SW.x10"
+    //#line 39 "SW.x10"
     x10_long gap = ((x10_long)-1ll);
     
-    //#line 49 "SW.x10"
-    x10_long i__1557min__1706 = ((x10_long)0ll);
-    x10_long i__1557max__1707 = ((col) - (((x10_long)1ll)));
+    //#line 41 "SW.x10"
+    x10_long i__2114min__2317 = ((x10_long)0ll);
+    x10_long i__2114max__2318 = ((col) - (((x10_long)1ll)));
     {
-        x10_long i__1708;
-        for (i__1708 = i__1557min__1706; ((i__1708) <= (i__1557max__1707));
-             i__1708 = ((i__1708) + (((x10_long)1ll)))) {
-            x10_long j__1709 = i__1708;
+        x10_long i__2319;
+        for (i__2319 = i__2114min__2317; ((i__2319) <= (i__2114max__2318));
+             i__2319 = ((i__2319) + (((x10_long)1ll)))) {
+            x10_long j__2320 = i__2319;
             
-            //#line 51 "SW.x10"
-            x10_long score__1705 = ((::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
-                                       row, j__1709)) + (((gapExtension) * (((col) - (j__1709))))));
+            //#line 43 "SW.x10"
+            x10_long score__2316 = ((::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
+                                       row, j__2320)) + (((gapExtension) * (((col) - (j__2320))))));
             
-            //#line 52 "SW.x10"
+            //#line 44 "SW.x10"
             if (((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
-                    row, j__1709)) >= (((x10_long)0ll))))
+                    row, j__2320)) >= (((x10_long)0ll))))
             {
                 
-                //#line 53 "SW.x10"
-                score__1705 = ((score__1705) + (gapOpening));
+                //#line 45 "SW.x10"
+                score__2316 = ((score__2316) + (gapOpening));
             }
             
-            //#line 56 "SW.x10"
-            if (((score__1705) > (max))) {
+            //#line 48 "SW.x10"
+            if (((score__2316) > (max))) {
                 
-                //#line 57 "SW.x10"
-                max = score__1705;
+                //#line 49 "SW.x10"
+                max = score__2316;
                 
-                //#line 58 "SW.x10"
-                gap = ((j__1709) - (col));
+                //#line 50 "SW.x10"
+                gap = ((j__2320) - (col));
             }
             
         }
     }
     
-    //#line 61 "SW.x10"
+    //#line 53 "SW.x10"
     return ::x10::util::Pair<x10_long, x10_long>::_make(max,
                                                         gap);
     
 }
 
-//#line 64 "SW.x10"
+//#line 56 "SW.x10"
 void SW::backtrack(::x10::lang::String* string1, ::x10::lang::String* string2,
                    ::x10::array::Array_2<x10_long>* matrix,
                    ::x10::array::Array_2<x10_long>* directions,
                    ::x10::util::Pair<x10_long, x10_long> maxCoordinates) {
     
-    //#line 66 "SW.x10"
+    //#line 58 "SW.x10"
     x10_long i = maxCoordinates->FMGL(first);
     
-    //#line 67 "SW.x10"
+    //#line 59 "SW.x10"
     x10_long j = maxCoordinates->FMGL(second);
     
-    //#line 68 "SW.x10"
-    ::x10::lang::String* result1 = (&::SW_Strings::sl__1745);
+    //#line 60 "SW.x10"
+    ::x10::lang::String* result1 = (&::SW_Strings::sl__2379);
     
-    //#line 69 "SW.x10"
-    ::x10::lang::String* result2 = (&::SW_Strings::sl__1745);
+    //#line 61 "SW.x10"
+    ::x10::lang::String* result2 = (&::SW_Strings::sl__2379);
     
-    //#line 70 "SW.x10"
+    //#line 62 "SW.x10"
     while ((!::x10aux::struct_equals(::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
                                        i, j), ((x10_long)0ll))))
     {
         
-        //#line 71 "SW.x10"
+        //#line 63 "SW.x10"
         if ((::x10aux::struct_equals(::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                        i, j), ((x10_long)0ll))))
         {
             
-            //#line 72 "SW.x10"
+            //#line 64 "SW.x10"
             result1 = ::x10::lang::String::__plus(::x10aux::nullCheck(string1)->x10::lang::String::charAt(
                                                     ((x10_int) (((i) - (((x10_long)1ll)))))), result1);
             
-            //#line 73 "SW.x10"
+            //#line 65 "SW.x10"
             result2 = ::x10::lang::String::__plus(::x10aux::nullCheck(string2)->x10::lang::String::charAt(
                                                     ((x10_int) (((j) - (((x10_long)1ll)))))), result2);
             
-            //#line 74 "SW.x10"
+            //#line 66 "SW.x10"
             i = ((i) - (((x10_long)1ll)));
             
-            //#line 75 "SW.x10"
+            //#line 67 "SW.x10"
             j = ((j) - (((x10_long)1ll)));
         } else 
-        //#line 76 "SW.x10"
+        //#line 68 "SW.x10"
         if (((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                 i, j)) > (((x10_long)0ll)))) {
             
-            //#line 77 "SW.x10"
-            x10_long i__1575min__1710 = ((x10_long)0ll);
-            x10_long i__1575max__1711 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            //#line 69 "SW.x10"
+            x10_long i__2132min__2321 = ((x10_long)0ll);
+            x10_long i__2132max__2322 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                             i, j)) - (((x10_long)1ll)));
             {
-                x10_long i__1712;
-                for (i__1712 = i__1575min__1710; ((i__1712) <= (i__1575max__1711));
-                     i__1712 = ((i__1712) + (((x10_long)1ll))))
+                x10_long i__2323;
+                for (i__2323 = i__2132min__2321; ((i__2323) <= (i__2132max__2322));
+                     i__2323 = ((i__2323) + (((x10_long)1ll))))
                 {
-                    x10_long k__1713 = i__1712;
+                    x10_long k__2324 = i__2323;
                     
-                    //#line 78 "SW.x10"
+                    //#line 70 "SW.x10"
                     result2 = ::x10::lang::String::__plus(((x10_char)'-'), result2);
                     
-                    //#line 79 "SW.x10"
+                    //#line 71 "SW.x10"
                     result1 = ::x10::lang::String::__plus(::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                                            ((x10_int) (((((i) - (k__1713))) - (((x10_long)1ll)))))), result1);
+                                                            ((x10_int) (((((i) - (k__2324))) - (((x10_long)1ll)))))), result1);
                 }
             }
             
-            //#line 81 "SW.x10"
+            //#line 73 "SW.x10"
             i = ((i) - (::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                           i, j)));
         } else {
             
-            //#line 83 "SW.x10"
-            x10_long i__1593min__1714 = ((x10_long)0ll);
-            x10_long i__1593max__1715 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            //#line 75 "SW.x10"
+            x10_long i__2150min__2325 = ((x10_long)0ll);
+            x10_long i__2150max__2326 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                             i, j)) - (((x10_long)1ll)));
             {
-                x10_long i__1716;
-                for (i__1716 = i__1593min__1714; ((i__1716) <= (i__1593max__1715));
-                     i__1716 = ((i__1716) + (((x10_long)1ll))))
+                x10_long i__2327;
+                for (i__2327 = i__2150min__2325; ((i__2327) <= (i__2150max__2326));
+                     i__2327 = ((i__2327) + (((x10_long)1ll))))
                 {
-                    x10_long k__1717 = i__1716;
+                    x10_long k__2328 = i__2327;
                     
-                    //#line 84 "SW.x10"
+                    //#line 76 "SW.x10"
                     result1 = ::x10::lang::String::__plus(((x10_char)'-'), result1);
                     
-                    //#line 85 "SW.x10"
+                    //#line 77 "SW.x10"
                     result2 = ::x10::lang::String::__plus(::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                                            ((x10_int) (((((j) - (k__1717))) - (((x10_long)1ll)))))), result2);
+                                                            ((x10_int) (((((j) - (k__2328))) - (((x10_long)1ll)))))), result2);
                 }
             }
             
-            //#line 87 "SW.x10"
+            //#line 79 "SW.x10"
             j = ((j) - (::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                           i, j)));
         }
         
     }
     
-    //#line 90 "SW.x10"
+    //#line 82 "SW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
       reinterpret_cast< ::x10::lang::Any*>(result1));
     
-    //#line 91 "SW.x10"
+    //#line 83 "SW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
       reinterpret_cast< ::x10::lang::Any*>(result2));
 }
 
-//#line 94 "SW.x10"
+//#line 86 "SW.x10"
 void SW::match(::x10::lang::String* string1, ::x10::lang::String* string2,
                x10_long simScore, x10_long gapOpening, x10_long gapExtension) {
     
-    //#line 95 "SW.x10"
+    //#line 87 "SW.x10"
     ::x10::array::Array_2<x10_long>* matrix = ::x10::array::Array_2<x10_long>::_make(((::SW::FMGL(S1_SIZE__get)()) + (((x10_long)1ll))),
                                                                                      ((::SW::FMGL(S2_SIZE__get)()) + (((x10_long)1ll))),
                                                                                      ((x10_long)0ll));
     
-    //#line 96 "SW.x10"
+    //#line 88 "SW.x10"
     ::x10::array::Array_2<x10_long>* directions = ::x10::array::Array_2<x10_long>::_make(((::SW::FMGL(S1_SIZE__get)()) + (((x10_long)1ll))),
                                                                                          ((::SW::FMGL(S2_SIZE__get)()) + (((x10_long)1ll))),
                                                                                          ((x10_long)-1ll));
     
-    //#line 97 "SW.x10"
+    //#line 89 "SW.x10"
     x10_long globalMax = (x10_long)0x8000000000000000LL;
     
-    //#line 98 "SW.x10"
+    //#line 90 "SW.x10"
     ::x10::util::Pair<x10_long, x10_long> maxCoordinates =
       ::x10::util::Pair<x10_long, x10_long>::_make(((x10_long)0ll),
                                                    ((x10_long)0ll));
     
-    //#line 100 "SW.x10"
-    x10_long i__1629min__1733 = ((x10_long)1ll);
-    x10_long i__1629max__1734 = ::SW::FMGL(S1_SIZE__get)();
+    //#line 92 "SW.x10"
+    x10_long i__2186min__2344 = ((x10_long)1ll);
+    x10_long i__2186max__2345 = ::SW::FMGL(S1_SIZE__get)();
     {
-        x10_long i__1735;
-        for (i__1735 = i__1629min__1733; ((i__1735) <= (i__1629max__1734));
-             i__1735 = ((i__1735) + (((x10_long)1ll)))) {
-            x10_long i__1736 = i__1735;
+        x10_long i__2346;
+        for (i__2346 = i__2186min__2344; ((i__2346) <= (i__2186max__2345));
+             i__2346 = ((i__2346) + (((x10_long)1ll)))) {
+            x10_long i__2347 = i__2346;
             
-            //#line 101 "SW.x10"
-            x10_long i__1611min__1725 = ((x10_long)1ll);
-            x10_long i__1611max__1726 = ::SW::FMGL(S2_SIZE__get)();
+            //#line 93 "SW.x10"
+            x10_long i__2168min__2336 = ((x10_long)1ll);
+            x10_long i__2168max__2337 = ::SW::FMGL(S2_SIZE__get)();
             {
-                x10_long i__1727;
-                for (i__1727 = i__1611min__1725; ((i__1727) <= (i__1611max__1726));
-                     i__1727 = ((i__1727) + (((x10_long)1ll))))
+                x10_long i__2338;
+                for (i__2338 = i__2168min__2336; ((i__2338) <= (i__2168max__2337));
+                     i__2338 = ((i__2338) + (((x10_long)1ll))))
                 {
-                    x10_long j__1728 = i__1727;
+                    x10_long j__2339 = i__2338;
                     
-                    //#line 102 "SW.x10"
-                    x10_long max__1718 = (x10_long)0x8000000000000000LL;
+                    //#line 94 "SW.x10"
+                    x10_long max__2329 = (x10_long)0x8000000000000000LL;
                     
-                    //#line 103 "SW.x10"
-                    x10_long dir__1719 = ((x10_long)0ll);
+                    //#line 95 "SW.x10"
+                    x10_long dir__2330 = ((x10_long)0ll);
                     
-                    //#line 105 "SW.x10"
-                    x10_long diagScore__1720;
+                    //#line 97 "SW.x10"
+                    x10_long diagScore__2331;
                     
-                    //#line 106 "SW.x10"
+                    //#line 98 "SW.x10"
                     if ((::x10aux::struct_equals(::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                                   ((x10_int) (((i__1736) - (((x10_long)1ll)))))),
+                                                   ((x10_int) (((i__2347) - (((x10_long)1ll)))))),
                                                  ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                                   ((x10_int) (((j__1728) - (((x10_long)1ll)))))))))
+                                                   ((x10_int) (((j__2339) - (((x10_long)1ll)))))))))
                     {
                         
-                        //#line 107 "SW.x10"
-                        diagScore__1720 = ((matrix->x10::array::Array_2<x10_long>::__apply(
-                                              ((i__1736) - (((x10_long)1ll))),
-                                              ((j__1728) - (((x10_long)1ll))))) + (simScore));
+                        //#line 99 "SW.x10"
+                        diagScore__2331 = ((matrix->x10::array::Array_2<x10_long>::__apply(
+                                              ((i__2347) - (((x10_long)1ll))),
+                                              ((j__2339) - (((x10_long)1ll))))) + (simScore));
                     } else {
                         
-                        //#line 109 "SW.x10"
-                        diagScore__1720 = ((matrix->x10::array::Array_2<x10_long>::__apply(
-                                              ((i__1736) - (((x10_long)1ll))),
-                                              ((j__1728) - (((x10_long)1ll))))) - (simScore));
+                        //#line 101 "SW.x10"
+                        diagScore__2331 = ((matrix->x10::array::Array_2<x10_long>::__apply(
+                                              ((i__2347) - (((x10_long)1ll))),
+                                              ((j__2339) - (((x10_long)1ll))))) - (simScore));
                     }
                     
-                    //#line 111 "SW.x10"
-                    if (((diagScore__1720) > (max__1718)))
+                    //#line 103 "SW.x10"
+                    if (((diagScore__2331) > (max__2329)))
                     {
                         
-                        //#line 112 "SW.x10"
-                        max__1718 = diagScore__1720;
+                        //#line 104 "SW.x10"
+                        max__2329 = diagScore__2331;
                         
-                        //#line 113 "SW.x10"
-                        dir__1719 = ((x10_long)0ll);
+                        //#line 105 "SW.x10"
+                        dir__2330 = ((x10_long)0ll);
                     }
                     
-                    //#line 116 "SW.x10"
-                    ::x10::util::Pair<x10_long, x10_long> upResult__1721 =
+                    //#line 108 "SW.x10"
+                    ::x10::util::Pair<x10_long, x10_long> upResult__2332 =
                       ::SW::checkUpwards(matrix, directions,
                                          gapOpening, gapExtension,
-                                         i__1736, j__1728);
+                                         i__2347, j__2339);
                     
-                    //#line 117 "SW.x10"
-                    x10_long upScore__1722 = upResult__1721->FMGL(first);
+                    //#line 109 "SW.x10"
+                    x10_long upScore__2333 = upResult__2332->FMGL(first);
                     
-                    //#line 118 "SW.x10"
-                    if (((upScore__1722) > (max__1718))) {
+                    //#line 110 "SW.x10"
+                    if (((upScore__2333) > (max__2329))) {
                         
-                        //#line 119 "SW.x10"
-                        max__1718 = upScore__1722;
+                        //#line 111 "SW.x10"
+                        max__2329 = upScore__2333;
                         
-                        //#line 120 "SW.x10"
-                        dir__1719 = upResult__1721->FMGL(second);
+                        //#line 112 "SW.x10"
+                        dir__2330 = upResult__2332->FMGL(second);
                     }
                     
-                    //#line 123 "SW.x10"
-                    ::x10::util::Pair<x10_long, x10_long> leftResult__1723 =
+                    //#line 115 "SW.x10"
+                    ::x10::util::Pair<x10_long, x10_long> leftResult__2334 =
                       ::SW::checkLeftwards(matrix, directions,
                                            gapOpening, gapExtension,
-                                           i__1736, j__1728);
+                                           i__2347, j__2339);
                     
-                    //#line 124 "SW.x10"
-                    x10_long leftScore__1724 = leftResult__1723->FMGL(first);
+                    //#line 116 "SW.x10"
+                    x10_long leftScore__2335 = leftResult__2334->FMGL(first);
                     
-                    //#line 125 "SW.x10"
-                    if (((leftScore__1724) > (max__1718)))
+                    //#line 117 "SW.x10"
+                    if (((leftScore__2335) > (max__2329)))
                     {
                         
-                        //#line 126 "SW.x10"
-                        max__1718 = leftScore__1724;
+                        //#line 118 "SW.x10"
+                        max__2329 = leftScore__2335;
                         
-                        //#line 127 "SW.x10"
-                        dir__1719 = leftResult__1723->FMGL(second);
+                        //#line 119 "SW.x10"
+                        dir__2330 = leftResult__2334->FMGL(second);
                     }
+                    
+                    //#line 122 "SW.x10"
+                    max__2329 = ((max__2329) < (((x10_long)0ll)))
+                      ? (((x10_long)0ll)) : (max__2329);
+                    
+                    //#line 124 "SW.x10"
+                    if (((max__2329) > (globalMax))) {
+                        
+                        //#line 125 "SW.x10"
+                        globalMax = max__2329;
+                        
+                        //#line 126 "SW.x10"
+                        maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(i__2347,
+                                                                                      j__2339);
+                    }
+                    
+                    //#line 129 "SW.x10"
+                    matrix->x10::array::Array_2<x10_long>::__set(
+                      i__2347, j__2339, max__2329);
                     
                     //#line 130 "SW.x10"
-                    max__1718 = ((max__1718) < (((x10_long)0ll)))
-                      ? (((x10_long)0ll)) : (max__1718);
-                    
-                    //#line 132 "SW.x10"
-                    if (((max__1718) > (globalMax))) {
-                        
-                        //#line 133 "SW.x10"
-                        globalMax = max__1718;
-                        
-                        //#line 134 "SW.x10"
-                        maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(i__1736,
-                                                                                      j__1728);
-                    }
-                    
-                    //#line 137 "SW.x10"
-                    matrix->x10::array::Array_2<x10_long>::__set(
-                      i__1736, j__1728, max__1718);
-                    
-                    //#line 138 "SW.x10"
                     directions->x10::array::Array_2<x10_long>::__set(
-                      i__1736, j__1728, dir__1719);
+                      i__2347, j__2339, dir__2330);
                 }
             }
             
         }
     }
     
-    //#line 142 "SW.x10"
-    x10_long i__1665min__1737 = ((x10_long)0ll);
-    x10_long i__1665max__1738 = ::SW::FMGL(S1_SIZE__get)();
+    //#line 134 "SW.x10"
+    x10_long i__2222min__2348 = ((x10_long)0ll);
+    x10_long i__2222max__2349 = ::SW::FMGL(S1_SIZE__get)();
     {
-        x10_long i__1739;
-        for (i__1739 = i__1665min__1737; ((i__1739) <= (i__1665max__1738));
-             i__1739 = ((i__1739) + (((x10_long)1ll)))) {
-            x10_long i__1740 = i__1739;
+        x10_long i__2350;
+        for (i__2350 = i__2222min__2348; ((i__2350) <= (i__2222max__2349));
+             i__2350 = ((i__2350) + (((x10_long)1ll)))) {
+            x10_long i__2351 = i__2350;
             
-            //#line 143 "SW.x10"
-            x10_long i__1647min__1729 = ((x10_long)0ll);
-            x10_long i__1647max__1730 = ::SW::FMGL(S2_SIZE__get)();
+            //#line 135 "SW.x10"
+            x10_long i__2204min__2340 = ((x10_long)0ll);
+            x10_long i__2204max__2341 = ::SW::FMGL(S2_SIZE__get)();
             {
-                x10_long i__1731;
-                for (i__1731 = i__1647min__1729; ((i__1731) <= (i__1647max__1730));
-                     i__1731 = ((i__1731) + (((x10_long)1ll))))
+                x10_long i__2342;
+                for (i__2342 = i__2204min__2340; ((i__2342) <= (i__2204max__2341));
+                     i__2342 = ((i__2342) + (((x10_long)1ll))))
                 {
-                    x10_long j__1732 = i__1731;
+                    x10_long j__2343 = i__2342;
                     
-                    //#line 144 "SW.x10"
+                    //#line 136 "SW.x10"
                     ::x10::io::Console::FMGL(OUT__get)()->print(
                       ::x10::lang::String::__plus(matrix->x10::array::Array_2<x10_long>::__apply(
-                                                    i__1740,
-                                                    j__1732), (&::SW_Strings::sl__1746)));
+                                                    i__2351,
+                                                    j__2343), (&::SW_Strings::sl__2380)));
                 }
             }
             
-            //#line 146 "SW.x10"
+            //#line 138 "SW.x10"
             ::x10::io::Console::FMGL(OUT__get)()->println();
         }
     }
     
-    //#line 149 "SW.x10"
+    //#line 141 "SW.x10"
     ::SW::backtrack(string1, string2, matrix, directions,
                     maxCoordinates);
 }
 
-//#line 153 "SW.x10"
-void SW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
+//#line 144 "SW.x10"
+void SW::parallelMatch(::x10::lang::String* string1, ::x10::lang::String* string2,
+                       x10_long simScore, x10_long gapOpening,
+                       x10_long gapExtension) {
+    
+    //#line 146 "SW.x10"
+    x10_long maxRow = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
+    
+    //#line 147 "SW.x10"
+    x10_long maxCol = ((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length()));
+    
+    //#line 149 "SW.x10"
+    ::x10::array::Array_2<x10_long>* matrix = ::x10::array::Array_2<x10_long>::_make(((::SW::FMGL(S1_SIZE__get)()) + (((x10_long)1ll))),
+                                                                                     ((::SW::FMGL(S2_SIZE__get)()) + (((x10_long)1ll))),
+                                                                                     ((x10_long)0ll));
+    
+    //#line 150 "SW.x10"
+    ::x10::array::Array_2<x10_long>* directions = ::x10::array::Array_2<x10_long>::_make(((::SW::FMGL(S1_SIZE__get)()) + (((x10_long)1ll))),
+                                                                                         ((::SW::FMGL(S2_SIZE__get)()) + (((x10_long)1ll))),
+                                                                                         ((x10_long)-1ll));
+    
+    //#line 151 "SW.x10"
+    x10_long globalMax = (x10_long)0x8000000000000000LL;
+    
+    //#line 152 "SW.x10"
+    ::x10::util::Pair<x10_long, x10_long> maxCoordinates =
+      ::x10::util::Pair<x10_long, x10_long>::_make(((x10_long)0ll),
+                                                   ((x10_long)0ll));
     
     //#line 154 "SW.x10"
+    x10_long i__2258min__2371 = ((x10_long)1ll);
+    x10_long i__2258max__2372 = ((maxRow) + (maxCol));
+    {
+        x10_long i__2373;
+        for (i__2373 = i__2258min__2371; ((i__2373) <= (i__2258max__2372));
+             i__2373 = ((i__2373) + (((x10_long)1ll)))) {
+            x10_long line__2374 = i__2373;
+            
+            //#line 156 "SW.x10"
+            x10_long startCol__2365 = ((((x10_long)0ll)) > (((line__2374) - (maxRow))))
+              ? (((x10_long)0ll)) : (((line__2374) - (maxRow)));
+            
+            //#line 159 "SW.x10"
+            x10_long count__2366 = ((line__2374) < (((maxCol) - (startCol__2365))))
+              ? (line__2374) : (((maxCol) - (startCol__2365)));
+            
+            //#line 160 "SW.x10"
+            count__2366 = ((count__2366) < (maxRow)) ? (count__2366)
+              : (maxRow);
+            
+            //#line 163 "SW.x10"
+            x10_long i__2240min__2361 = ((x10_long)0ll);
+            x10_long i__2240max__2362 = ((count__2366) - (((x10_long)1ll)));
+            {
+                x10_long i__2363;
+                for (i__2363 = i__2240min__2361; ((i__2363) <= (i__2240max__2362));
+                     i__2363 = ((i__2363) + (((x10_long)1ll))))
+                {
+                    x10_long k__2364 = i__2363;
+                    
+                    //#line 165 "SW.x10"
+                    x10_long i__2352 = ((maxRow) > (line__2374))
+                      ? (line__2374) : (maxRow);
+                    
+                    //#line 166 "SW.x10"
+                    i__2352 = ((i__2352) - (k__2364));
+                    
+                    //#line 167 "SW.x10"
+                    x10_long j__2353 = ((((startCol__2365) + (k__2364))) + (((x10_long)1ll)));
+                    
+                    //#line 170 "SW.x10"
+                    x10_long max__2354 = (x10_long)0x8000000000000000LL;
+                    
+                    //#line 171 "SW.x10"
+                    x10_long dir__2355 = ((x10_long)0ll);
+                    
+                    //#line 173 "SW.x10"
+                    x10_long diagScore__2356;
+                    
+                    //#line 174 "SW.x10"
+                    if ((::x10aux::struct_equals(::x10aux::nullCheck(string1)->x10::lang::String::charAt(
+                                                   ((x10_int) (((i__2352) - (((x10_long)1ll)))))),
+                                                 ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
+                                                   ((x10_int) (((j__2353) - (((x10_long)1ll)))))))))
+                    {
+                        
+                        //#line 175 "SW.x10"
+                        diagScore__2356 = ((matrix->x10::array::Array_2<x10_long>::__apply(
+                                              ((i__2352) - (((x10_long)1ll))),
+                                              ((j__2353) - (((x10_long)1ll))))) + (simScore));
+                    } else {
+                        
+                        //#line 177 "SW.x10"
+                        diagScore__2356 = ((matrix->x10::array::Array_2<x10_long>::__apply(
+                                              ((i__2352) - (((x10_long)1ll))),
+                                              ((j__2353) - (((x10_long)1ll))))) - (simScore));
+                    }
+                    
+                    //#line 179 "SW.x10"
+                    if (((diagScore__2356) > (max__2354)))
+                    {
+                        
+                        //#line 180 "SW.x10"
+                        max__2354 = diagScore__2356;
+                        
+                        //#line 181 "SW.x10"
+                        dir__2355 = ((x10_long)0ll);
+                    }
+                    
+                    //#line 184 "SW.x10"
+                    ::x10::util::Pair<x10_long, x10_long> upResult__2357 =
+                      ::SW::checkUpwards(matrix, directions,
+                                         gapOpening, gapExtension,
+                                         i__2352, j__2353);
+                    
+                    //#line 185 "SW.x10"
+                    x10_long upScore__2358 = upResult__2357->FMGL(first);
+                    
+                    //#line 186 "SW.x10"
+                    if (((upScore__2358) > (max__2354))) {
+                        
+                        //#line 187 "SW.x10"
+                        max__2354 = upScore__2358;
+                        
+                        //#line 188 "SW.x10"
+                        dir__2355 = upResult__2357->FMGL(second);
+                    }
+                    
+                    //#line 191 "SW.x10"
+                    ::x10::util::Pair<x10_long, x10_long> leftResult__2359 =
+                      ::SW::checkLeftwards(matrix, directions,
+                                           gapOpening, gapExtension,
+                                           i__2352, j__2353);
+                    
+                    //#line 192 "SW.x10"
+                    x10_long leftScore__2360 = leftResult__2359->FMGL(first);
+                    
+                    //#line 193 "SW.x10"
+                    if (((leftScore__2360) > (max__2354)))
+                    {
+                        
+                        //#line 194 "SW.x10"
+                        max__2354 = leftScore__2360;
+                        
+                        //#line 195 "SW.x10"
+                        dir__2355 = leftResult__2359->FMGL(second);
+                    }
+                    
+                    //#line 198 "SW.x10"
+                    max__2354 = ((max__2354) < (((x10_long)0ll)))
+                      ? (((x10_long)0ll)) : (max__2354);
+                    
+                    //#line 200 "SW.x10"
+                    if (((max__2354) > (globalMax))) {
+                        
+                        //#line 201 "SW.x10"
+                        globalMax = max__2354;
+                        
+                        //#line 202 "SW.x10"
+                        maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(i__2352,
+                                                                                      j__2353);
+                    }
+                    
+                    //#line 204 "SW.x10"
+                    matrix->x10::array::Array_2<x10_long>::__set(
+                      i__2352, j__2353, max__2354);
+                    
+                    //#line 205 "SW.x10"
+                    directions->x10::array::Array_2<x10_long>::__set(
+                      i__2352, j__2353, dir__2355);
+                }
+            }
+            
+        }
+    }
+    
+    //#line 212 "SW.x10"
+    x10_long i__2294min__2375 = ((x10_long)0ll);
+    x10_long i__2294max__2376 = ::SW::FMGL(S1_SIZE__get)();
+    {
+        x10_long i__2377;
+        for (i__2377 = i__2294min__2375; ((i__2377) <= (i__2294max__2376));
+             i__2377 = ((i__2377) + (((x10_long)1ll)))) {
+            x10_long i__2378 = i__2377;
+            
+            //#line 213 "SW.x10"
+            x10_long i__2276min__2367 = ((x10_long)0ll);
+            x10_long i__2276max__2368 = ::SW::FMGL(S2_SIZE__get)();
+            {
+                x10_long i__2369;
+                for (i__2369 = i__2276min__2367; ((i__2369) <= (i__2276max__2368));
+                     i__2369 = ((i__2369) + (((x10_long)1ll))))
+                {
+                    x10_long j__2370 = i__2369;
+                    
+                    //#line 214 "SW.x10"
+                    ::x10::io::Console::FMGL(OUT__get)()->print(
+                      ::x10::lang::String::__plus(matrix->x10::array::Array_2<x10_long>::__apply(
+                                                    i__2378,
+                                                    j__2370), (&::SW_Strings::sl__2380)));
+                }
+            }
+            
+            //#line 216 "SW.x10"
+            ::x10::io::Console::FMGL(OUT__get)()->println();
+        }
+    }
+    
+    //#line 218 "SW.x10"
+    ::SW::backtrack(string1, string2, matrix, directions,
+                    maxCoordinates);
+}
+
+//#line 222 "SW.x10"
+void SW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
+    
+    //#line 223 "SW.x10"
     ::x10::lang::Rail< x10_long >* indexMap = ::x10::lang::Rail< x10_long >::_make(((x10_long)100ll));
     
-    //#line 155 "SW.x10"
+    //#line 224 "SW.x10"
     ::x10::array::Array_2<x10_long>* blosum = ::x10::array::Array_2<x10_long>::_make(((x10_long)127ll),
                                                                                      ((x10_long)127ll),
                                                                                      ((x10_long)0ll));
     
-    //#line 158 "SW.x10"
-    ::x10::io::File* FILE = ::x10::io::File::_make((&::SW_Strings::sl__1747));
-    
-    //#line 159 "SW.x10"
-    ::x10::io::FileReader* reader = ::x10::io::FileReader::_make(FILE);
-    
-    //#line 161 "SW.x10"
-    ::x10::lang::String* line;
-    
-    //#line 163 "SW.x10"
-    ::x10::lang::Rail< x10_char >* headerOrder = ::x10::lang::Rail< x10_char >::_make();
-    
-    //#line 164 "SW.x10"
-    while (((!::x10aux::struct_equals((line = reader->readLine()),
-                                      reinterpret_cast< ::x10::lang::NullType*>(X10_NULL))) &&
-           (::x10aux::struct_equals(::x10aux::nullCheck(::x10aux::nullCheck(line)->x10::lang::String::trim())->x10::lang::String::charAt(
-                                      ((x10_int) (((x10_long)0ll)))),
-                                    ((x10_char)'#'))))) {
-        ;
-    }
-    
-    //#line 166 "SW.x10"
-    ::x10::lang::Rail< ::x10::lang::String* >* headerLine =
-      ::x10::lang::StringHelper::split((&::SW_Strings::sl__1746), ::x10aux::nullCheck(line)->x10::lang::String::trim());
-    
-    //#line 167 "SW.x10"
-    ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(headerLine));
-    
-    //#line 168 "SW.x10"
-    x10_long i__1683min__1741 = ((x10_long)0ll);
-    x10_long i__1683max__1742 = (((x10_long)(::x10aux::nullCheck(headerLine)->FMGL(size))) - (((x10_long)1ll)));
-    {
-        x10_long i__1743;
-        for (i__1743 = i__1683min__1741; ((i__1743) <= (i__1683max__1742));
-             i__1743 = ((i__1743) + (((x10_long)1ll)))) {
-            x10_long i__1744 = i__1743;
-            
-            //#line 169 "SW.x10"
-            headerOrder->x10::lang::Rail< x10_char >::__set(
-              i__1744, ::x10aux::nullCheck(::x10aux::nullCheck(headerLine)->x10::lang::Rail< ::x10::lang::String* >::__apply(
-                                             i__1744))->x10::lang::String::charAt(
-                         ((x10_int) (((x10_long)0ll)))));
-            
-            //#line 170 "SW.x10"
-            ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-              ::x10aux::class_cast_unchecked< ::x10::lang::Any*>(headerOrder->x10::lang::Rail< x10_char >::__apply(
-                                                                   i__1744)));
-        }
-    }
-    
-    //#line 179 "SW.x10"
+    //#line 226 "SW.x10"
     x10_long gapOpening = ((x10_long)0ll);
     
-    //#line 180 "SW.x10"
+    //#line 227 "SW.x10"
     x10_long gapExtension = ((x10_long)-2ll);
     
-    //#line 181 "SW.x10"
-    ::x10::lang::String* string1 = (&::SW_Strings::sl__1748);
+    //#line 228 "SW.x10"
+    ::x10::lang::String* string1 = (&::SW_Strings::sl__2381);
     
-    //#line 182 "SW.x10"
-    ::x10::lang::String* string2 = (&::SW_Strings::sl__1749);
+    //#line 229 "SW.x10"
+    ::x10::lang::String* string2 = (&::SW_Strings::sl__2382);
     
-    //#line 183 "SW.x10"
+    //#line 230 "SW.x10"
     x10_long simScore = ((x10_long)3ll);
     
-    //#line 184 "SW.x10"
-    ::SW::match(string1, string2, simScore, gapOpening, gapExtension);
+    //#line 231 "SW.x10"
+    ::SW::parallelMatch(string1, string2, simScore, gapOpening,
+                        gapExtension);
 }
 
 //#line 9 "SW.x10"
@@ -553,11 +706,10 @@ void SW::_initRTT() {
     rtt.initStageTwo("SW",::x10aux::RuntimeType::class_kind, 0, parents, 0, NULL, NULL);
 }
 
-::x10::lang::String SW_Strings::sl__1745("");
-::x10::lang::String SW_Strings::sl__1746(" ");
-::x10::lang::String SW_Strings::sl__1748("GGTTGACTA");
-::x10::lang::String SW_Strings::sl__1749("TGTTACGG");
-::x10::lang::String SW_Strings::sl__1747("BLOSUM62");
+::x10::lang::String SW_Strings::sl__2379("");
+::x10::lang::String SW_Strings::sl__2380(" ");
+::x10::lang::String SW_Strings::sl__2381("GGTTGACTA");
+::x10::lang::String SW_Strings::sl__2382("TGTTACGG");
 
 /* END of SW */
 /*************************************************/
