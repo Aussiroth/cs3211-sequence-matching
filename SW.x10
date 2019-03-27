@@ -3,6 +3,7 @@ import x10.io.Console;
 import x10.util.Random;
 import x10.util.Pair;
 import x10.util.HashMap;
+import x10.util.ArrayList;
 import x10.io.FileReader;
 import x10.io.File;
 
@@ -11,14 +12,33 @@ public class SW {
   // TODO: Make amino acid size dynamic
   static val NUM_AMINO_ACIDS = 24;
 
-
   static val S1_SIZE = 9;
   static val S2_SIZE = 8;
 
   static val DIAG = 0;
   static val UP = 1;
   static val LEFT = 2;
-  
+
+  public static def splitString(lineToSplit:String) {
+    val tokens = new ArrayList[String]();
+    var currToken:String = "";
+    for (i in 0..(lineToSplit.length()-1)) {
+      if (lineToSplit.charAt(Int.operator_as(i)) == ' ') {
+        if (currToken.length() > 0) {
+          tokens.add(currToken);
+          currToken = "";
+        }
+      }
+      else {
+        currToken = currToken + lineToSplit.charAt(Int.operator_as(i));
+      }
+    }
+    if (currToken.length() > 0) {
+      tokens.add(currToken);
+    }
+    return tokens;
+  }
+
   public static def checkUpwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
         gapExtension:Long, row:Long, col: Long) {
     
@@ -91,7 +111,7 @@ public class SW {
     Console.OUT.println(result2);
   }
 
-  public static def match(string1:String, string2:String, simScore:Long, gapOpening:Long, gapExtension:Long) {
+  public static def match(string1:String, string2:String, blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
     val matrix = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, 0);
     val directions = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
@@ -103,11 +123,9 @@ public class SW {
         var dir:Long = 0;
 
         var diagScore:Long;
-        if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
-          diagScore = matrix(i - 1, j - 1) + simScore;
-        } else {
-          diagScore = matrix(i - 1, j - 1) - simScore;
-        }
+        var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
+        var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
+        diagScore = matrix(i-1,j-1) + blosum(firstChar.ord(), secondChar.ord());
         if (diagScore > max) {
           max = diagScore;
           dir = 0;
@@ -155,32 +173,39 @@ public class SW {
     val blosum = new Array_2[Long](127, 127, 0);
     // val blosum = new HashMap[Char, HashMap[Char, Long]]();
     
-    val FILE = new File("BLOSUM62");
+    val FILE = new File("BLOSUMDNA");
     val reader = new FileReader(FILE);
 
     var line:String;
 
-    val headerOrder = new Rail[Char]();
+    val headerOrder = new ArrayList[Char]();
     while (((line = reader.readLine()) != null) && (line.trim().charAt(Int.operator_as(0)) == '#'));
     
-    val headerLine = line.trim().split(" ");
+    val headerLine = splitString(line.trim());
     Console.OUT.println(headerLine);
-    for (i in 0..(headerLine.size - 1)) {
-      headerOrder(i) = headerLine(i).charAt(Int.operator_as(0));
-      Console.OUT.println(headerOrder(i));
+    for (i in 0..(headerLine.size() - 1)) {
+      headerOrder.add(headerLine.get(i).charAt(Int.operator_as(0)));
     }
-    // while ((line = reader.readLine()) != null) {
-    //  val currLine = line.trim().split(" ");
-    //  for (i in 1..(currLine.size)) {
-    //    blosum.get(headerLine(i - 1)).put(currLine(i).charAt(Int.operator_as(0)), Int.parseInt(currLine(i)));
-    // }
-
+    Console.OUT.println(headerOrder);
+    while (true) {
+      try {
+        line = reader.readLine();
+      }
+      catch (Exception) {
+        break;
+      }
+      val currLine = splitString(line.trim());
+      var currChar:Char = currLine.get(0).charAt(Int.operator_as(0));
+     for (i in 1..(currLine.size()-1)) {
+        blosum(currChar.ord(), headerOrder.get(i-1).ord()) = Int.parse(currLine.get(i));
+      }
+    }
     
     val gapOpening = -0;
     val gapExtension = -2;
     val string1 = "GGTTGACTA";
     val string2 = "TGTTACGG";
     var simScore:Long = 3;
-    match(string1, string2, simScore, gapOpening, gapExtension);
+    match(string1, string2, blosum, gapOpening, gapExtension);
   }
 }

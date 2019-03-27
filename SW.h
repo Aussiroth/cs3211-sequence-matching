@@ -4,17 +4,20 @@
 #include <x10rt.h>
 
 
+namespace x10 { namespace lang { 
+class String;
+} } 
+namespace x10 { namespace util { 
+template<class TPMGL(T)> class ArrayList;
+} } 
+namespace x10 { namespace lang { 
+class Char;
+} } 
 namespace x10 { namespace array { 
 template<class TPMGL(T)> class Array_2;
 } } 
 namespace x10 { namespace util { 
 template<class TPMGL(T), class TPMGL(U)> class Pair;
-} } 
-namespace x10 { namespace lang { 
-class String;
-} } 
-namespace x10 { namespace lang { 
-class Char;
 } } 
 namespace x10 { namespace io { 
 class Printer;
@@ -34,17 +37,21 @@ class File;
 namespace x10 { namespace io { 
 class FileReader;
 } } 
+namespace x10 { namespace lang { 
+class Exception;
+} } 
 namespace x10 { namespace compiler { 
 class Synthetic;
 } } 
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__1745;
-    static ::x10::lang::String sl__1746;
-    static ::x10::lang::String sl__1748;
-    static ::x10::lang::String sl__1749;
-    static ::x10::lang::String sl__1747;
+    static ::x10::lang::String sl__2188;
+    static ::x10::lang::String sl__2189;
+    static ::x10::lang::String sl__2192;
+    static ::x10::lang::String sl__2191;
+    static ::x10::lang::String sl__2193;
+    static ::x10::lang::String sl__2190;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -75,6 +82,7 @@ class SW : public ::x10::lang::X10Class   {
     static const x10_long FMGL(LEFT) = 2;
     static x10_long FMGL(LEFT__get)();
     
+    static ::x10::util::ArrayList< ::x10::lang::String*>* splitString(::x10::lang::String* lineToSplit);
     static ::x10::util::Pair<x10_long, x10_long> checkUpwards(::x10::array::Array_2<x10_long>* matrix,
                                                               ::x10::array::Array_2<x10_long>* directions,
                                                               x10_long gapOpening,
@@ -90,8 +98,8 @@ class SW : public ::x10::lang::X10Class   {
                           ::x10::array::Array_2<x10_long>* directions,
                           ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
-                      x10_long simScore, x10_long gapOpening,
-                      x10_long gapExtension);
+                      ::x10::array::Array_2<x10_long>* blosum,
+                      x10_long gapOpening, x10_long gapExtension);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
     virtual ::SW* SW____this__SW();
     void _constructor();
