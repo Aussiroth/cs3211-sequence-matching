@@ -28,16 +28,23 @@ class Any;
 namespace x10 { namespace lang { 
 template<class TPMGL(T)> class Rail;
 } } 
+namespace x10 { namespace io { 
+class File;
+} } 
+namespace x10 { namespace io { 
+class FileReader;
+} } 
 namespace x10 { namespace compiler { 
 class Synthetic;
 } } 
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__1639;
-    static ::x10::lang::String sl__1640;
-    static ::x10::lang::String sl__1641;
-    static ::x10::lang::String sl__1642;
+    static ::x10::lang::String sl__1745;
+    static ::x10::lang::String sl__1746;
+    static ::x10::lang::String sl__1748;
+    static ::x10::lang::String sl__1749;
+    static ::x10::lang::String sl__1747;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -70,21 +77,21 @@ class SW : public ::x10::lang::X10Class   {
     
     static ::x10::util::Pair<x10_long, x10_long> checkUpwards(::x10::array::Array_2<x10_long>* matrix,
                                                               ::x10::array::Array_2<x10_long>* directions,
-                                                              x10_long gap_opening,
-                                                              x10_long gap_extension,
+                                                              x10_long gapOpening,
+                                                              x10_long gapExtension,
                                                               x10_long row,
                                                               x10_long col);
     static ::x10::util::Pair<x10_long, x10_long> checkLeftwards(
       ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* directions,
-      x10_long gap_opening, x10_long gap_extension, x10_long row,
+      x10_long gapOpening, x10_long gapExtension, x10_long row,
       x10_long col);
     static void backtrack(::x10::lang::String* string1, ::x10::lang::String* string2,
                           ::x10::array::Array_2<x10_long>* matrix,
                           ::x10::array::Array_2<x10_long>* directions,
                           ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
-                      x10_long simScore, x10_long gap_opening,
-                      x10_long gap_extension);
+                      x10_long simScore, x10_long gapOpening,
+                      x10_long gapExtension);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
     virtual ::SW* SW____this__SW();
     void _constructor();

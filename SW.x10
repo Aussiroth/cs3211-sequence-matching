@@ -2,6 +2,9 @@ import x10.array.*;
 import x10.io.Console;
 import x10.util.Random;
 import x10.util.Pair;
+import x10.util.HashMap;
+import x10.io.FileReader;
+import x10.io.File;
 
 public class SW {
   
@@ -149,7 +152,29 @@ public class SW {
   
   public static def main (args:Rail[String]) {
     val indexMap = new Rail[Long](100);
-    val blosum = new Array_2[Long](NUM_AMINO_ACIDS, NUM_AMINO_ACIDS);
+    val blosum = new Array_2[Long](127, 127, 0);
+    // val blosum = new HashMap[Char, HashMap[Char, Long]]();
+    
+    val FILE = new File("BLOSUM62");
+    val reader = new FileReader(FILE);
+
+    var line:String;
+
+    val headerOrder = new Rail[Char]();
+    while (((line = reader.readLine()) != null) && (line.trim().charAt(Int.operator_as(0)) == '#'));
+    
+    val headerLine = line.trim().split(" ");
+    Console.OUT.println(headerLine);
+    for (i in 0..(headerLine.size - 1)) {
+      headerOrder(i) = headerLine(i).charAt(Int.operator_as(0));
+      Console.OUT.println(headerOrder(i));
+    }
+    // while ((line = reader.readLine()) != null) {
+    //  val currLine = line.trim().split(" ");
+    //  for (i in 1..(currLine.size)) {
+    //    blosum.get(headerLine(i - 1)).put(currLine(i).charAt(Int.operator_as(0)), Int.parseInt(currLine(i)));
+    // }
+
     
     val gapOpening = -0;
     val gapExtension = -2;
