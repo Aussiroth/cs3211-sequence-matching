@@ -25,8 +25,26 @@ class Console;
 namespace x10 { namespace lang { 
 class Any;
 } } 
+namespace x10 { namespace xrx { 
+class Runtime;
+} } 
+namespace x10 { namespace xrx { 
+class FinishState;
+} } 
+namespace x10 { namespace lang { 
+class VoidFun_0_0;
+} } 
+namespace x10 { namespace compiler { 
+class AsyncClosure;
+} } 
+namespace x10 { namespace lang { 
+class CheckedThrowable;
+} } 
 namespace x10 { namespace lang { 
 template<class TPMGL(T)> class Rail;
+} } 
+namespace x10 { namespace lang { 
+class System;
 } } 
 namespace x10 { namespace compiler { 
 class Synthetic;
@@ -34,10 +52,16 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__2379;
-    static ::x10::lang::String sl__2380;
-    static ::x10::lang::String sl__2381;
-    static ::x10::lang::String sl__2382;
+    static ::x10::lang::String sl__3487;
+    static ::x10::lang::String sl__3488;
+    static ::x10::lang::String sl__3491;
+    static ::x10::lang::String sl__3493;
+    static ::x10::lang::String sl__3495;
+    static ::x10::lang::String sl__3489;
+    static ::x10::lang::String sl__3490;
+    static ::x10::lang::String sl__3494;
+    static ::x10::lang::String sl__3492;
+    static ::x10::lang::String sl__3496;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -45,11 +69,11 @@ class SW : public ::x10::lang::X10Class   {
     RTT_H_DECLS_CLASS
     
     /* Static field: FMGL(S1_SIZE) */
-    static const x10_long FMGL(S1_SIZE) = 9;
+    static const x10_long FMGL(S1_SIZE) = 100;
     static x10_long FMGL(S1_SIZE__get)();
     
     /* Static field: FMGL(S2_SIZE) */
-    static const x10_long FMGL(S2_SIZE) = 8;
+    static const x10_long FMGL(S2_SIZE) = 100;
     static x10_long FMGL(S2_SIZE__get)();
     
     static ::x10::util::Pair<x10_long, x10_long> checkUpwards(::x10::array::Array_2<x10_long>* matrix,
@@ -73,6 +97,10 @@ class SW : public ::x10::lang::X10Class   {
                               ::x10::lang::String* string2,
                               x10_long simScore, x10_long gapOpening,
                               x10_long gapExtension);
+    static void sequentialMatch(::x10::lang::String* string1,
+                                ::x10::lang::String* string2,
+                                x10_long simScore, x10_long gapOpening,
+                                x10_long gapExtension);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
     virtual ::SW* SW____this__SW();
     void _constructor();
