@@ -188,8 +188,35 @@ public class SW_M {
     var currentDiagBlocks:Long = 0;
     var currentStartBlockRow:Long = 1;
     var currentStartBlockCol:Long = 1;
-    var diagonalCount:Long = Int.operator_as(Math.ceil(maxRow/cutoff)+Math.ceil(maxCol/cutoff) - 1);
-    var diagonalMax:long = Int.operator_as(Math.ceil(maxRow/cutoff));
+	var diagonalCount:Long;
+	var diagonalMax:Long;
+	
+	if(maxRow%cutoff==0)
+	{
+		if(maxCol%cutoff==0)
+		{
+			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)-1;
+			diagonalMax=(maxCol/cutoff);
+		}
+		else
+		{
+			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
+			diagonalMax=(maxCol/cutoff)+1;
+		}
+	}
+	else 
+	{
+		if(maxCol%cutoff==0)
+		{
+			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
+			diagonalMax=(maxCol/cutoff);
+		}
+		else
+		{
+			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)+1;
+			diagonalMax=(maxCol/cutoff)+1;
+		}
+	}
 
     val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
     val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
@@ -198,7 +225,7 @@ public class SW_M {
 	var maxColTemp:Long = 0;
 	var maxRowTemp:Long = 0;
 
-	Console.OUT.print("total diagonal count: "+diagonalMax+"\n");
+	Console.OUT.print("total diagonal count: "+diagonalCount+ "and max blocks at a diagonal should be "+diagonalMax+"\n");
     for(line0 in 1..(diagonalCount))
     {
 		Console.OUT.print("currently at diagonal: "+line0+"\n");
@@ -216,14 +243,14 @@ public class SW_M {
       else if(line0 == diagonalMax)
       {
         currentDiagBlocks= diagonalMax;
-		currentStartBlockRow = 0;
+		currentStartBlockRow = 1;
 		currentStartBlockCol = (line0-1)*cutoff +1 ;
 		maxColTemp = (line0-1)*cutoff +1;
       }
       else if(line0<diagonalMax)
       {
         currentDiagBlocks = line0;
-		currentStartBlockRow = 0;
+		currentStartBlockRow = 1;
 		currentStartBlockCol = (line0-1)*cutoff + 1;
 		maxColTemp = (line0-1)*cutoff + 1;
       }
