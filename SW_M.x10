@@ -191,6 +191,7 @@ public class SW_M {
 	var diagonalCount:Long;
 	var diagonalMax:Long;
 	
+	//the below is just the ceil function
 	if(maxRow%cutoff==0)
 	{
 		if(maxCol%cutoff==0)
@@ -264,7 +265,7 @@ public class SW_M {
         var i:Long = currentStartBlockRow + k*cutoff;
         var j:Long = currentStartBlockCol - k*cutoff;
 		
-        if(1)
+        if(true)
         {
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
@@ -303,7 +304,7 @@ public class SW_M {
         }
 
         /***************** (relative (1,0) ****************/
-        i = currentStartBlockRow + k*cutoff;
+        i = currentStartBlockRow + k*cutoff+1;
         j = currentStartBlockCol - k*cutoff;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
@@ -345,7 +346,7 @@ public class SW_M {
         }                
         /***************** (relative (0,1) ****************/
         i = currentStartBlockRow + k*cutoff;
-        j = currentStartBlockCol - k*cutoff;
+        j = currentStartBlockCol - k*cutoff+1;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
@@ -385,8 +386,8 @@ public class SW_M {
           directions(i, j) = dir;
         }                
         /***************** (relative (1,1) ****************/
-        i = currentStartBlockRow + k*cutoff;
-        j = currentStartBlockCol - k*cutoff;
+        i = currentStartBlockRow + k*cutoff+1;
+        j = currentStartBlockCol - k*cutoff+1;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
@@ -500,11 +501,14 @@ public class SW_M {
       }
     }
 
+	string1="bbcbabaabaaaabbbccacbcbacabcaaaaabbbccbcbccacaaaccaccbabaacaabccabbccaccacabacbbabcbbaabacbbcaabbabc";
+	string2="abbababaccaabcabcabbbbababaccaaababcbcccacbccbabcaaaaaccbbcccbababccbbcacbcbbccaccaccabacbabbbcbccba";
+	
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
-
+	
 
     startTime = System.nanoTime();
     match(string1, string2, blosum, gapOpening, gapExtension);
