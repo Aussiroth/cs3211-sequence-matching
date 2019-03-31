@@ -200,6 +200,7 @@ public class SW_M {
 
     for(line0 in 1..(diagonalCount))
     {
+		Console.OUT.print("currently at diagonal: "+line0+"\n");
       var startCol:Long = 0;
       if (line0 - maxRow > 0) {
         startCol = line0 - maxRow;
@@ -232,7 +233,7 @@ public class SW_M {
 		currentStartBlockCol = (line0-1)*cutoff;
 		maxColTemp = (line0-1)*cutoff;
       }
-
+//=========================start of parallel============================
       finish for(k in 0..(currentDiagBlocks-1)) async
       {
 			tempCount++;
@@ -403,10 +404,9 @@ public class SW_M {
           matrix(i, j) = max;
           directions(i, j) = dir;
         }
-
-
-        Console.OUT.print("PARALLEL: the loop: "+line0+" had :"+tempCount+" threads visit it\n");
+        
       }
+	Console.OUT.print("for diagonal = "+line0+" i have ran this many blocks "+tempCount+"/"+currentDiagBlocks+"\n");
       // for (i in 0..(S1_SIZE)) {
       //  for (j in 0..(S2_SIZE)) {
       //    Console.OUT.print(matrix(i,j) + " ");
