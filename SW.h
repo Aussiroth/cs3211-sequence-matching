@@ -28,6 +28,21 @@ class Console;
 namespace x10 { namespace lang { 
 class Any;
 } } 
+namespace x10 { namespace xrx { 
+class Runtime;
+} } 
+namespace x10 { namespace xrx { 
+class FinishState;
+} } 
+namespace x10 { namespace lang { 
+class VoidFun_0_0;
+} } 
+namespace x10 { namespace compiler { 
+class AsyncClosure;
+} } 
+namespace x10 { namespace lang { 
+class CheckedThrowable;
+} } 
 namespace x10 { namespace lang { 
 template<class TPMGL(T)> class Rail;
 } } 
@@ -40,17 +55,26 @@ class FileReader;
 namespace x10 { namespace lang { 
 class Exception;
 } } 
+namespace x10 { namespace lang { 
+class System;
+} } 
 namespace x10 { namespace compiler { 
 class Synthetic;
 } } 
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__2541;
-    static ::x10::lang::String sl__2544;
-    static ::x10::lang::String sl__2542;
-    static ::x10::lang::String sl__2545;
-    static ::x10::lang::String sl__2543;
+    static ::x10::lang::String sl__3643;
+    static ::x10::lang::String sl__3646;
+    static ::x10::lang::String sl__3648;
+    static ::x10::lang::String sl__3644;
+    static ::x10::lang::String sl__3652;
+    static ::x10::lang::String sl__3649;
+    static ::x10::lang::String sl__3650;
+    static ::x10::lang::String sl__3651;
+    static ::x10::lang::String sl__3647;
+    static ::x10::lang::String sl__3645;
+    static ::x10::lang::String sl__3653;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -91,6 +115,10 @@ class SW : public ::x10::lang::X10Class   {
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
+    static void parallelMatch(::x10::lang::String* string1,
+                              ::x10::lang::String* string2,
+                              ::x10::array::Array_2<x10_long>* blosum,
+                              x10_long gapOpening, x10_long gapExtension);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
     virtual ::SW* SW____this__SW();
     void _constructor();
