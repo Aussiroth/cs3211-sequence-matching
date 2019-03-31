@@ -262,183 +262,53 @@ public class SW_M {
 			tempCount++;
 		//i -> row, j-> col;
 		
-        /***************** (relative (0,0) ****************/
-        var i:Long = currentStartBlockRow + k*cutoff;
-        var j:Long = currentStartBlockCol - k*cutoff;
+		for(cutoffRow in 0..(cutoff-1))
+		{
+			for(cutoffCol in 0..(cutoff-1))
+			{
+			    var i:Long = currentStartBlockRow + k*cutoff + cutoffRow;
+				var j:Long = currentStartBlockCol - k*cutoff + cutoffCol;
+				if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
+				{
+					Console.OUT.println("calculating for :"+i+","+j);
+				  var max:Long = Long.MIN_VALUE;
+				  var dir:Long = 0;
 
-		
-        if(true)
-        {
-			Console.OUT.println("calculating for :"+i+","+j);
-          var max:Long = Long.MIN_VALUE;
-          var dir:Long = 0;
+				  var diagScore:Long;
+				  var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
+				  var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
+				  diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
+				  if (diagScore > max) {
+					max = diagScore;
+					dir = 0;
+				  }
 
-          var diagScore:Long;
-          var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
-          var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-          diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
-          if (diagScore > max) {
-            max = diagScore;
-            dir = 0;
-          }
+				  var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
+				  var upScore:Long = upResult.first;
+				  if (upScore > max) {
+					max = upScore;
+					dir = upResult.second;
+				  }
 
-          var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var upScore:Long = upResult.first;
-          if (upScore > max) {
-            max = upScore;
-            dir = upResult.second;
-          }
+				  var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
+				  var leftScore:Long = leftResult.first;
+				  if (leftScore > max) {
+					max = leftScore;
+					dir = leftResult.second;
+				  }
 
-          var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var leftScore:Long = leftResult.first;
-          if (leftScore > max) {
-            max = leftScore;
-            dir = leftResult.second;
-          }
+				  max = max < 0 ? 0 : max;
 
-          max = max < 0 ? 0 : max;
-
-          if (max > globalMax) {
-            globalMax = max;
-            maxCoordinates = new Pair[Long, Long](i, j);
-          }
-          matrix(i, j) = max;
-          directions(i, j) = dir;
-        }
-
-        /***************** (relative (1,0) ****************/
-        i = currentStartBlockRow + k*cutoff+1;
-        j = currentStartBlockCol - k*cutoff;
-
-
-        if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
-        {
-			Console.OUT.println("calculating for :"+i+","+j);
-          var max:Long = Long.MIN_VALUE;
-          var dir:Long = 0;
-
-          var diagScore:Long;
-          var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
-          var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-          diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
-          if (diagScore > max) {
-            max = diagScore;
-            dir = 0;
-          }
-
-          var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var upScore:Long = upResult.first;
-          if (upScore > max) {
-            max = upScore;
-            dir = upResult.second;
-          }
-
-          var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var leftScore:Long = leftResult.first;
-          if (leftScore > max) {
-            max = leftScore;
-            dir = leftResult.second;
-          }
-
-          max = max < 0 ? 0 : max;
-
-          if (max > globalMax) {
-            globalMax = max;
-            maxCoordinates = new Pair[Long, Long](i, j);
-          }
-          matrix(i, j) = max;
-          directions(i, j) = dir;
-        }                
-        /***************** (relative (0,1) ****************/
-        i = currentStartBlockRow + k*cutoff;
-        j = currentStartBlockCol - k*cutoff+1;
-
-		
-
-		
-        if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
-        {
-			Console.OUT.println("calculating for :"+i+","+j);
-          var max:Long = Long.MIN_VALUE;
-          var dir:Long = 0;
-
-          var diagScore:Long;
-          var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
-          var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-          diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
-          if (diagScore > max) {
-            max = diagScore;
-            dir = 0;
-          }
-
-          var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var upScore:Long = upResult.first;
-          if (upScore > max) {
-            max = upScore;
-            dir = upResult.second;
-          }
-
-          var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var leftScore:Long = leftResult.first;
-          if (leftScore > max) {
-            max = leftScore;
-            dir = leftResult.second;
-          }
-
-          max = max < 0 ? 0 : max;
-
-          if (max > globalMax) {
-            globalMax = max;
-            maxCoordinates = new Pair[Long, Long](i, j);
-          }
-          matrix(i, j) = max;
-          directions(i, j) = dir;
-        }                
-        /***************** (relative (1,1) ****************/
-        i = currentStartBlockRow + k*cutoff+1;
-        j = currentStartBlockCol - k*cutoff+1;
-		
-		
-
-
-        if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
-        {
-			Console.OUT.println("calculating for :"+i+","+j);
-          var max:Long = Long.MIN_VALUE;
-          var dir:Long = 0;
-
-          var diagScore:Long;
-          var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
-          var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-          diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
-          if (diagScore > max) {
-            max = diagScore;
-            dir = 0;
-          }
-
-          var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var upScore:Long = upResult.first;
-          if (upScore > max) {
-            max = upScore;
-            dir = upResult.second;
-          }
-
-          var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-          var leftScore:Long = leftResult.first;
-          if (leftScore > max) {
-            max = leftScore;
-            dir = leftResult.second;
-          }
-
-          max = max < 0 ? 0 : max;
-
-          if (max > globalMax) {
-            globalMax = max;
-            maxCoordinates = new Pair[Long, Long](i, j);
-          }
-          matrix(i, j) = max;
-          directions(i, j) = dir;
-        }
+				  if (max > globalMax) {
+					globalMax = max;
+					maxCoordinates = new Pair[Long, Long](i, j);
+				  }
+				  matrix(i, j) = max;
+				  directions(i, j) = dir;
+    
+				}
+			}
+		}
         
       }
 	Console.OUT.print("for diagonal = "+line0+" i have ran this many blocks "+tempCount+"/"+currentDiagBlocks+"\n");
