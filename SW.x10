@@ -95,22 +95,24 @@ public class SW {
         i -= 1;
         j -= 1;
         matchCount += 1;
+	stringLength += 1;
       } else if (directions(i, j) > 0) {
         for (k in (0..(directions(i, j) - 1))) {
           result2 = '-' + result2;
           result1 = string1.charAt(Int.operator_as(i - k - 1)) + result1;
-        }
+          stringLength += 1;
+	}
         i -= directions(i, j);
         gapCount += 1;
       } else {
         for (k in (0..(-directions(i, j) - 1))) {
           result1 = '-' + result1;
           result2 = string2.charAt(Int.operator_as(j - k - 1)) + result2;
-        }
+	  stringLength += 1;        
+	}
         j += directions(i, j);
         gapCount += 1;
       }
-      stringLength += 1;
     }
     Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
     Console.OUT.println("Gaps: " + gapCount + "/" + stringLength);

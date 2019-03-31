@@ -46,11 +46,11 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__2513;
-    static ::x10::lang::String sl__2516;
-    static ::x10::lang::String sl__2514;
-    static ::x10::lang::String sl__2517;
-    static ::x10::lang::String sl__2515;
+    static ::x10::lang::String sl__2541;
+    static ::x10::lang::String sl__2544;
+    static ::x10::lang::String sl__2542;
+    static ::x10::lang::String sl__2545;
+    static ::x10::lang::String sl__2543;
 };
 
 class SW : public ::x10::lang::X10Class   {
