@@ -264,9 +264,11 @@ public class SW_M {
         /***************** (relative (0,0) ****************/
         var i:Long = currentStartBlockRow + k*cutoff;
         var j:Long = currentStartBlockCol - k*cutoff;
+
 		
         if(true)
         {
+			Console.OUT.println("calculating for :"i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -307,8 +309,10 @@ public class SW_M {
         i = currentStartBlockRow + k*cutoff+1;
         j = currentStartBlockCol - k*cutoff;
 
+
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
+			Console.OUT.println("calculating for :"i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -348,8 +352,12 @@ public class SW_M {
         i = currentStartBlockRow + k*cutoff;
         j = currentStartBlockCol - k*cutoff+1;
 
+		
+
+		
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
+			Console.OUT.println("calculating for :"i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -388,9 +396,13 @@ public class SW_M {
         /***************** (relative (1,1) ****************/
         i = currentStartBlockRow + k*cutoff+1;
         j = currentStartBlockCol - k*cutoff+1;
+		
+		
+
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
+			Console.OUT.println("calculating for :"i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -501,8 +513,8 @@ public class SW_M {
       }
     }
 
-	string1="bbcbabaabaaaabbbccacbcbacabcaaaaabbbccbcbccacaaaccaccbabaacaabccabbccaccacabacbbabcbbaabacbbcaabbabc";
-	string2="abbababaccaabcabcabbbbababaccaaababcbcccacbccbabcaaaaaccbbcccbababccbbcacbcbbccaccaccabacbabbbcbccba";
+	string1="abbababaccaabcabcabbbbababaccaaababcbcccacbccbabcaaaaaccbbcccbababccbbcacbcbbccaccaccabacbabbbcbccba";
+	string2="cbbaaabcabaaaaabacbcabbcaccaaabcbacacacbabbccacbaabcaacaaabacccbbacbbbcacccaccacaaacacbababbbcbcaaab";
 	
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
