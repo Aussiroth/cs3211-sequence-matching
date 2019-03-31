@@ -186,7 +186,8 @@ public class SW_M {
     var cutoff:Long = 2;
 
     var currentDiagBlocks:Long = 0;
-    var currentStartBlock:Long = 0;
+    var currentStartBlockRow:Long = 0;
+    var currentStartBlockCol:Long = 0;
     var diagonalCount:Long = Int.operator_as(Math.ceil(maxRow/cutoff)+Math.ceil(maxCol/cutoff) - 1);
     var diagonalMax:long = Int.operator_as(Math.ceil(maxRow/cutoff));
 
@@ -194,9 +195,10 @@ public class SW_M {
     val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
+	var maxColTemp:Long = 0;
+	var maxRowTemp:Long = 0;
 
-
-    for(line0 in 0..(diagonalCount))
+    for(line0 in 1..(diagonalCount))
     {
       var startCol:Long = 0;
       if (line0 - maxRow > 0) {
@@ -211,23 +213,35 @@ public class SW_M {
       if(line0 > diagonalMax)
       {
         currentDiagBlocks= diagonalMax - (line0 - diagonalMax);
+		currentStartBlockRow = (maxRowTemp-1)*cutoff;
+		currentStartBlockCol = maxColTemp;
+		maxRowTemp++;
+
       }
       else if(line0 == diagonalMax)
       {
         currentDiagBlocks= diagonalMax;
+		currentStartBlockRow = 0;
+		currentStartBlockCol = (line0-1)*cutoff;
+		maxColTemp = (line0-1)*cutoff;
       }
       else if(line0<diagonalMax)
       {
         currentDiagBlocks = line0;
+		currentStartBlockRow = 0;
+		currentStartBlockCol = (line0-1)*cutoff;
+		maxColTemp = (line0-1)*cutoff;
       }
-
-      currentStartBlock = line0*cutoff;
 
       finish for(k in 0..(currentDiagBlocks-1)) async
       {
+			tempCount++;
+		//i -> row, j-> col;
+		
         /***************** (relative (0,0) ****************/
-        var i:Long = currentStartBlock - k*cutoff;
-        var j:Long = k*cutoff;
+        var i:Long = currentStartBlockRow + k*cutoff;
+        var j:Long = currentStartBlockCol - k*cutoff;
+		
         if(i>0&&j>0)
         {
           var max:Long = Long.MIN_VALUE;
@@ -267,8 +281,8 @@ public class SW_M {
         }
 
         /***************** (relative (1,0) ****************/
-        i = currentStartBlock - k*cutoff + 1;
-        j = k*cutoff;
+        i = currentStartBlockRow + k*cutoff;
+        j = currentStartBlockCol - k*cutoff;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
@@ -308,8 +322,8 @@ public class SW_M {
           directions(i, j) = dir;
         }                
         /***************** (relative (0,1) ****************/
-        i = currentStartBlock - k*cutoff;
-        j = k*cutoff +1 ;
+        i = currentStartBlockRow + k*cutoff;
+        j = currentStartBlockCol - k*cutoff;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
@@ -349,8 +363,8 @@ public class SW_M {
           directions(i, j) = dir;
         }                
         /***************** (relative (1,1) ****************/
-        i = currentStartBlock - k*cutoff + 1;
-        j = k*cutoff +1;
+        i = currentStartBlockRow + k*cutoff;
+        j = currentStartBlockCol - k*cutoff;
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
