@@ -1,5 +1,5 @@
-#ifndef __SW_H
-#define __SW_H
+#ifndef __SW_M_H
+#define __SW_M_H
 
 #include <x10rt.h>
 
@@ -27,9 +27,6 @@ class Console;
 } } 
 namespace x10 { namespace lang { 
 class Any;
-} } 
-namespace x10 { namespace lang { 
-class Math;
 } } 
 namespace x10 { namespace xrx { 
 class Runtime;
@@ -65,19 +62,20 @@ namespace x10 { namespace compiler {
 class Synthetic;
 } } 
 
-class SW_Strings {
+class SW_M_Strings {
   public:
-    static ::x10::lang::String sl__4291;
-    static ::x10::lang::String sl__4294;
-    static ::x10::lang::String sl__4298;
-    static ::x10::lang::String sl__4292;
-    static ::x10::lang::String sl__4297;
-    static ::x10::lang::String sl__4296;
-    static ::x10::lang::String sl__4295;
-    static ::x10::lang::String sl__4293;
+    static ::x10::lang::String sl__4235;
+    static ::x10::lang::String sl__4238;
+    static ::x10::lang::String sl__4240;
+    static ::x10::lang::String sl__4236;
+    static ::x10::lang::String sl__4242;
+    static ::x10::lang::String sl__4241;
+    static ::x10::lang::String sl__4239;
+    static ::x10::lang::String sl__4237;
+    static ::x10::lang::String sl__4243;
 };
 
-class SW : public ::x10::lang::X10Class   {
+class SW_M : public ::x10::lang::X10Class   {
     public:
     RTT_H_DECLS_CLASS
     
@@ -115,21 +113,17 @@ class SW : public ::x10::lang::X10Class   {
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
-    static void parallelMatch2(::x10::lang::String* string1,
-                               ::x10::lang::String* string2,
-                               ::x10::array::Array_2<x10_long>* blosum,
-                               x10_long gapOpening, x10_long gapExtension);
     static void parallelMatch(::x10::lang::String* string1,
                               ::x10::lang::String* string2,
                               ::x10::array::Array_2<x10_long>* blosum,
                               x10_long gapOpening, x10_long gapExtension);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
-    virtual ::SW* SW____this__SW();
+    virtual ::SW_M* SW_M____this__SW_M();
     void _constructor();
     
-    static ::SW* _make();
+    static ::SW_M* _make();
     
-    virtual void __fieldInitializers_SW();
+    virtual void __fieldInitializers_SW_M();
     
     // Serialization
     public: static const ::x10aux::serialization_id_t _serialization_id;
@@ -146,29 +140,29 @@ class SW : public ::x10::lang::X10Class   {
     
 };
 
-#endif // SW_H
+#endif // SW_M_H
 
-class SW;
+class SW_M;
 
-#ifndef SW_H_NODEPS
-#define SW_H_NODEPS
-#ifndef SW_H_GENERICS
-#define SW_H_GENERICS
-inline x10_long SW::FMGL(NUM_AMINO_ACIDS__get)() {
-    return SW::FMGL(NUM_AMINO_ACIDS);
+#ifndef SW_M_H_NODEPS
+#define SW_M_H_NODEPS
+#ifndef SW_M_H_GENERICS
+#define SW_M_H_GENERICS
+inline x10_long SW_M::FMGL(NUM_AMINO_ACIDS__get)() {
+    return SW_M::FMGL(NUM_AMINO_ACIDS);
 }
 
-inline x10_long SW::FMGL(DIAG__get)() {
-    return SW::FMGL(DIAG);
+inline x10_long SW_M::FMGL(DIAG__get)() {
+    return SW_M::FMGL(DIAG);
 }
 
-inline x10_long SW::FMGL(UP__get)() {
-    return SW::FMGL(UP);
+inline x10_long SW_M::FMGL(UP__get)() {
+    return SW_M::FMGL(UP);
 }
 
-inline x10_long SW::FMGL(LEFT__get)() {
-    return SW::FMGL(LEFT);
+inline x10_long SW_M::FMGL(LEFT__get)() {
+    return SW_M::FMGL(LEFT);
 }
 
-#endif // SW_H_GENERICS
-#endif // __SW_H_NODEPS
+#endif // SW_M_H_GENERICS
+#endif // __SW_M_H_NODEPS

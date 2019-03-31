@@ -170,9 +170,9 @@ public class SW_M {
 
     for (i in 0..(S1_SIZE)) {
       for (j in 0..(S2_SIZE)) {
-        //Console.OUT.print(matrix(i, j) + " ");
+        Console.OUT.print(matrix(i, j) + " ");
       }
-      //Console.OUT.println();
+      Console.OUT.println();
     }
 
     backtrack(string1, string2, matrix, directions, maxCoordinates);
@@ -188,138 +188,138 @@ public class SW_M {
     var currentDiagBlocks:Long = 0;
     var currentStartBlockRow:Long = 1;
     var currentStartBlockCol:Long = 1;
-	var diagonalCount:Long;
-	var diagonalMax:Long;
-	
-	//the below is just the ceil function
-	if(maxRow%cutoff==0)
-	{
-		if(maxCol%cutoff==0)
-		{
-			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)-1;
-			diagonalMax=(maxCol/cutoff);
-		}
-		else
-		{
-			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
-			diagonalMax=(maxCol/cutoff)+1;
-		}
-	}
-	else 
-	{
-		if(maxCol%cutoff==0)
-		{
-			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
-			diagonalMax=(maxCol/cutoff);
-		}
-		else
-		{
-			diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)+1;
-			diagonalMax=(maxCol/cutoff)+1;
-		}
-	}
+    var diagonalCount:Long;
+    var diagonalMax:Long;
+
+    //the below is just the ceil function
+    if(maxRow%cutoff==0)
+    {
+      if(maxCol%cutoff==0)
+      {
+        diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)-1;
+        diagonalMax=(maxCol/cutoff);
+      }
+      else
+      {
+        diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
+        diagonalMax=(maxCol/cutoff)+1;
+      }
+    }
+    else 
+    {
+      if(maxCol%cutoff==0)
+      {
+        diagonalCount=(maxRow/cutoff)+(maxCol/cutoff);
+        diagonalMax=(maxCol/cutoff);
+      }
+      else
+      {
+        diagonalCount=(maxRow/cutoff)+(maxCol/cutoff)+1;
+        diagonalMax=(maxCol/cutoff)+1;
+      }
+    }
 
     val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
     val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
-	var maxColTemp:Long = 0;
-	var maxRowTemp:Long = 1;
+    var maxColTemp:Long = 0;
+    var maxRowTemp:Long = 1;
 
-	Console.OUT.print("total diagonal count: "+diagonalCount+ "and max blocks at a diagonal should be "+diagonalMax+"\n");
+    // Console.OUT.print("total diagonal count: "+diagonalCount+ "and max blocks at a diagonal should be "+diagonalMax+"\n");
     for(line0 in 1..(diagonalCount))
     {
-		Console.OUT.print("currently at diagonal: "+line0+"\n");
+      // Console.OUT.print("currently at diagonal: "+line0+"\n");
 
       var tempCount:Long=0;
 
       if(line0 > diagonalMax)
       {
         currentDiagBlocks= diagonalMax - (line0 - diagonalMax);
-		currentStartBlockRow = (maxRowTemp-1)*cutoff +1 ;
-		currentStartBlockCol = maxColTemp +1;
-		maxRowTemp++;
+        currentStartBlockRow = (maxRowTemp-1)*cutoff +1 ;
+        currentStartBlockCol = maxColTemp +1;
+        maxRowTemp++;
 
       }
       else if(line0 == diagonalMax)
       {
         currentDiagBlocks= diagonalMax;
-		currentStartBlockRow = 1;
-		currentStartBlockCol = (line0-1)*cutoff +1 ;
-		maxColTemp = (line0-1)*cutoff +1;
+        currentStartBlockRow = 1;
+        currentStartBlockCol = (line0-1)*cutoff +1 ;
+        maxColTemp = (line0-1)*cutoff +1;
       }
       else if(line0<diagonalMax)
       {
         currentDiagBlocks = line0;
-		currentStartBlockRow = 1;
-		currentStartBlockCol = (line0-1)*cutoff + 1;
-		maxColTemp = (line0-1)*cutoff + 1;
+        currentStartBlockRow = 1;
+        currentStartBlockCol = (line0-1)*cutoff + 1;
+        maxColTemp = (line0-1)*cutoff + 1;
       }
-      Console.OUT.println(currentDiagBlocks + ":currentDiagBlocks");
-//=========================start of parallel============================
+      // Console.OUT.println(currentDiagBlocks + ":currentDiagBlocks");
+      //=========================start of parallel============================
       finish for(k in 0..(currentDiagBlocks-1)) async
       {
-			tempCount++;
-		//i -> row, j-> col;
-		
-		for(cutoffRow in 0..(cutoff-1))
-		{
-			for(cutoffCol in 0..(cutoff-1))
-			{
-			    var i:Long = currentStartBlockRow + k*cutoff + cutoffRow;
-				var j:Long = currentStartBlockCol - k*cutoff + cutoffCol;
-				if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
-				{
-					Console.OUT.println("calculating for :"+i+","+j);
-				  var max:Long = Long.MIN_VALUE;
-				  var dir:Long = 0;
+        tempCount++;
+        //i -> row, j-> col;
 
-				  var diagScore:Long;
-				  var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
-				  var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-				  diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
-				  if (diagScore > max) {
-					max = diagScore;
-					dir = 0;
-				  }
+        for(cutoffRow in 0..(cutoff-1))
+        {
+          for(cutoffCol in 0..(cutoff-1))
+          {
+            var i:Long = currentStartBlockRow + k*cutoff + cutoffRow;
+            var j:Long = currentStartBlockCol - k*cutoff + cutoffCol;
+            if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
+            {
+              // Console.OUT.println("calculating for :"+i+","+j);
+              var max:Long = Long.MIN_VALUE;
+              var dir:Long = 0;
 
-				  var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-				  var upScore:Long = upResult.first;
-				  if (upScore > max) {
-					max = upScore;
-					dir = upResult.second;
-				  }
+              var diagScore:Long;
+              var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
+              var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
+              diagScore = matrix(i,j) + blosum(firstChar.ord(), secondChar.ord());
+              if (diagScore > max) {
+                max = diagScore;
+                dir = 0;
+              }
 
-				  var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-				  var leftScore:Long = leftResult.first;
-				  if (leftScore > max) {
-					max = leftScore;
-					dir = leftResult.second;
-				  }
+              var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
+              var upScore:Long = upResult.first;
+              if (upScore > max) {
+                max = upScore;
+                dir = upResult.second;
+              }
 
-				  max = max < 0 ? 0 : max;
+              var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
+              var leftScore:Long = leftResult.first;
+              if (leftScore > max) {
+                max = leftScore;
+                dir = leftResult.second;
+              }
 
-				  if (max > globalMax) {
-					globalMax = max;
-					maxCoordinates = new Pair[Long, Long](i, j);
-				  }
-				  matrix(i, j) = max;
-				  directions(i, j) = dir;
-    
-				}
-			}
-		}
-        
+              max = max < 0 ? 0 : max;
+
+              if (max > globalMax) {
+                globalMax = max;
+                maxCoordinates = new Pair[Long, Long](i, j);
+              }
+              matrix(i, j) = max;
+              directions(i, j) = dir;
+
+            }
+          }
+        }
+
       }
-	Console.OUT.print("for diagonal = "+line0+" i have ran this many blocks "+tempCount+"/"+currentDiagBlocks+"\n");
-      // for (i in 0..(S1_SIZE)) {
-      //  for (j in 0..(S2_SIZE)) {
-      //    Console.OUT.print(matrix(i,j) + " ");
-      //  }
-      //  Console.OUT.println();
-      // }
-      backtrack(string1, string2, matrix, directions, maxCoordinates);
+      // Console.OUT.print("for diagonal = "+line0+" i have ran this many blocks "+tempCount+"/"+currentDiagBlocks+"\n");
     }
+    for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        Console.OUT.print(matrix(i,j) + " ");
+      }
+      Console.OUT.println();
+    }
+    backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
   public static def main (args:Rail[String]) {
@@ -384,14 +384,11 @@ public class SW_M {
       }
     }
 
-	string1="abbababaccaabcabcabbbbababaccaaababcbcccacbccbabcaaaaaccbbcccbababccbbcacbcbbccaccaccabacbabbbcbccba";
-	string2="cbbaaabcabaaaaabacbcabbcaccaaabcbacacacbabbccacbaabcaacaaabacccbbacbbbcacccaccacaaacacbababbbcbcaaab";
-	
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
-	
+
 
     startTime = System.nanoTime();
     match(string1, string2, blosum, gapOpening, gapExtension);

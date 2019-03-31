@@ -169,26 +169,19 @@ public class SW {
       }
     }
 
-    for (i in 0..(S1_SIZE)) {
+    /*for (i in 0..(S1_SIZE)) {
       for (j in 0..(S2_SIZE)) {
         Console.OUT.print(matrix(i, j) + " ");
       }
       Console.OUT.println();
-    }
-    Console.OUT.println();
-    for (i in 0..(string1.length())) {
-      for (j in 0..(string2.length())) {
-        Console.OUT.print(directions(i,j) + " ");
-      }
-      Console.OUT.println();
-    }
+    }*/
 
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
-  public static def parallelMatch3(string1:String, string2:String,
+  public static def parallelMatch2(string1:String, string2:String,
       blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
-    var cutoff:Long = 2;
+    var cutoff:Long = 10;
     var maxRow:Long = string1.length();
     var maxCol:Long = string2.length();
 
@@ -197,7 +190,6 @@ public class SW {
 
     maxRow = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxRow) / cutoff));
     maxCol = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxCol) / cutoff));
-    Console.OUT.println("" + maxRow + ", " +maxCol);
 
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
@@ -214,7 +206,7 @@ public class SW {
       count = count < maxRow ? count : maxRow;
 
       /***************** Parallel Component ****************/
-      for(k in 0..(count - 1))
+      finish for(k in 0..(count - 1)) async
       {
         var i:Long = maxRow;
         if (maxRow > line) {
@@ -232,6 +224,8 @@ public class SW {
 
         var cellMaxRow:Long = i + cutoff - 1;
         var cellMaxCol:Long = j + cutoff - 1;
+        
+        // ensure cellMaxRow and cellMaxCol does not exceed size of matrix
         if (cellMaxRow > string1.length()) {
           cellMaxRow = string1.length();
         }
@@ -258,7 +252,6 @@ public class SW {
 
             var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
             var upScore:Long = upResult.first;
-            // Console.OUT.println("up " + upScore);
             if (upScore > max) {
               max = upScore;
               dir = upResult.second;
@@ -266,7 +259,6 @@ public class SW {
 
             var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
             var leftScore:Long = leftResult.first;
-            // Console.OUT.println("left " + leftScore);
             if (leftScore > max) {
               max = leftScore;
               dir = leftResult.second;
@@ -282,10 +274,6 @@ public class SW {
             directions(a, b) = dir;
           }
         }
-
-        //    Console.OUT.print(matrix(i,j));
-        //    Console.OUT.print(" ");
-
       }
     }
     /*for (i in 0..(string1.length())) {
@@ -316,13 +304,10 @@ public class SW {
 
       var count:Long = line < maxCol - startCol ? line : maxCol - startCol;
       count = count < maxRow ? count : maxRow;
-      var tempCount:Long=0;
 
       /***************** Parallel Component ****************/
       finish for(k in 0..(count - 1)) async
       {
-        tempCount++;
-
         var i:Long = maxRow;
         if (maxRow > line) {
           i = line;
@@ -364,12 +349,7 @@ public class SW {
         }
         matrix(i, j) = max;
         directions(i, j) = dir;
-
-        //    Console.OUT.print(matrix(i,j));
-        //    Console.OUT.print(" ");
-
       }
-      // Console.OUT.print("PARALLEL: the loop: "+line+" had :"+tempCount+" threads visit it\n");
     }
     // for (i in 0..(S1_SIZE)) {
     //  for (j in 0..(S2_SIZE)) {
@@ -443,21 +423,19 @@ public class SW {
       }
     }
 
-    //string1 = "TGTTG";
-    //string2 = "GGTTG";
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
     
     startTime = System.nanoTime();
-    parallelMatch3(string1, string2, blosum, gapOpening, gapExtension);
+    parallelMatch2(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
     Console.OUT.println("New Parallel Runtime: " + finalTime/1000000.0 + "ms");
 
-    startTime = System.nanoTime();
+    /*startTime = System.nanoTime();
     match(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
-    Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");
+    Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");*/
   }
 }
