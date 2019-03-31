@@ -224,7 +224,7 @@ public class SW_M {
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
 	var maxColTemp:Long = 0;
-	var maxRowTemp:Long = 0;
+	var maxRowTemp:Long = 1;
 
 	Console.OUT.print("total diagonal count: "+diagonalCount+ "and max blocks at a diagonal should be "+diagonalMax+"\n");
     for(line0 in 1..(diagonalCount))
@@ -255,6 +255,7 @@ public class SW_M {
 		currentStartBlockCol = (line0-1)*cutoff + 1;
 		maxColTemp = (line0-1)*cutoff + 1;
       }
+      Console.OUT.println(currentDiagBlocks + ":currentDiagBlocks");
 //=========================start of parallel============================
       finish for(k in 0..(currentDiagBlocks-1)) async
       {
@@ -268,7 +269,7 @@ public class SW_M {
 		
         if(true)
         {
-			Console.OUT.println("calculating for :"i+","+j);
+			Console.OUT.println("calculating for :"+i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -312,7 +313,7 @@ public class SW_M {
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
-			Console.OUT.println("calculating for :"i+","+j);
+			Console.OUT.println("calculating for :"+i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -357,7 +358,7 @@ public class SW_M {
 		
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
-			Console.OUT.println("calculating for :"i+","+j);
+			Console.OUT.println("calculating for :"+i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 
@@ -402,7 +403,7 @@ public class SW_M {
 
         if(i<=maxRow&&j<=maxCol&&i>0&&j>0)
         {
-			Console.OUT.println("calculating for :"i+","+j);
+			Console.OUT.println("calculating for :"+i+","+j);
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
 

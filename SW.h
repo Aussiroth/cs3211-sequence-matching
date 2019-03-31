@@ -28,6 +28,9 @@ class Console;
 namespace x10 { namespace lang { 
 class Any;
 } } 
+namespace x10 { namespace lang { 
+class Math;
+} } 
 namespace x10 { namespace xrx { 
 class Runtime;
 } } 
@@ -64,17 +67,17 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__3643;
-    static ::x10::lang::String sl__3646;
-    static ::x10::lang::String sl__3648;
-    static ::x10::lang::String sl__3644;
-    static ::x10::lang::String sl__3652;
-    static ::x10::lang::String sl__3649;
-    static ::x10::lang::String sl__3650;
-    static ::x10::lang::String sl__3651;
-    static ::x10::lang::String sl__3647;
-    static ::x10::lang::String sl__3645;
-    static ::x10::lang::String sl__3653;
+    static ::x10::lang::String sl__4775;
+    static ::x10::lang::String sl__4778;
+    static ::x10::lang::String sl__4780;
+    static ::x10::lang::String sl__4781;
+    static ::x10::lang::String sl__4784;
+    static ::x10::lang::String sl__4776;
+    static ::x10::lang::String sl__4783;
+    static ::x10::lang::String sl__4782;
+    static ::x10::lang::String sl__4779;
+    static ::x10::lang::String sl__4777;
+    static ::x10::lang::String sl__4785;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -115,6 +118,10 @@ class SW : public ::x10::lang::X10Class   {
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
+    static void parallelMatch3(::x10::lang::String* string1,
+                               ::x10::lang::String* string2,
+                               ::x10::array::Array_2<x10_long>* blosum,
+                               x10_long gapOpening, x10_long gapExtension);
     static void parallelMatch(::x10::lang::String* string1,
                               ::x10::lang::String* string2,
                               ::x10::array::Array_2<x10_long>* blosum,

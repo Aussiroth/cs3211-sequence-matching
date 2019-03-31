@@ -6,6 +6,7 @@ import x10.util.HashMap;
 import x10.util.ArrayList;
 import x10.io.FileReader;
 import x10.io.File;
+import x10.lang.Math;
 
 public class SW {
 
@@ -170,11 +171,129 @@ public class SW {
 
     for (i in 0..(S1_SIZE)) {
       for (j in 0..(S2_SIZE)) {
-        //Console.OUT.print(matrix(i, j) + " ");
+        Console.OUT.print(matrix(i, j) + " ");
       }
-      //Console.OUT.println();
+      Console.OUT.println();
+    }
+    Console.OUT.println();
+    for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        Console.OUT.print(directions(i,j) + " ");
+      }
+      Console.OUT.println();
     }
 
+    backtrack(string1, string2, matrix, directions, maxCoordinates);
+  }
+
+  public static def parallelMatch3(string1:String, string2:String,
+      blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
+    var cutoff:Long = 2;
+    var maxRow:Long = string1.length();
+    var maxCol:Long = string2.length();
+
+    val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
+
+    maxRow = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxRow) / cutoff));
+    maxCol = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxCol) / cutoff));
+    Console.OUT.println("" + maxRow + ", " +maxCol);
+
+    var globalMax:Long = Long.MIN_VALUE;
+    var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
+
+    var visited:Long =0;
+    for(line in 1..(maxRow + maxCol))
+    {
+      var startCol:Long = 0;
+      if (line - maxRow > 0) {
+        startCol = line - maxRow;
+      }
+
+      var count:Long = line < maxCol - startCol ? line : maxCol - startCol;
+      count = count < maxRow ? count : maxRow;
+
+      /***************** Parallel Component ****************/
+      for(k in 0..(count - 1))
+      {
+        var i:Long = maxRow;
+        if (maxRow > line) {
+          i = line;
+        }
+        i = i - k ;
+        var j:Long = startCol + k + 1 ;
+
+        var max:Long = Long.MIN_VALUE;
+        var dir:Long = 0;
+
+        // scale i and j
+        i = (i - 1) * cutoff + 1;
+        j = (j - 1) * cutoff + 1;
+
+        var cellMaxRow:Long = i + cutoff - 1;
+        var cellMaxCol:Long = j + cutoff - 1;
+        if (cellMaxRow > string1.length()) {
+          cellMaxRow = string1.length();
+        }
+        if (cellMaxCol > string2.length()) {
+          cellMaxCol = string2.length();
+        }
+
+        for (a in i..(cellMaxRow)) {
+          for (b in j..(cellMaxCol)) {
+            max = Long.MIN_VALUE;
+            dir = 0;
+
+            visited += 1;
+
+            var diagScore:Long;
+            var firstChar:Char = string1.charAt(Int.operator_as(a - 1));
+            var secondChar:Char = string2.charAt(Int.operator_as(b - 1));
+            diagScore = matrix(a - 1, b - 1) + blosum(firstChar.ord(), secondChar.ord());
+            // Console.OUT.println("diag " + diagScore + " " + a + " " + b);
+            if (diagScore > max) {
+              max = diagScore;
+              dir = 0;
+            }
+
+            var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
+            var upScore:Long = upResult.first;
+            // Console.OUT.println("up " + upScore);
+            if (upScore > max) {
+              max = upScore;
+              dir = upResult.second;
+            }
+
+            var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
+            var leftScore:Long = leftResult.first;
+            // Console.OUT.println("left " + leftScore);
+            if (leftScore > max) {
+              max = leftScore;
+              dir = leftResult.second;
+            }
+
+            max = max < 0 ? 0 : max;
+
+            if (max > globalMax) {
+              globalMax = max;
+              maxCoordinates = new Pair[Long, Long](a, b);
+            }
+            matrix(a, b) = max;
+            directions(a, b) = dir;
+          }
+        }
+
+        //    Console.OUT.print(matrix(i,j));
+        //    Console.OUT.print(" ");
+
+      }
+    }
+    /*for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        Console.OUT.print(matrix(i,j) + " ");
+      }
+      Console.OUT.println();
+    }*/
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
@@ -188,31 +307,29 @@ public class SW {
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
 
-
-    for(line0 in 1..(maxRow+maxCol))
+    for(line in 1..(maxRow + maxCol))
     {
       var startCol:Long = 0;
-      if (line0 - maxRow > 0) {
-        startCol = line0 - maxRow;
+      if (line - maxRow > 0) {
+        startCol = line - maxRow;
       }
-      // var startCol:Long = 0 > line0-maxRow ? 0 : line0 - maxRow;
 
-      var count:Long = line0 < maxCol - startCol ? line0 : maxCol - startCol;
-      count  = count < maxRow ? count : maxRow;
+      var count:Long = line < maxCol - startCol ? line : maxCol - startCol;
+      count = count < maxRow ? count : maxRow;
       var tempCount:Long=0;
-      finish for(k in 0..(count -1)) async
+
+      /***************** Parallel Component ****************/
+      finish for(k in 0..(count - 1)) async
       {
         tempCount++;
 
         var i:Long = maxRow;
-        if (maxRow > line0) {
-          i = line0;
+        if (maxRow > line) {
+          i = line;
         }
-        // var i:Long = maxRow > line0 ? line0 : maxRow;
         i = i - k ;
         var j:Long = startCol + k + 1 ;
 
-        /***************** Parallel Component ****************/
         var max:Long = Long.MIN_VALUE;
         var dir:Long = 0;
 
@@ -252,7 +369,7 @@ public class SW {
         //    Console.OUT.print(" ");
 
       }
-      Console.OUT.print("PARALLEL: the loop: "+line0+" had :"+tempCount+" threads visit it\n");
+      // Console.OUT.print("PARALLEL: the loop: "+line+" had :"+tempCount+" threads visit it\n");
     }
     // for (i in 0..(S1_SIZE)) {
     //  for (j in 0..(S2_SIZE)) {
@@ -326,15 +443,21 @@ public class SW {
       }
     }
 
+    //string1 = "TGTTG";
+    //string2 = "GGTTG";
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
-
+    
+    startTime = System.nanoTime();
+    parallelMatch3(string1, string2, blosum, gapOpening, gapExtension);
+    finalTime = System.nanoTime() - startTime;
+    Console.OUT.println("New Parallel Runtime: " + finalTime/1000000.0 + "ms");
 
     startTime = System.nanoTime();
     match(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
-    Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");match(string1, string2, blosum, gapOpening, gapExtension);
+    Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");
   }
 }
