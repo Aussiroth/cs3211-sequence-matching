@@ -12,9 +12,6 @@ public class SW {
   // TODO: Make amino acid size dynamic
   static val NUM_AMINO_ACIDS = 24;
 
-  static val S1_SIZE = 9;
-  static val S2_SIZE = 8;
-
   static val DIAG = 0;
   static val UP = 1;
   static val LEFT = 2;
@@ -87,31 +84,44 @@ public class SW {
     var j:Long = maxCoordinates.second;
     var result1:String = "";
     var result2:String = "";
+
+    var stringLength:Long = 0;
+    var matchCount:Long = 0;
+    var gapCount:Long = 0;
     while (matrix(i, j) != 0) {
       if (directions(i,j) == 0) {
         result1 = string1.charAt(Int.operator_as(i - 1)) + result1;
         result2 = string2.charAt(Int.operator_as(j - 1)) + result2;
         i -= 1;
         j -= 1;
+        matchCount += 1;
       } else if (directions(i, j) > 0) {
         for (k in (0..(directions(i, j) - 1))) {
           result2 = '-' + result2;
           result1 = string1.charAt(Int.operator_as(i - k - 1)) + result1;
         }
         i -= directions(i, j);
+        gapCount += 1;
       } else {
-        for (k in (0..(directions(i, j) - 1))) {
+        for (k in (0..(-directions(i, j) - 1))) {
           result1 = '-' + result1;
           result2 = string2.charAt(Int.operator_as(j - k - 1)) + result2;
         }
-        j -= directions(i, j);
+        j += directions(i, j);
+        gapCount += 1;
       }
+      stringLength += 1;
     }
+    Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
+    Console.OUT.println("Gaps: " + gapCount + "/" + stringLength);
+    Console.OUT.println("Score: " + matrix(maxCoordinates.first, maxCoordinates.second));
     Console.OUT.println(result1);
     Console.OUT.println(result2);
   }
 
   public static def match(string1:String, string2:String, blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
+    val S1_SIZE = string1.length();
+    val S2_SIZE = string2.length();
     val matrix = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, 0);
     val directions = new Array_2[Long](S1_SIZE + 1, S2_SIZE + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
@@ -119,9 +129,8 @@ public class SW {
     
     for (i in 1..(S1_SIZE)) {
       for (j in 1..(S2_SIZE)) {
-        var max:Long = Long.MIN_VALUE;
+	var max:Long = Long.MIN_VALUE;
         var dir:Long = 0;
-
         var diagScore:Long;
         var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
         var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
@@ -137,14 +146,12 @@ public class SW {
           max = upScore;
           dir = upResult.second;
         }
-
         var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
         var leftScore:Long = leftResult.first;
         if (leftScore > max) {
           max = leftScore;
           dir = leftResult.second;
         }
-
         max = max < 0 ? 0 : max;
         
         if (max > globalMax) {
@@ -159,9 +166,9 @@ public class SW {
 
     for (i in 0..(S1_SIZE)) {
       for (j in 0..(S2_SIZE)) {
-        Console.OUT.print(matrix(i, j) + " ");
+        //Console.OUT.print(matrix(i, j) + " ");
       }
-      Console.OUT.println();
+      //Console.OUT.println();
     }
 
     backtrack(string1, string2, matrix, directions, maxCoordinates);

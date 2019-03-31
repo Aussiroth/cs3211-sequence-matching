@@ -46,8 +46,11 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__2196;
-    static ::x10::lang::String sl__2197;
+    static ::x10::lang::String sl__2513;
+    static ::x10::lang::String sl__2516;
+    static ::x10::lang::String sl__2514;
+    static ::x10::lang::String sl__2517;
+    static ::x10::lang::String sl__2515;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -57,14 +60,6 @@ class SW : public ::x10::lang::X10Class   {
     /* Static field: FMGL(NUM_AMINO_ACIDS) */
     static const x10_long FMGL(NUM_AMINO_ACIDS) = 24;
     static x10_long FMGL(NUM_AMINO_ACIDS__get)();
-    
-    /* Static field: FMGL(S1_SIZE) */
-    static const x10_long FMGL(S1_SIZE) = 9;
-    static x10_long FMGL(S1_SIZE__get)();
-    
-    /* Static field: FMGL(S2_SIZE) */
-    static const x10_long FMGL(S2_SIZE) = 8;
-    static x10_long FMGL(S2_SIZE__get)();
     
     /* Static field: FMGL(DIAG) */
     static const x10_long FMGL(DIAG) = 0;
@@ -129,14 +124,6 @@ class SW;
 #define SW_H_GENERICS
 inline x10_long SW::FMGL(NUM_AMINO_ACIDS__get)() {
     return SW::FMGL(NUM_AMINO_ACIDS);
-}
-
-inline x10_long SW::FMGL(S1_SIZE__get)() {
-    return SW::FMGL(S1_SIZE);
-}
-
-inline x10_long SW::FMGL(S2_SIZE__get)() {
-    return SW::FMGL(S2_SIZE);
 }
 
 inline x10_long SW::FMGL(DIAG__get)() {
