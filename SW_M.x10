@@ -186,8 +186,8 @@ public class SW_M {
     var cutoff:Long = 2;
 
     var currentDiagBlocks:Long = 0;
-    var currentStartBlockRow:Long = 0;
-    var currentStartBlockCol:Long = 0;
+    var currentStartBlockRow:Long = 1;
+    var currentStartBlockCol:Long = 1;
     var diagonalCount:Long = Int.operator_as(Math.ceil(maxRow/cutoff)+Math.ceil(maxCol/cutoff) - 1);
     var diagonalMax:long = Int.operator_as(Math.ceil(maxRow/cutoff));
 
@@ -198,24 +198,18 @@ public class SW_M {
 	var maxColTemp:Long = 0;
 	var maxRowTemp:Long = 0;
 
+	Console.OUT.print("total diagonal count: "+diagonalMax+"\n");
     for(line0 in 1..(diagonalCount))
     {
 		Console.OUT.print("currently at diagonal: "+line0+"\n");
-      var startCol:Long = 0;
-      if (line0 - maxRow > 0) {
-        startCol = line0 - maxRow;
-      }
-      // var startCol:Long = 0 > line0-maxRow ? 0 : line0 - maxRow;
 
-      var count:Long = line0 < maxCol - startCol ? line0 : maxCol - startCol;
-      count  = count < maxRow ? count : maxRow;
       var tempCount:Long=0;
 
       if(line0 > diagonalMax)
       {
         currentDiagBlocks= diagonalMax - (line0 - diagonalMax);
-		currentStartBlockRow = (maxRowTemp-1)*cutoff;
-		currentStartBlockCol = maxColTemp;
+		currentStartBlockRow = (maxRowTemp-1)*cutoff +1 ;
+		currentStartBlockCol = maxColTemp +1;
 		maxRowTemp++;
 
       }
@@ -223,15 +217,15 @@ public class SW_M {
       {
         currentDiagBlocks= diagonalMax;
 		currentStartBlockRow = 0;
-		currentStartBlockCol = (line0-1)*cutoff;
-		maxColTemp = (line0-1)*cutoff;
+		currentStartBlockCol = (line0-1)*cutoff +1 ;
+		maxColTemp = (line0-1)*cutoff +1;
       }
       else if(line0<diagonalMax)
       {
         currentDiagBlocks = line0;
 		currentStartBlockRow = 0;
-		currentStartBlockCol = (line0-1)*cutoff;
-		maxColTemp = (line0-1)*cutoff;
+		currentStartBlockCol = (line0-1)*cutoff + 1;
+		maxColTemp = (line0-1)*cutoff + 1;
       }
 //=========================start of parallel============================
       finish for(k in 0..(currentDiagBlocks-1)) async
@@ -243,7 +237,7 @@ public class SW_M {
         var i:Long = currentStartBlockRow + k*cutoff;
         var j:Long = currentStartBlockCol - k*cutoff;
 		
-        if(i>0&&j>0)
+        if(1)
         {
           var max:Long = Long.MIN_VALUE;
           var dir:Long = 0;
