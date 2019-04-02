@@ -67,14 +67,14 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__4347;
-    static ::x10::lang::String sl__4350;
-    static ::x10::lang::String sl__4354;
-    static ::x10::lang::String sl__4348;
-    static ::x10::lang::String sl__4353;
-    static ::x10::lang::String sl__4352;
-    static ::x10::lang::String sl__4351;
-    static ::x10::lang::String sl__4349;
+    static ::x10::lang::String sl__4391;
+    static ::x10::lang::String sl__4394;
+    static ::x10::lang::String sl__4398;
+    static ::x10::lang::String sl__4392;
+    static ::x10::lang::String sl__4397;
+    static ::x10::lang::String sl__4396;
+    static ::x10::lang::String sl__4395;
+    static ::x10::lang::String sl__4393;
 };
 
 class SW : public ::x10::lang::X10Class   {

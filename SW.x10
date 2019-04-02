@@ -93,10 +93,12 @@ public class SW {
       if (directions(i,j) == 0) {
         result1 = string1.charAt(Int.operator_as(i - 1)) + result1;
         result2 = string2.charAt(Int.operator_as(j - 1)) + result2;
-        i -= 1;
-        j -= 1;
-        matchCount += 1;
-        stringLength += 1;
+	if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
+          matchCount += 1;
+        }
+	i -= 1;
+	j -= 1;
+	stringLength += 1;
       } else if (directions(i, j) > 0) {
         for (k in (0..(directions(i, j) - 1))) {
           result2 = '-' + result2;
