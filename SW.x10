@@ -66,7 +66,7 @@ public class SW {
 
     for (j in 0..(col - 1)) {
 
-      var score:Long = matrix(row, j) + gapExtension * (col - j);
+      var score:Long = matrix(row, j) + gapExtension * (j - col);
       if (directions(row, j) >= 0) {
         score += gapOpening;  
       }
@@ -103,16 +103,16 @@ public class SW {
           result1 = string1.charAt(Int.operator_as(i - k - 1)) + result1;
           stringLength += 1;
         }
+	gapCount += directions(i, j);
         i -= directions(i, j);
-        gapCount += 1;
       } else {
         for (k in (0..(-directions(i, j) - 1))) {
           result1 = '-' + result1;
           result2 = string2.charAt(Int.operator_as(j - k - 1)) + result2;
           stringLength += 1;        
         }
-        j += directions(i, j);
-        gapCount += 1;
+        gapCount -= directions(i, j);
+	j += directions(i, j); 
       }
     }
     Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
@@ -382,7 +382,7 @@ public class SW {
       catch (Exception) {
         break;
       }
-      string1 = string1 + line;
+      string1 = string1 + line.trim();
     }
     val SECOND_STRING_FILE = new File(secondStringFile);
     val reader2 = new FileReader(SECOND_STRING_FILE);
@@ -394,7 +394,7 @@ public class SW {
       catch (Exception) {
         break;
       }
-      string2 = string2 + line;
+      string2 = string2 + line.trim();
     }
 
     val indexMap = new Rail[Long](100);
