@@ -66,7 +66,7 @@ public class SW {
 
     for (j in 0..(col - 1)) {
 
-      var score:Long = matrix(row, j) + gapExtension * (j - col);
+      var score:Long = matrix(row, j) + gapExtension * (col - j);
       if (directions(row, j) >= 0) {
         score += gapOpening;  
       }
