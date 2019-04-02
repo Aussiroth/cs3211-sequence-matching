@@ -986,7 +986,7 @@ void SW::parallelMatch2(::x10::lang::String* string1, ::x10::lang::String* strin
                         x10_long gapOpening, x10_long gapExtension) {
     
     //#line 184 "SW.x10"
-    x10_long cutoff = ((x10_long)10ll);
+    x10_long cutoff = ((x10_long)5ll);
     
     //#line 185 "SW.x10"
     x10_long maxRow = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));

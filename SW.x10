@@ -181,7 +181,7 @@ public class SW {
 
   public static def parallelMatch2(string1:String, string2:String,
       blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
-    var cutoff:Long = 10;
+    var cutoff:Long = 5;
     var maxRow:Long = string1.length();
     var maxCol:Long = string2.length();
 
