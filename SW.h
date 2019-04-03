@@ -67,14 +67,14 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__4391;
-    static ::x10::lang::String sl__4394;
-    static ::x10::lang::String sl__4398;
-    static ::x10::lang::String sl__4392;
-    static ::x10::lang::String sl__4397;
-    static ::x10::lang::String sl__4396;
-    static ::x10::lang::String sl__4395;
-    static ::x10::lang::String sl__4393;
+    static ::x10::lang::String sl__6569;
+    static ::x10::lang::String sl__6572;
+    static ::x10::lang::String sl__6570;
+    static ::x10::lang::String sl__6576;
+    static ::x10::lang::String sl__6575;
+    static ::x10::lang::String sl__6574;
+    static ::x10::lang::String sl__6573;
+    static ::x10::lang::String sl__6571;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -116,6 +116,11 @@ class SW : public ::x10::lang::X10Class   {
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
     static void parallelMatch2(::x10::lang::String* string1,
+                               ::x10::lang::String* string2,
+                               ::x10::array::Array_2<x10_long>* blosum,
+                               x10_long gapOpening, x10_long gapExtension);
+    static x10_long max(x10_long first, x10_long second, x10_long third);
+    static void parallelMatch3(::x10::lang::String* string1,
                                ::x10::lang::String* string2,
                                ::x10::array::Array_2<x10_long>* blosum,
                                x10_long gapOpening, x10_long gapExtension);

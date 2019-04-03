@@ -281,8 +281,8 @@ public class SW {
           }
         }
       }
-    }
-    /*for (i in 0..(string1.length())) {
+    }/*
+    for (i in 0..(string1.length())) {
       for (j in 0..(string2.length())) {
         if (matrix(i,j) >= 10) {
           Console.OUT.print(matrix(i,j) + " ");
@@ -377,7 +377,7 @@ public class SW {
             
             var diagScore:Long = max(bestLeftwards(a - 1, b - 1), bestUpwards(a - 1, b - 1), matrix(a - 1, b - 1));
             matrix(a, b) = diagScore + blosum(firstChar.ord(), secondChar.ord());
-            // if (matrix(a, b) < 0) matrix(a, b) = 0;
+            if (matrix(a, b) < 0) matrix(a, b) = 0;
             
             /* Remove??
             diagScore = best + blosum(firstChar.ord(), secondChar.ord());
@@ -388,20 +388,22 @@ public class SW {
 
             // var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
             // var upScore:Long = upResult.first;
-            bestUpwards(a, b) = max(gapOpening + gapExtension + matrix(a - 1, b),
-                                    gapOpening + gapExtension + bestLeftwards(a - 1, b),
+            bestUpwards(a, b) = max(gapOpening + matrix(a - 1, b),
+                                    gapOpening + bestLeftwards(a - 1, b),
                                     gapExtension + bestUpwards(a - 1, b));
-            // if (bestUpwards(a, b) < 0) bestUpwards(a, b) = 0;
+            bestUpwards(a, b) = Math.max(bestUpwards(a, b), bestUpwards(a - 1, b) + gapOpening);
+            if (bestUpwards(a, b) < 0) bestUpwards(a, b) = 0;
             
             /*if (upScore > max) {
               max = upScore;
               dir = upResult.second;
             }*/
 
-            bestLeftwards(a, b) = max(gapOpening + gapExtension + matrix(a, b - 1),
+            bestLeftwards(a, b) = max(gapOpening + matrix(a, b - 1),
                                       gapExtension + bestLeftwards(a, b - 1),
-                                      gapOpening + gapExtension + bestUpwards(a, b - 1));
-            // if (bestLeftwards(a, b) < 0) bestLeftwards(a, b) = 0;
+                                      gapOpening + bestUpwards(a, b - 1));
+            bestLeftwards(a, b) = Math.max(bestLeftwards(a, b), bestLeftwards(a, b - 1) + gapOpening);
+            if (bestLeftwards(a, b) < 0) bestLeftwards(a, b) = 0;
             
             /*var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
             var leftScore:Long = leftResult.first;
@@ -411,6 +413,13 @@ public class SW {
             }
 
             max = max < 0 ? 0 : max;*/
+            /*if (a == 1 && b == 3) {
+            Console.OUT.println("gapExtension + left:" + (gapExtension + bestLeftwards(a, b - 1)));
+            Console.OUT.println("matrix: " + matrix(a,b));
+            Console.OUT.println("bestUPwards: " + bestUpwards(a,b));
+            Console.OUT.println("bestLeftwards: " + bestLeftwards(a,b));
+            }*/
+
 
             if (matrix(a, b) >= bestLeftwards(a, b) && matrix(a, b) >= bestUpwards(a, b)) {
               // diagonal
@@ -431,8 +440,8 @@ public class SW {
           }
         }
       }
-    }
-    /*for (i in 0..(string1.length())) {
+    }/*
+    for (i in 0..(string1.length())) {
       for (j in 0..(string2.length())) {
         if (matrix(i,j) >= 10) {
           Console.OUT.print(matrix(i,j) + " ");
