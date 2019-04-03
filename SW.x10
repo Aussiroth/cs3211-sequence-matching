@@ -45,12 +45,10 @@ public class SW {
 
     for (i in 0..(row - 1)) {
       var score:Long = 0;
-      //if (i != row - 1) {
-        score = matrix(i, col) + gapExtension * (row - i - 1);
-      //}
+      score = matrix(i, col) + gapExtension * (row - i - 1);
 
       // if (directions(i, col) <= 0) {
-        score += gapOpening;  
+      score += gapOpening;  
       // }
 
       if (score > max) {
@@ -69,11 +67,10 @@ public class SW {
 
     for (j in 0..(col - 1)) {
       var score:Long = 0;
-      // if (j != col - 1) {
-        score = matrix(row, j) + gapExtension * (col - j - 1);
-      // }
+      score = matrix(row, j) + gapExtension * (col - j - 1);
+
       // if (directions(row, j) >= 0) {
-        score += gapOpening;  
+      score += gapOpening;  
       // }
 
       if (score > max) {
@@ -98,19 +95,19 @@ public class SW {
       if (directions(i,j) == 0) {
         result1 = string1.charAt(Int.operator_as(i - 1)) + result1;
         result2 = string2.charAt(Int.operator_as(j - 1)) + result2;
-	if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
+        if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
           matchCount += 1;
         }
-	i -= 1;
-	j -= 1;
-	stringLength += 1;
+        i -= 1;
+        j -= 1;
+        stringLength += 1;
       } else if (directions(i, j) > 0) {
         for (k in (0..(directions(i, j) - 1))) {
           result2 = '-' + result2;
           result1 = string1.charAt(Int.operator_as(i - k - 1)) + result1;
           stringLength += 1;
         }
-	gapCount += directions(i, j);
+        gapCount += directions(i, j);
         i -= directions(i, j);
       } else {
         for (k in (0..(-directions(i, j) - 1))) {
@@ -119,7 +116,7 @@ public class SW {
           stringLength += 1;        
         }
         gapCount -= directions(i, j);
-	j += directions(i, j); 
+        j += directions(i, j); 
       }
     }
     Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
@@ -127,6 +124,67 @@ public class SW {
     Console.OUT.println("Score: " + matrix(maxCoordinates.first, maxCoordinates.second));
     Console.OUT.println(result1);
     Console.OUT.println(result2);
+  }
+
+  public static def match2(string1:String, string2:String, 
+      blosum:Array_2[Long], 
+      gapOpening:Long, gapExtension:Long) {
+    val bestLeftwards = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
+    val bestUpwards = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
+    val matrix = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
+    val directions = new Array_2[Long](string1.length() + 1, string2.length() + 1, -1);
+    var globalMax:Long = Long.MIN_VALUE;
+    var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
+
+    for (i in 1..(string1.length())) {
+      for (j in 1..(string2.length())) {
+        var max:Long = Long.MIN_VALUE;
+
+        var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
+        var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
+
+        var diagScore:Long = max(bestLeftwards(i - 1, j - 1), bestUpwards(i - 1, j - 1), matrix(i - 1, j - 1));
+        matrix(i, j) = diagScore + blosum(firstChar.ord(), secondChar.ord());
+        if (matrix(i, j) < 0) matrix(i, j) = 0;
+
+        bestUpwards(i, j) = max(gapOpening + matrix(i - 1, j),
+            gapOpening + bestLeftwards(i - 1, j),
+            gapExtension + bestUpwards(i - 1, j));
+        bestUpwards(i, j) = Math.max(bestUpwards(i, j), bestUpwards(i - 1, j) + gapOpening);
+        if (bestUpwards(i, j) < 0) bestUpwards(i, j) = 0;
+
+        bestLeftwards(i, j) = max(gapOpening + matrix(i, j - 1),
+            gapExtension + bestLeftwards(i, j - 1),
+            gapOpening + bestUpwards(i, j - 1));
+        bestLeftwards(i, j) = Math.max(bestLeftwards(i, j), bestLeftwards(i, j - 1) + gapOpening);
+        if (bestLeftwards(i, j) < 0) bestLeftwards(i, j) = 0;
+
+        if (matrix(i, j) >= bestLeftwards(i, j) && matrix(i, j) >= bestUpwards(i, j)) {
+          directions(i, j) = 0;
+          max = matrix(i, j);
+        } else if (bestLeftwards(i, j) >= matrix(i, j) && bestLeftwards(i, j) >= bestUpwards(i, j)) {
+          directions(i, j) = -1;
+          max = bestLeftwards(i, j);
+        } else {
+          directions(i, j) = 1;
+          max = bestUpwards(i, j);
+        }
+
+        if (max > globalMax) {
+          globalMax = max;
+          maxCoordinates = new Pair[Long, Long](i, j);
+        }
+      }
+    }
+
+    /*for (i in 0..(S1_SIZE)) {
+      for (j in 0..(S2_SIZE)) {
+      Console.OUT.print(matrix(i, j) + " ");
+      }
+      Console.OUT.println();
+      }*/
+
+    backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
   public static def match(string1:String, string2:String, 
@@ -178,10 +236,10 @@ public class SW {
 
     /*for (i in 0..(S1_SIZE)) {
       for (j in 0..(S2_SIZE)) {
-        Console.OUT.print(matrix(i, j) + " ");
+      Console.OUT.print(matrix(i, j) + " ");
       }
       Console.OUT.println();
-    }*/
+      }*/
 
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
@@ -231,7 +289,7 @@ public class SW {
 
         var cellMaxRow:Long = i + cutoff - 1;
         var cellMaxCol:Long = j + cutoff - 1;
-        
+
         // ensure cellMaxRow and cellMaxCol does not exceed size of matrix
         if (cellMaxRow > string1.length()) {
           cellMaxRow = string1.length();
@@ -282,26 +340,26 @@ public class SW {
         }
       }
     }/*
-    for (i in 0..(string1.length())) {
-      for (j in 0..(string2.length())) {
+        for (i in 0..(string1.length())) {
+        for (j in 0..(string2.length())) {
         if (matrix(i,j) >= 10) {
-          Console.OUT.print(matrix(i,j) + " ");
+        Console.OUT.print(matrix(i,j) + " ");
         } else {
-          Console.OUT.print(" " + matrix(i,j) + " ");
+        Console.OUT.print(" " + matrix(i,j) + " ");
         }
-      }
-      Console.OUT.println();
-    }
-    for (i in 0..(string1.length())) {
-      for (j in 0..(string2.length())) {
+        }
+        Console.OUT.println();
+        }
+        for (i in 0..(string1.length())) {
+        for (j in 0..(string2.length())) {
         if (directions(i,j) < 0) {
-          Console.OUT.print(directions(i,j) + " ");
+        Console.OUT.print(directions(i,j) + " ");
         } else {
-          Console.OUT.print(" " + directions(i,j) + " ");
+        Console.OUT.print(" " + directions(i,j) + " ");
         }
-      }
-      Console.OUT.println();
-    }*/
+        }
+        Console.OUT.println();
+        }*/
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
@@ -317,7 +375,7 @@ public class SW {
 
   public static def parallelMatch3(string1:String, string2:String,
       blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
-    var cutoff:Long = 5;
+    var cutoff:Long = 15;
     var maxRow:Long = string1.length();
     var maxCol:Long = string2.length();
 
@@ -359,7 +417,7 @@ public class SW {
 
         var cellMaxRow:Long = i + cutoff - 1;
         var cellMaxCol:Long = j + cutoff - 1;
-        
+
         // ensure cellMaxRow and cellMaxCol does not exceed size of matrix
         if (cellMaxRow > string1.length()) {
           cellMaxRow = string1.length();
@@ -374,55 +432,32 @@ public class SW {
 
             var firstChar:Char = string1.charAt(Int.operator_as(a - 1));
             var secondChar:Char = string2.charAt(Int.operator_as(b - 1));
-            
+
             var diagScore:Long = max(bestLeftwards(a - 1, b - 1), bestUpwards(a - 1, b - 1), matrix(a - 1, b - 1));
             matrix(a, b) = diagScore + blosum(firstChar.ord(), secondChar.ord());
             if (matrix(a, b) < 0) matrix(a, b) = 0;
-            
-            /* Remove??
-            diagScore = best + blosum(firstChar.ord(), secondChar.ord());
-            if (diagScore > max) {
-              max = diagScore;
-              dir = 0;
-            }*/
 
-            // var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
-            // var upScore:Long = upResult.first;
             bestUpwards(a, b) = max(gapOpening + matrix(a - 1, b),
-                                    gapOpening + bestLeftwards(a - 1, b),
-                                    gapExtension + bestUpwards(a - 1, b));
+                gapOpening + bestLeftwards(a - 1, b),
+                gapExtension + bestUpwards(a - 1, b));
             bestUpwards(a, b) = Math.max(bestUpwards(a, b), bestUpwards(a - 1, b) + gapOpening);
             if (bestUpwards(a, b) < 0) bestUpwards(a, b) = 0;
-            
-            /*if (upScore > max) {
-              max = upScore;
-              dir = upResult.second;
-            }*/
 
             bestLeftwards(a, b) = max(gapOpening + matrix(a, b - 1),
-                                      gapExtension + bestLeftwards(a, b - 1),
-                                      gapOpening + bestUpwards(a, b - 1));
+                gapExtension + bestLeftwards(a, b - 1),
+                gapOpening + bestUpwards(a, b - 1));
             bestLeftwards(a, b) = Math.max(bestLeftwards(a, b), bestLeftwards(a, b - 1) + gapOpening);
             if (bestLeftwards(a, b) < 0) bestLeftwards(a, b) = 0;
-            
-            /*var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
-            var leftScore:Long = leftResult.first;
-            if (leftScore > max) {
-              max = leftScore;
-              dir = leftResult.second;
-            }
 
-            max = max < 0 ? 0 : max;*/
             /*if (a == 1 && b == 3) {
-            Console.OUT.println("gapExtension + left:" + (gapExtension + bestLeftwards(a, b - 1)));
-            Console.OUT.println("matrix: " + matrix(a,b));
-            Console.OUT.println("bestUPwards: " + bestUpwards(a,b));
-            Console.OUT.println("bestLeftwards: " + bestLeftwards(a,b));
-            }*/
+              Console.OUT.println("gapExtension + left:" + (gapExtension + bestLeftwards(a, b - 1)));
+              Console.OUT.println("matrix: " + matrix(a,b));
+              Console.OUT.println("bestUPwards: " + bestUpwards(a,b));
+              Console.OUT.println("bestLeftwards: " + bestLeftwards(a,b));
+              }*/
 
 
             if (matrix(a, b) >= bestLeftwards(a, b) && matrix(a, b) >= bestUpwards(a, b)) {
-              // diagonal
               directions(a, b) = 0;
               max = matrix(a, b);
             } else if (bestLeftwards(a, b) >= matrix(a, b) && bestLeftwards(a, b) >= bestUpwards(a, b)) {
@@ -441,26 +476,26 @@ public class SW {
         }
       }
     }/*
-    for (i in 0..(string1.length())) {
-      for (j in 0..(string2.length())) {
+        for (i in 0..(string1.length())) {
+        for (j in 0..(string2.length())) {
         if (matrix(i,j) >= 10) {
-          Console.OUT.print(matrix(i,j) + " ");
+        Console.OUT.print(matrix(i,j) + " ");
         } else {
-          Console.OUT.print(" " + matrix(i,j) + " ");
+        Console.OUT.print(" " + matrix(i,j) + " ");
         }
-      }
-      Console.OUT.println();
-    }
-    for (i in 0..(string1.length())) {
-      for (j in 0..(string2.length())) {
+        }
+        Console.OUT.println();
+        }
+        for (i in 0..(string1.length())) {
+        for (j in 0..(string2.length())) {
         if (directions(i,j) < 0) {
-          Console.OUT.print(directions(i,j) + " ");
+        Console.OUT.print(directions(i,j) + " ");
         } else {
-          Console.OUT.print(" " + directions(i,j) + " ");
+        Console.OUT.print(" " + directions(i,j) + " ");
         }
-      }
-      Console.OUT.println();
-    }*/
+        }
+        Console.OUT.println();
+        }*/
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
@@ -606,15 +641,15 @@ public class SW {
     parallelMatch3(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel3 Runtime: " + finalTime/1000000.0 + "ms");
-    
+
     startTime = System.nanoTime();
-    parallelMatch2(string1, string2, blosum, gapOpening, gapExtension);
+    match2(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
-    Console.OUT.println("Parallel2 Runtime: " + finalTime/1000000.0 + "ms");
+    Console.OUT.println("Match2 Runtime: " + finalTime/1000000.0 + "ms");
 
     /*startTime = System.nanoTime();
-    match(string1, string2, blosum, gapOpening, gapExtension);
-    finalTime = System.nanoTime() - startTime;
-    Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");*/
+      match(string1, string2, blosum, gapOpening, gapExtension);
+      finalTime = System.nanoTime() - startTime;
+      Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");*/
   }
 }

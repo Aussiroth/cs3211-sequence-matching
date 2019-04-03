@@ -67,14 +67,14 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__6569;
-    static ::x10::lang::String sl__6572;
-    static ::x10::lang::String sl__6570;
-    static ::x10::lang::String sl__6576;
-    static ::x10::lang::String sl__6575;
-    static ::x10::lang::String sl__6574;
-    static ::x10::lang::String sl__6573;
-    static ::x10::lang::String sl__6571;
+    static ::x10::lang::String sl__8288;
+    static ::x10::lang::String sl__8291;
+    static ::x10::lang::String sl__8289;
+    static ::x10::lang::String sl__8294;
+    static ::x10::lang::String sl__8295;
+    static ::x10::lang::String sl__8293;
+    static ::x10::lang::String sl__8292;
+    static ::x10::lang::String sl__8290;
 };
 
 class SW : public ::x10::lang::X10Class   {
@@ -112,6 +112,9 @@ class SW : public ::x10::lang::X10Class   {
                           ::x10::array::Array_2<x10_long>* matrix,
                           ::x10::array::Array_2<x10_long>* directions,
                           ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
+    static void match2(::x10::lang::String* string1, ::x10::lang::String* string2,
+                       ::x10::array::Array_2<x10_long>* blosum,
+                       x10_long gapOpening, x10_long gapExtension);
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
