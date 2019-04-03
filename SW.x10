@@ -278,12 +278,26 @@ public class SW {
         }
       }
     }
-    /*for (i in 0..(string1.length())) {
+    for (i in 0..(string1.length())) {
       for (j in 0..(string2.length())) {
-        Console.OUT.print(matrix(i,j) + " ");
+        if (matrix(i,j) >= 10) {
+          Console.OUT.print(matrix(i,j) + " ");
+        } else {
+          Console.OUT.print(" " + matrix(i,j) + " ");
+        }
       }
       Console.OUT.println();
-    }*/
+    }
+    for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        if (directions(i,j) < 0) {
+          Console.OUT.print(directions(i,j) + " ");
+        } else {
+          Console.OUT.print(" " + directions(i,j) + " ");
+        }
+      }
+      Console.OUT.println();
+    }
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
@@ -426,9 +440,9 @@ public class SW {
     }
 
     var startTime:Long = System.nanoTime();
-    parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
+    // parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
-    Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
+    // Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
     
     startTime = System.nanoTime();
     parallelMatch2(string1, string2, blosum, gapOpening, gapExtension);
