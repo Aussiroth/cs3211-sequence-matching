@@ -41,14 +41,17 @@ public class SW {
       gapExtension:Long, row:Long, col: Long) {
 
     var max:Long = Long.MIN_VALUE;
-    var gap:Long = -1;
+    var gap:Long = 0;
 
     for (i in 0..(row - 1)) {
-      var score:Long = matrix(i, col) + gapExtension * (row - i);
+      var score:Long = 0;
+      //if (i != row - 1) {
+        score = matrix(i, col) + gapExtension * (row - i - 1);
+      //}
 
-      if (directions(i, col) <= 0) {
+      // if (directions(i, col) <= 0) {
         score += gapOpening;  
-      }
+      // }
 
       if (score > max) {
         max = score;
@@ -62,14 +65,16 @@ public class SW {
       gapExtension:Long, row:Long, col: Long) {
 
     var max:Long = Long.MIN_VALUE;
-    var gap:Long = -1;
+    var gap:Long = 0;
 
     for (j in 0..(col - 1)) {
-
-      var score:Long = matrix(row, j) + gapExtension * (col - j);
-      if (directions(row, j) >= 0) {
+      var score:Long = 0;
+      // if (j != col - 1) {
+        score = matrix(row, j) + gapExtension * (col - j - 1);
+      // }
+      // if (directions(row, j) >= 0) {
         score += gapOpening;  
-      }
+      // }
 
       if (score > max) {
         max = score;
@@ -188,7 +193,7 @@ public class SW {
     var maxCol:Long = string2.length();
 
     val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
-    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
+    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
 
     maxRow = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxRow) / cutoff));
     maxCol = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxCol) / cutoff));
@@ -246,7 +251,6 @@ public class SW {
             var firstChar:Char = string1.charAt(Int.operator_as(a - 1));
             var secondChar:Char = string2.charAt(Int.operator_as(b - 1));
             diagScore = matrix(a - 1, b - 1) + blosum(firstChar.ord(), secondChar.ord());
-            // Console.OUT.println("diag " + diagScore + " " + a + " " + b);
             if (diagScore > max) {
               max = diagScore;
               dir = 0;
@@ -278,7 +282,7 @@ public class SW {
         }
       }
     }
-    for (i in 0..(string1.length())) {
+    /*for (i in 0..(string1.length())) {
       for (j in 0..(string2.length())) {
         if (matrix(i,j) >= 10) {
           Console.OUT.print(matrix(i,j) + " ");
@@ -297,7 +301,157 @@ public class SW {
         }
       }
       Console.OUT.println();
+    }*/
+    backtrack(string1, string2, matrix, directions, maxCoordinates);
+  }
+
+  public static def max(first:Long, second:Long, third:Long) {
+    if (first >= second && first >= third) {
+      return first;
+    } else if (second >= third && second >= first) {
+      return second;
+    } else {
+      return third;
     }
+  }
+
+  public static def parallelMatch3(string1:String, string2:String,
+      blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
+    var cutoff:Long = 5;
+    var maxRow:Long = string1.length();
+    var maxCol:Long = string2.length();
+
+    val bestLeftwards = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+    val bestUpwards = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+    val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+
+    maxRow = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxRow) / cutoff));
+    maxCol = Int.operator_as(Math.ceil(Double.implicit_operator_as(maxCol) / cutoff));
+
+    var globalMax:Long = Long.MIN_VALUE;
+    var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
+
+    for(line in 1..(maxRow + maxCol))
+    {
+      var startCol:Long = 0;
+      if (line - maxRow > 0) {
+        startCol = line - maxRow;
+      }
+
+      var count:Long = line < maxCol - startCol ? line : maxCol - startCol;
+      count = count < maxRow ? count : maxRow;
+
+      /***************** Parallel Component ****************/
+      finish for(k in 0..(count - 1)) async
+      {
+        var i:Long = maxRow;
+        if (maxRow > line) {
+          i = line;
+        }
+        i = i - k ;
+        var j:Long = startCol + k + 1 ;
+
+
+        // scale i and j
+        i = (i - 1) * cutoff + 1;
+        j = (j - 1) * cutoff + 1;
+
+        var cellMaxRow:Long = i + cutoff - 1;
+        var cellMaxCol:Long = j + cutoff - 1;
+        
+        // ensure cellMaxRow and cellMaxCol does not exceed size of matrix
+        if (cellMaxRow > string1.length()) {
+          cellMaxRow = string1.length();
+        }
+        if (cellMaxCol > string2.length()) {
+          cellMaxCol = string2.length();
+        }
+
+        for (a in i..(cellMaxRow)) {
+          for (b in j..(cellMaxCol)) {
+            var max:Long = Long.MIN_VALUE;
+
+            var firstChar:Char = string1.charAt(Int.operator_as(a - 1));
+            var secondChar:Char = string2.charAt(Int.operator_as(b - 1));
+            
+            var diagScore:Long = max(bestLeftwards(a - 1, b - 1), bestUpwards(a - 1, b - 1), matrix(a - 1, b - 1));
+            matrix(a, b) = diagScore + blosum(firstChar.ord(), secondChar.ord());
+            // if (matrix(a, b) < 0) matrix(a, b) = 0;
+            
+            /* Remove??
+            diagScore = best + blosum(firstChar.ord(), secondChar.ord());
+            if (diagScore > max) {
+              max = diagScore;
+              dir = 0;
+            }*/
+
+            // var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
+            // var upScore:Long = upResult.first;
+            bestUpwards(a, b) = max(gapOpening + gapExtension + matrix(a - 1, b),
+                                    gapOpening + gapExtension + bestLeftwards(a - 1, b),
+                                    gapExtension + bestUpwards(a - 1, b));
+            // if (bestUpwards(a, b) < 0) bestUpwards(a, b) = 0;
+            
+            /*if (upScore > max) {
+              max = upScore;
+              dir = upResult.second;
+            }*/
+
+            bestLeftwards(a, b) = max(gapOpening + gapExtension + matrix(a, b - 1),
+                                      gapExtension + bestLeftwards(a, b - 1),
+                                      gapOpening + gapExtension + bestUpwards(a, b - 1));
+            // if (bestLeftwards(a, b) < 0) bestLeftwards(a, b) = 0;
+            
+            /*var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
+            var leftScore:Long = leftResult.first;
+            if (leftScore > max) {
+              max = leftScore;
+              dir = leftResult.second;
+            }
+
+            max = max < 0 ? 0 : max;*/
+
+            if (matrix(a, b) >= bestLeftwards(a, b) && matrix(a, b) >= bestUpwards(a, b)) {
+              // diagonal
+              directions(a, b) = 0;
+              max = matrix(a, b);
+            } else if (bestLeftwards(a, b) >= matrix(a, b) && bestLeftwards(a, b) >= bestUpwards(a, b)) {
+              directions(a, b) = -1;
+              max = bestLeftwards(a, b);
+            } else {
+              directions(a, b) = 1;
+              max = bestUpwards(a, b);
+            }
+
+            if (max > globalMax) {
+              globalMax = max;
+              maxCoordinates = new Pair[Long, Long](a, b);
+            }
+          }
+        }
+      }
+    }
+    /*for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        if (matrix(i,j) >= 10) {
+          Console.OUT.print(matrix(i,j) + " ");
+        } else {
+          Console.OUT.print(" " + matrix(i,j) + " ");
+        }
+      }
+      Console.OUT.println();
+    }
+    for (i in 0..(string1.length())) {
+      for (j in 0..(string2.length())) {
+        if (directions(i,j) < 0) {
+          Console.OUT.print(directions(i,j) + " ");
+        } else {
+          Console.OUT.print(" " + directions(i,j) + " ");
+        }
+      }
+      Console.OUT.println();
+    }*/
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
@@ -307,7 +461,7 @@ public class SW {
     var maxCol:Long = string2.length();
 
     val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
-    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, -1);
+    val directions = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
 
@@ -440,14 +594,14 @@ public class SW {
     }
 
     var startTime:Long = System.nanoTime();
-    // parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
+    parallelMatch3(string1, string2, blosum, gapOpening, gapExtension);
     var finalTime:Long = System.nanoTime() - startTime;
-    // Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
+    Console.OUT.println("Parallel3 Runtime: " + finalTime/1000000.0 + "ms");
     
     startTime = System.nanoTime();
     parallelMatch2(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
-    Console.OUT.println("New Parallel Runtime: " + finalTime/1000000.0 + "ms");
+    Console.OUT.println("Parallel2 Runtime: " + finalTime/1000000.0 + "ms");
 
     /*startTime = System.nanoTime();
     match(string1, string2, blosum, gapOpening, gapExtension);
