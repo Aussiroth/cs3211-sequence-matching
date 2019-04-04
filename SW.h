@@ -16,9 +16,6 @@ class Char;
 namespace x10 { namespace array { 
 template<class TPMGL(T)> class Array_2;
 } } 
-namespace x10 { namespace util { 
-template<class TPMGL(T), class TPMGL(U)> class Pair;
-} } 
 namespace x10 { namespace io { 
 class Printer;
 } } 
@@ -27,6 +24,12 @@ class Console;
 } } 
 namespace x10 { namespace lang { 
 class Any;
+} } 
+namespace x10 { namespace util { 
+template<class TPMGL(T), class TPMGL(U)> class Pair;
+} } 
+namespace x10 { namespace lang { 
+template<class TPMGL(T)> class Rail;
 } } 
 namespace x10 { namespace lang { 
 class Math;
@@ -46,9 +49,6 @@ class AsyncClosure;
 namespace x10 { namespace lang { 
 class CheckedThrowable;
 } } 
-namespace x10 { namespace lang { 
-template<class TPMGL(T)> class Rail;
-} } 
 namespace x10 { namespace io { 
 class File;
 } } 
@@ -67,37 +67,25 @@ class Synthetic;
 
 class SW_Strings {
   public:
-    static ::x10::lang::String sl__8288;
-    static ::x10::lang::String sl__8291;
-    static ::x10::lang::String sl__8289;
-    static ::x10::lang::String sl__8294;
-    static ::x10::lang::String sl__8295;
-    static ::x10::lang::String sl__8293;
-    static ::x10::lang::String sl__8292;
-    static ::x10::lang::String sl__8290;
+    static ::x10::lang::String sl__5070;
+    static ::x10::lang::String sl__5071;
+    static ::x10::lang::String sl__5074;
+    static ::x10::lang::String sl__5072;
+    static ::x10::lang::String sl__5076;
+    static ::x10::lang::String sl__5078;
+    static ::x10::lang::String sl__5077;
+    static ::x10::lang::String sl__5075;
+    static ::x10::lang::String sl__5073;
+    static ::x10::lang::String sl__5079;
 };
 
 class SW : public ::x10::lang::X10Class   {
     public:
     RTT_H_DECLS_CLASS
     
-    /* Static field: FMGL(NUM_AMINO_ACIDS) */
-    static const x10_long FMGL(NUM_AMINO_ACIDS) = 24;
-    static x10_long FMGL(NUM_AMINO_ACIDS__get)();
-    
-    /* Static field: FMGL(DIAG) */
-    static const x10_long FMGL(DIAG) = 0;
-    static x10_long FMGL(DIAG__get)();
-    
-    /* Static field: FMGL(UP) */
-    static const x10_long FMGL(UP) = 1;
-    static x10_long FMGL(UP__get)();
-    
-    /* Static field: FMGL(LEFT) */
-    static const x10_long FMGL(LEFT) = 2;
-    static x10_long FMGL(LEFT__get)();
-    
     static ::x10::util::ArrayList< ::x10::lang::String*>* splitString(::x10::lang::String* lineToSplit);
+    static void printMatrix(::x10::array::Array_2<x10_long>* matrix, x10_long nRows,
+                            x10_long nCols);
     static ::x10::util::Pair<x10_long, x10_long> checkUpwards(::x10::array::Array_2<x10_long>* matrix,
                                                               ::x10::array::Array_2<x10_long>* directions,
                                                               x10_long gapOpening,
@@ -108,25 +96,18 @@ class SW : public ::x10::lang::X10Class   {
       ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* directions,
       x10_long gapOpening, x10_long gapExtension, x10_long row,
       x10_long col);
+    static void railBacktrack(::x10::lang::String* string1,
+                              ::x10::lang::String* string2,
+                              ::x10::array::Array_2<x10_long>* matrix,
+                              ::x10::array::Array_2<x10_long>* directions,
+                              ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
     static void backtrack(::x10::lang::String* string1, ::x10::lang::String* string2,
                           ::x10::array::Array_2<x10_long>* matrix,
                           ::x10::array::Array_2<x10_long>* directions,
                           ::x10::util::Pair<x10_long, x10_long> maxCoordinates);
-    static void match2(::x10::lang::String* string1, ::x10::lang::String* string2,
-                       ::x10::array::Array_2<x10_long>* blosum,
-                       x10_long gapOpening, x10_long gapExtension);
     static void match(::x10::lang::String* string1, ::x10::lang::String* string2,
                       ::x10::array::Array_2<x10_long>* blosum,
                       x10_long gapOpening, x10_long gapExtension);
-    static void parallelMatch2(::x10::lang::String* string1,
-                               ::x10::lang::String* string2,
-                               ::x10::array::Array_2<x10_long>* blosum,
-                               x10_long gapOpening, x10_long gapExtension);
-    static x10_long max(x10_long first, x10_long second, x10_long third);
-    static void parallelMatch3(::x10::lang::String* string1,
-                               ::x10::lang::String* string2,
-                               ::x10::array::Array_2<x10_long>* blosum,
-                               x10_long gapOpening, x10_long gapExtension);
     static void parallelMatch(::x10::lang::String* string1,
                               ::x10::lang::String* string2,
                               ::x10::array::Array_2<x10_long>* blosum,
@@ -162,21 +143,5 @@ class SW;
 #define SW_H_NODEPS
 #ifndef SW_H_GENERICS
 #define SW_H_GENERICS
-inline x10_long SW::FMGL(NUM_AMINO_ACIDS__get)() {
-    return SW::FMGL(NUM_AMINO_ACIDS);
-}
-
-inline x10_long SW::FMGL(DIAG__get)() {
-    return SW::FMGL(DIAG);
-}
-
-inline x10_long SW::FMGL(UP__get)() {
-    return SW::FMGL(UP);
-}
-
-inline x10_long SW::FMGL(LEFT__get)() {
-    return SW::FMGL(LEFT);
-}
-
 #endif // SW_H_GENERICS
 #endif // __SW_H_NODEPS
