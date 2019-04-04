@@ -10,13 +10,6 @@ import x10.lang.Math;
 
 public class SW {
 
-  // TODO: Make amino acid size dynamic
-  static val NUM_AMINO_ACIDS = 24;
-
-  static val DIAG = 0;
-  static val UP = 1;
-  static val LEFT = 2;
-
   public static def splitString(lineToSplit:String) {
     val tokens = new ArrayList[String]();
     var currToken:String = "";
@@ -35,6 +28,15 @@ public class SW {
       tokens.add(currToken);
     }
     return tokens;
+  }
+
+  public static def printMatrix(matrix:Array_2[Long], nRows:Long, nCols:Long) {
+    for (i in 0..(nRows - 1)) {
+      for (j in 0..(nCols - 1)) {
+        Console.OUT.println(matrix(i,j) + " ");
+      }
+      Console.OUT.println();
+    }
   }
 
   public static def checkUpwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
@@ -79,6 +81,63 @@ public class SW {
       }
     }
     return new Pair[Long, Long](max, gap);
+  }
+
+  public static def railBacktrack(string1:String, string2:String,
+      matrix:Array_2[Long], directions:Array_2[Long], maxCoordinates:Pair[Long, Long]) {
+    var i:Long = maxCoordinates.first;
+    var j:Long = maxCoordinates.second;
+    val result1 = new Rail[Char](string1.length() + 100);
+    val result2 = new Rail[Char](string1.length() + 100);
+    var resultSize:Long = 0;
+
+    var stringLength:Long = 0;
+    var matchCount:Long = 0;
+    var gapCount:Long = 0;
+    while (matrix(i, j) != 0) {
+      if (directions(i,j) == 0) {
+        result1(resultSize) = string1.charAt(Int.operator_as(i - 1));
+        result2(resultSize) = string2.charAt(Int.operator_as(j - 1));
+        resultSize += 1;
+
+        if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
+          matchCount += 1;
+        }
+        i -= 1;
+        j -= 1;
+        stringLength += 1;
+      } else if (directions(i, j) > 0) {
+        for (k in (0..(directions(i, j) - 1))) {
+          result1(resultSize) = string1.charAt(Int.operator_as(i - k - 1));
+          result2(resultSize) = '-';
+          resultSize += 1;
+          stringLength += 1;
+        }
+        gapCount += directions(i, j);
+        i -= directions(i, j);
+      } else {
+        for (k in (0..(-directions(i, j) - 1))) {
+          result1(resultSize) = '-';
+          result2(resultSize) = string2.charAt(Int.operator_as(j - k - 1));
+          resultSize += 1;
+          stringLength += 1;        
+        }
+        gapCount -= directions(i, j);
+        j += directions(i, j); 
+      }
+    }
+    Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
+    Console.OUT.println("Gaps: " + gapCount + "/" + stringLength);
+    Console.OUT.println("Score: " + matrix(maxCoordinates.first, maxCoordinates.second));
+    
+    for (k in (0..(resultSize - 1))) {
+      Console.OUT.print(result1(k));
+    }
+    Console.OUT.println();
+    for (k in (0..(resultSize - 1))) {
+      Console.OUT.print(result2(k));
+    }
+    Console.OUT.println();
   }
 
   public static def backtrack(string1:String, string2:String,
@@ -579,8 +638,8 @@ public class SW {
     var firstStringFile:String = args(0);
     var secondStringFile:String = args(1);
     var matchFile:String = args(2);
-    var gapOpening:Long = Int.parse(args(3));
-    var gapExtension:Long = Int.parse(args(4));
+    var gapOpening:Long = -Int.parse(args(3));
+    var gapExtension:Long = -Int.parse(args(4));
 
     var string1:String = "";
     var string2:String = "";
