@@ -42,223 +42,223 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
     void __apply(){
         
         //#line 237 "MemoizedSW.x10"
-        x10_long i__7252 = maxRow;
+        x10_long i__7372 = maxRow;
         
         //#line 238 "MemoizedSW.x10"
-        if (((maxRow) > (line__7265))) {
+        if (((maxRow) > (line__7385))) {
             
             //#line 239 "MemoizedSW.x10"
-            i__7252 = line__7265;
+            i__7372 = line__7385;
         }
         
         //#line 241 "MemoizedSW.x10"
-        i__7252 = ((i__7252) - (k__7259));
+        i__7372 = ((i__7372) - (k__7379));
         
         //#line 242 "MemoizedSW.x10"
-        x10_long j__7253 = ((((startCol__7260) + (k__7259))) + (((x10_long)1ll)));
+        x10_long j__7373 = ((((startCol__7380) + (k__7379))) + (((x10_long)1ll)));
         
         //#line 246 "MemoizedSW.x10"
-        i__7252 = ((((((i__7252) - (((x10_long)1ll)))) * (cutoff))) + (((x10_long)1ll)));
+        i__7372 = ((((((i__7372) - (((x10_long)1ll)))) * (cutoff))) + (((x10_long)1ll)));
         
         //#line 247 "MemoizedSW.x10"
-        j__7253 = ((((((j__7253) - (((x10_long)1ll)))) * (cutoff))) + (((x10_long)1ll)));
+        j__7373 = ((((((j__7373) - (((x10_long)1ll)))) * (cutoff))) + (((x10_long)1ll)));
         
         //#line 249 "MemoizedSW.x10"
-        x10_long cellMaxRow__7254 = ((((i__7252) + (cutoff))) - (((x10_long)1ll)));
+        x10_long cellMaxRow__7374 = ((((i__7372) + (cutoff))) - (((x10_long)1ll)));
         
         //#line 250 "MemoizedSW.x10"
-        x10_long cellMaxCol__7255 = ((((j__7253) + (cutoff))) - (((x10_long)1ll)));
+        x10_long cellMaxCol__7375 = ((((j__7373) + (cutoff))) - (((x10_long)1ll)));
         
         //#line 253 "MemoizedSW.x10"
-        if (((cellMaxRow__7254) > (((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length())))))
+        if (((cellMaxRow__7374) > (((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length())))))
         {
             
             //#line 254 "MemoizedSW.x10"
-            cellMaxRow__7254 = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
+            cellMaxRow__7374 = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
         }
         
         //#line 256 "MemoizedSW.x10"
-        if (((cellMaxCol__7255) > (((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length())))))
+        if (((cellMaxCol__7375) > (((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length())))))
         {
             
             //#line 257 "MemoizedSW.x10"
-            cellMaxCol__7255 = ((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length()));
+            cellMaxCol__7375 = ((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length()));
         }
         
         //#line 260 "MemoizedSW.x10"
-        x10_long i__7103min__7248 = i__7252;
-        x10_long i__7103max__7249 = cellMaxRow__7254;
+        x10_long i__7223min__7368 = i__7372;
+        x10_long i__7223max__7369 = cellMaxRow__7374;
         {
-            x10_long i__7250;
-            for (i__7250 = i__7103min__7248; ((i__7250) <= (i__7103max__7249));
-                 i__7250 = ((i__7250) + (((x10_long)1ll))))
+            x10_long i__7370;
+            for (i__7370 = i__7223min__7368; ((i__7370) <= (i__7223max__7369));
+                 i__7370 = ((i__7370) + (((x10_long)1ll))))
             {
-                x10_long a__7251 = i__7250;
+                x10_long a__7371 = i__7370;
                 
                 //#line 261 "MemoizedSW.x10"
-                x10_long i__7085min__7244 = j__7253;
-                x10_long i__7085max__7245 = cellMaxCol__7255;
+                x10_long i__7205min__7364 = j__7373;
+                x10_long i__7205max__7365 = cellMaxCol__7375;
                 {
-                    x10_long i__7246;
-                    for (i__7246 = i__7085min__7244; ((i__7246) <= (i__7085max__7245));
-                         i__7246 = ((i__7246) + (((x10_long)1ll))))
+                    x10_long i__7366;
+                    for (i__7366 = i__7205min__7364; ((i__7366) <= (i__7205max__7365));
+                         i__7366 = ((i__7366) + (((x10_long)1ll))))
                     {
-                        x10_long b__7247 = i__7246;
+                        x10_long b__7367 = i__7366;
                         
                         //#line 262 "MemoizedSW.x10"
-                        x10_long max__7240 = (x10_long)0x8000000000000000LL;
+                        x10_long max__7360 = (x10_long)0x8000000000000000LL;
                         
                         //#line 264 "MemoizedSW.x10"
-                        x10_char firstChar__7241 = ::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                                     ((x10_int) (((a__7251) - (((x10_long)1ll))))));
+                        x10_char firstChar__7361 = ::x10aux::nullCheck(string1)->x10::lang::String::charAt(
+                                                     ((x10_int) (((a__7371) - (((x10_long)1ll))))));
                         
                         //#line 265 "MemoizedSW.x10"
-                        x10_char secondChar__7242 = ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                                      ((x10_int) (((b__7247) - (((x10_long)1ll))))));
+                        x10_char secondChar__7362 = ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
+                                                      ((x10_int) (((b__7367) - (((x10_long)1ll))))));
                         
                         //#line 267 "MemoizedSW.x10"
-                        x10_long diagScore__7243 = ::MemoizedSW::max(
+                        x10_long diagScore__7363 = ::MemoizedSW::max(
                                                      bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                       ((a__7251) - (((x10_long)1ll))),
-                                                       ((b__7247) - (((x10_long)1ll)))),
+                                                       ((a__7371) - (((x10_long)1ll))),
+                                                       ((b__7367) - (((x10_long)1ll)))),
                                                      bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                       ((a__7251) - (((x10_long)1ll))),
-                                                       ((b__7247) - (((x10_long)1ll)))),
+                                                       ((a__7371) - (((x10_long)1ll))),
+                                                       ((b__7367) - (((x10_long)1ll)))),
                                                      matrix->x10::array::Array_2<x10_long>::__apply(
-                                                       ((a__7251) - (((x10_long)1ll))),
-                                                       ((b__7247) - (((x10_long)1ll)))));
+                                                       ((a__7371) - (((x10_long)1ll))),
+                                                       ((b__7367) - (((x10_long)1ll)))));
                         
                         //#line 268 "MemoizedSW.x10"
                         matrix->x10::array::Array_2<x10_long>::__set(
-                          a__7251, b__7247, ((diagScore__7243) + (::x10aux::nullCheck(blosum)->x10::array::Array_2<x10_long>::__apply(
-                                                                    ((x10_long)(((x10_int) (firstChar__7241).v))),
-                                                                    ((x10_long)(((x10_int) (secondChar__7242).v)))))));
+                          a__7371, b__7367, ((diagScore__7363) + (::x10aux::nullCheck(blosum)->x10::array::Array_2<x10_long>::__apply(
+                                                                    ((x10_long)(((x10_int) (firstChar__7361).v))),
+                                                                    ((x10_long)(((x10_int) (secondChar__7362).v)))))));
                         
                         //#line 269 "MemoizedSW.x10"
                         if (((matrix->x10::array::Array_2<x10_long>::__apply(
-                                a__7251, b__7247)) < (((x10_long)0ll))))
+                                a__7371, b__7367)) < (((x10_long)0ll))))
                         {
                             matrix->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)0ll));
+                              a__7371, b__7367, ((x10_long)0ll));
                         }
                         
                         //#line 271 "MemoizedSW.x10"
                         bestUpwards->x10::array::Array_2<x10_long>::__set(
-                          a__7251, b__7247, ::MemoizedSW::max(
+                          a__7371, b__7367, ::MemoizedSW::max(
                                               ((gapOpening) + (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                                 ((a__7251) - (((x10_long)1ll))),
-                                                                 b__7247))),
+                                                                 ((a__7371) - (((x10_long)1ll))),
+                                                                 b__7367))),
                                               ((gapOpening) + (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                                 ((a__7251) - (((x10_long)1ll))),
-                                                                 b__7247))),
+                                                                 ((a__7371) - (((x10_long)1ll))),
+                                                                 b__7367))),
                                               ((gapExtension) + (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                                   ((a__7251) - (((x10_long)1ll))),
-                                                                   b__7247)))));
+                                                                   ((a__7371) - (((x10_long)1ll))),
+                                                                   b__7367)))));
                         
                         //#line 274 "MemoizedSW.x10"
                         bestUpwards->x10::array::Array_2<x10_long>::__set(
-                          a__7251, b__7247, ::x10::lang::Math::max(
+                          a__7371, b__7367, ::x10::lang::Math::max(
                                               bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                a__7251, b__7247),
+                                                a__7371, b__7367),
                                               ((bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                  ((a__7251) - (((x10_long)1ll))),
-                                                  b__7247)) + (gapOpening))));
+                                                  ((a__7371) - (((x10_long)1ll))),
+                                                  b__7367)) + (gapOpening))));
                         
                         //#line 275 "MemoizedSW.x10"
                         if (((bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                a__7251, b__7247)) < (((x10_long)0ll))))
+                                a__7371, b__7367)) < (((x10_long)0ll))))
                         {
                             bestUpwards->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)0ll));
+                              a__7371, b__7367, ((x10_long)0ll));
                         }
                         
                         //#line 277 "MemoizedSW.x10"
                         bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                          a__7251, b__7247, ::MemoizedSW::max(
+                          a__7371, b__7367, ::MemoizedSW::max(
                                               ((gapOpening) + (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                                 a__7251,
-                                                                 ((b__7247) - (((x10_long)1ll)))))),
+                                                                 a__7371,
+                                                                 ((b__7367) - (((x10_long)1ll)))))),
                                               ((gapExtension) + (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                                   a__7251,
-                                                                   ((b__7247) - (((x10_long)1ll)))))),
+                                                                   a__7371,
+                                                                   ((b__7367) - (((x10_long)1ll)))))),
                                               ((gapOpening) + (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                                 a__7251,
-                                                                 ((b__7247) - (((x10_long)1ll))))))));
+                                                                 a__7371,
+                                                                 ((b__7367) - (((x10_long)1ll))))))));
                         
                         //#line 280 "MemoizedSW.x10"
                         bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                          a__7251, b__7247, ::x10::lang::Math::max(
+                          a__7371, b__7367, ::x10::lang::Math::max(
                                               bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                a__7251, b__7247),
+                                                a__7371, b__7367),
                                               ((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                  a__7251,
-                                                  ((b__7247) - (((x10_long)1ll))))) + (gapOpening))));
+                                                  a__7371,
+                                                  ((b__7367) - (((x10_long)1ll))))) + (gapOpening))));
                         
                         //#line 281 "MemoizedSW.x10"
                         if (((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                a__7251, b__7247)) < (((x10_long)0ll))))
+                                a__7371, b__7367)) < (((x10_long)0ll))))
                         {
                             bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)0ll));
+                              a__7371, b__7367, ((x10_long)0ll));
                         }
                         
                         //#line 284 "MemoizedSW.x10"
                         if ((((matrix->x10::array::Array_2<x10_long>::__apply(
-                                 a__7251, b__7247)) >= (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                          a__7251,
-                                                          b__7247))) &&
+                                 a__7371, b__7367)) >= (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
+                                                          a__7371,
+                                                          b__7367))) &&
                             ((matrix->x10::array::Array_2<x10_long>::__apply(
-                                a__7251, b__7247)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                         a__7251,
-                                                         b__7247)))))
+                                a__7371, b__7367)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                                         a__7371,
+                                                         b__7367)))))
                         {
                             
                             //#line 285 "MemoizedSW.x10"
                             directions->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)0ll));
+                              a__7371, b__7367, ((x10_long)0ll));
                             
                             //#line 286 "MemoizedSW.x10"
-                            max__7240 = matrix->x10::array::Array_2<x10_long>::__apply(
-                                          a__7251, b__7247);
+                            max__7360 = matrix->x10::array::Array_2<x10_long>::__apply(
+                                          a__7371, b__7367);
                         } else 
                         //#line 287 "MemoizedSW.x10"
                         if ((((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                 a__7251, b__7247)) >= (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                          a__7251,
-                                                          b__7247))) &&
+                                 a__7371, b__7367)) >= (matrix->x10::array::Array_2<x10_long>::__apply(
+                                                          a__7371,
+                                                          b__7367))) &&
                             ((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                a__7251, b__7247)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                         a__7251,
-                                                         b__7247)))))
+                                a__7371, b__7367)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                                         a__7371,
+                                                         b__7367)))))
                         {
                             
                             //#line 288 "MemoizedSW.x10"
                             directions->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)-1ll));
+                              a__7371, b__7367, ((x10_long)-1ll));
                             
                             //#line 289 "MemoizedSW.x10"
-                            max__7240 = bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                          a__7251, b__7247);
+                            max__7360 = bestLeftwards->x10::array::Array_2<x10_long>::__apply(
+                                          a__7371, b__7367);
                         } else {
                             
                             //#line 291 "MemoizedSW.x10"
                             directions->x10::array::Array_2<x10_long>::__set(
-                              a__7251, b__7247, ((x10_long)1ll));
+                              a__7371, b__7367, ((x10_long)1ll));
                             
                             //#line 292 "MemoizedSW.x10"
-                            max__7240 = bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                          a__7251, b__7247);
+                            max__7360 = bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                          a__7371, b__7367);
                         }
                         
                         //#line 295 "MemoizedSW.x10"
-                        if (((max__7240) > (globalMax))) {
+                        if (((max__7360) > (globalMax))) {
                             
                             //#line 296 "MemoizedSW.x10"
-                            globalMax = max__7240;
+                            globalMax = max__7360;
                             
                             //#line 297 "MemoizedSW.x10"
-                            maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(a__7251,
-                                                                                          b__7247);
+                            maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(a__7371,
+                                                                                          b__7367);
                         }
                         
                     }
@@ -271,10 +271,10 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
     
     // captured environment
     x10aux::captured_struct_lval<x10_long> maxRow;
-    x10_long line__7265;
-    x10_long k__7259;
-    x10aux::captured_struct_lval<x10_long> startCol__7260;
-    x10aux::captured_struct_lval<x10_long> cutoff;
+    x10_long line__7385;
+    x10_long k__7379;
+    x10aux::captured_struct_lval<x10_long> startCol__7380;
+    x10_long cutoff;
     ::x10::lang::String* string1;
     ::x10::lang::String* string2;
     ::x10::array::Array_2<x10_long>* bestLeftwards;
@@ -297,9 +297,9 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
     
     void _serialize_body(::x10aux::serialization_buffer &buf) {
         buf.write(this->maxRow);
-        buf.write(this->line__7265);
-        buf.write(this->k__7259);
-        buf.write(this->startCol__7260);
+        buf.write(this->line__7385);
+        buf.write(this->k__7379);
+        buf.write(this->startCol__7380);
         buf.write(this->cutoff);
         buf.write(this->string1);
         buf.write(this->string2);
@@ -318,10 +318,10 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
         MemoizedSW__closure__1* storage = ::x10aux::alloc_z<MemoizedSW__closure__1>();
         buf.record_reference(storage);
         x10aux::captured_struct_lval<x10_long> that_maxRow = buf.read<x10aux::captured_struct_lval<x10_long> >();
-        x10_long that_line__7265 = buf.read<x10_long>();
-        x10_long that_k__7259 = buf.read<x10_long>();
-        x10aux::captured_struct_lval<x10_long> that_startCol__7260 = buf.read<x10aux::captured_struct_lval<x10_long> >();
-        x10aux::captured_struct_lval<x10_long> that_cutoff = buf.read<x10aux::captured_struct_lval<x10_long> >();
+        x10_long that_line__7385 = buf.read<x10_long>();
+        x10_long that_k__7379 = buf.read<x10_long>();
+        x10aux::captured_struct_lval<x10_long> that_startCol__7380 = buf.read<x10aux::captured_struct_lval<x10_long> >();
+        x10_long that_cutoff = buf.read<x10_long>();
         ::x10::lang::String* that_string1 = buf.read< ::x10::lang::String*>();
         ::x10::lang::String* that_string2 = buf.read< ::x10::lang::String*>();
         ::x10::array::Array_2<x10_long>* that_bestLeftwards = buf.read< ::x10::array::Array_2<x10_long>*>();
@@ -333,11 +333,11 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
         ::x10::array::Array_2<x10_long>* that_directions = buf.read< ::x10::array::Array_2<x10_long>*>();
         x10aux::captured_struct_lval<x10_long> that_globalMax = buf.read<x10aux::captured_struct_lval<x10_long> >();
         x10aux::captured_struct_lval< ::x10::util::Pair<x10_long, x10_long> > that_maxCoordinates = buf.read<x10aux::captured_struct_lval< ::x10::util::Pair<x10_long, x10_long> > >();
-        MemoizedSW__closure__1* this_ = new (storage) MemoizedSW__closure__1(that_maxRow, that_line__7265, that_k__7259, that_startCol__7260, that_cutoff, that_string1, that_string2, that_bestLeftwards, that_bestUpwards, that_matrix, that_blosum, that_gapOpening, that_gapExtension, that_directions, that_globalMax, that_maxCoordinates);
+        MemoizedSW__closure__1* this_ = new (storage) MemoizedSW__closure__1(that_maxRow, that_line__7385, that_k__7379, that_startCol__7380, that_cutoff, that_string1, that_string2, that_bestLeftwards, that_bestUpwards, that_matrix, that_blosum, that_gapOpening, that_gapExtension, that_directions, that_globalMax, that_maxCoordinates);
         return this_;
     }
     
-    MemoizedSW__closure__1(x10aux::captured_struct_lval<x10_long> maxRow, x10_long line__7265, x10_long k__7259, x10aux::captured_struct_lval<x10_long> startCol__7260, x10aux::captured_struct_lval<x10_long> cutoff, ::x10::lang::String* string1, ::x10::lang::String* string2, ::x10::array::Array_2<x10_long>* bestLeftwards, ::x10::array::Array_2<x10_long>* bestUpwards, ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* blosum, x10_long gapOpening, x10_long gapExtension, ::x10::array::Array_2<x10_long>* directions, x10aux::captured_struct_lval<x10_long> globalMax, x10aux::captured_struct_lval< ::x10::util::Pair<x10_long, x10_long> > maxCoordinates) : maxRow(maxRow), line__7265(line__7265), k__7259(k__7259), startCol__7260(startCol__7260), cutoff(cutoff), string1(string1), string2(string2), bestLeftwards(bestLeftwards), bestUpwards(bestUpwards), matrix(matrix), blosum(blosum), gapOpening(gapOpening), gapExtension(gapExtension), directions(directions), globalMax(globalMax), maxCoordinates(maxCoordinates) { }
+    MemoizedSW__closure__1(x10aux::captured_struct_lval<x10_long> maxRow, x10_long line__7385, x10_long k__7379, x10aux::captured_struct_lval<x10_long> startCol__7380, x10_long cutoff, ::x10::lang::String* string1, ::x10::lang::String* string2, ::x10::array::Array_2<x10_long>* bestLeftwards, ::x10::array::Array_2<x10_long>* bestUpwards, ::x10::array::Array_2<x10_long>* matrix, ::x10::array::Array_2<x10_long>* blosum, x10_long gapOpening, x10_long gapExtension, ::x10::array::Array_2<x10_long>* directions, x10aux::captured_struct_lval<x10_long> globalMax, x10aux::captured_struct_lval< ::x10::util::Pair<x10_long, x10_long> > maxCoordinates) : maxRow(maxRow), line__7385(line__7385), k__7379(k__7379), startCol__7380(startCol__7380), cutoff(cutoff), string1(string1), string2(string2), bestLeftwards(bestLeftwards), bestUpwards(bestUpwards), matrix(matrix), blosum(blosum), gapOpening(gapOpening), gapExtension(gapExtension), directions(directions), globalMax(globalMax), maxCoordinates(maxCoordinates) { }
     
     static const ::x10aux::serialization_id_t _serialization_id;
     
@@ -361,20 +361,20 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
     ::x10::util::ArrayList< ::x10::lang::String*>* tokens = ::x10::util::ArrayList< ::x10::lang::String*>::_make();
     
     //#line 15 "MemoizedSW.x10"
-    ::x10::lang::String* currToken = (&::MemoizedSW_Strings::sl__7290);
+    ::x10::lang::String* currToken = (&::MemoizedSW_Strings::sl__7410);
     
     //#line 16 "MemoizedSW.x10"
-    x10_long i__6887min__7192 = ((x10_long)0ll);
-    x10_long i__6887max__7193 = ((((x10_long)(::x10aux::nullCheck(lineToSplit)->x10::lang::String::length()))) - (((x10_long)1ll)));
+    x10_long i__7007min__7312 = ((x10_long)0ll);
+    x10_long i__7007max__7313 = ((((x10_long)(::x10aux::nullCheck(lineToSplit)->x10::lang::String::length()))) - (((x10_long)1ll)));
     {
-        x10_long i__7194;
-        for (i__7194 = i__6887min__7192; ((i__7194) <= (i__6887max__7193));
-             i__7194 = ((i__7194) + (((x10_long)1ll)))) {
-            x10_long i__7195 = i__7194;
+        x10_long i__7314;
+        for (i__7314 = i__7007min__7312; ((i__7314) <= (i__7007max__7313));
+             i__7314 = ((i__7314) + (((x10_long)1ll)))) {
+            x10_long i__7315 = i__7314;
             
             //#line 17 "MemoizedSW.x10"
             if ((::x10aux::struct_equals(::x10aux::nullCheck(lineToSplit)->x10::lang::String::charAt(
-                                           ((x10_int) (i__7195))),
+                                           ((x10_int) (i__7315))),
                                          ((x10_char)' ')))) {
                 
                 //#line 18 "MemoizedSW.x10"
@@ -385,14 +385,14 @@ class MemoizedSW__closure__1 : public ::x10::lang::Closure {
                     tokens->add(currToken);
                     
                     //#line 20 "MemoizedSW.x10"
-                    currToken = (&::MemoizedSW_Strings::sl__7290);
+                    currToken = (&::MemoizedSW_Strings::sl__7410);
                 }
                 
             } else {
                 
                 //#line 24 "MemoizedSW.x10"
                 currToken = ::x10::lang::String::__plus(currToken, ::x10aux::nullCheck(lineToSplit)->x10::lang::String::charAt(
-                                                                     ((x10_int) (i__7195))));
+                                                                     ((x10_int) (i__7315))));
             }
             
         }
@@ -416,29 +416,29 @@ void MemoizedSW::printMatrix(::x10::array::Array_2<x10_long>* matrix,
                              x10_long nRows, x10_long nCols) {
     
     //#line 34 "MemoizedSW.x10"
-    x10_long i__6923min__7200 = ((x10_long)0ll);
-    x10_long i__6923max__7201 = ((nRows) - (((x10_long)1ll)));
+    x10_long i__7043min__7320 = ((x10_long)0ll);
+    x10_long i__7043max__7321 = ((nRows) - (((x10_long)1ll)));
     {
-        x10_long i__7202;
-        for (i__7202 = i__6923min__7200; ((i__7202) <= (i__6923max__7201));
-             i__7202 = ((i__7202) + (((x10_long)1ll)))) {
-            x10_long i__7203 = i__7202;
+        x10_long i__7322;
+        for (i__7322 = i__7043min__7320; ((i__7322) <= (i__7043max__7321));
+             i__7322 = ((i__7322) + (((x10_long)1ll)))) {
+            x10_long i__7323 = i__7322;
             
             //#line 35 "MemoizedSW.x10"
-            x10_long i__6905min__7196 = ((x10_long)0ll);
-            x10_long i__6905max__7197 = ((nCols) - (((x10_long)1ll)));
+            x10_long i__7025min__7316 = ((x10_long)0ll);
+            x10_long i__7025max__7317 = ((nCols) - (((x10_long)1ll)));
             {
-                x10_long i__7198;
-                for (i__7198 = i__6905min__7196; ((i__7198) <= (i__6905max__7197));
-                     i__7198 = ((i__7198) + (((x10_long)1ll))))
+                x10_long i__7318;
+                for (i__7318 = i__7025min__7316; ((i__7318) <= (i__7025max__7317));
+                     i__7318 = ((i__7318) + (((x10_long)1ll))))
                 {
-                    x10_long j__7199 = i__7198;
+                    x10_long j__7319 = i__7318;
                     
                     //#line 36 "MemoizedSW.x10"
                     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
                       reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
-                                                                                         i__7203,
-                                                                                         j__7199), (&::MemoizedSW_Strings::sl__7291))));
+                                                                                         i__7323,
+                                                                                         j__7319), (&::MemoizedSW_Strings::sl__7411))));
                 }
             }
             
@@ -528,20 +528,20 @@ void MemoizedSW::railBacktrack(::x10::lang::String* string1,
                 i, j)) > (((x10_long)0ll)))) {
             
             //#line 66 "MemoizedSW.x10"
-            x10_long i__6941min__7204 = ((x10_long)0ll);
-            x10_long i__6941max__7205 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            x10_long i__7061min__7324 = ((x10_long)0ll);
+            x10_long i__7061max__7325 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                             i, j)) - (((x10_long)1ll)));
             {
-                x10_long i__7206;
-                for (i__7206 = i__6941min__7204; ((i__7206) <= (i__6941max__7205));
-                     i__7206 = ((i__7206) + (((x10_long)1ll))))
+                x10_long i__7326;
+                for (i__7326 = i__7061min__7324; ((i__7326) <= (i__7061max__7325));
+                     i__7326 = ((i__7326) + (((x10_long)1ll))))
                 {
-                    x10_long k__7207 = i__7206;
+                    x10_long k__7327 = i__7326;
                     
                     //#line 67 "MemoizedSW.x10"
                     result1->x10::lang::Rail< x10_char >::__set(
                       resultSize, ::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                    ((x10_int) (((((i) - (k__7207))) - (((x10_long)1ll)))))));
+                                    ((x10_int) (((((i) - (k__7327))) - (((x10_long)1ll)))))));
                     
                     //#line 68 "MemoizedSW.x10"
                     result2->x10::lang::Rail< x10_char >::__set(
@@ -565,15 +565,15 @@ void MemoizedSW::railBacktrack(::x10::lang::String* string1,
         } else {
             
             //#line 75 "MemoizedSW.x10"
-            x10_long i__6959min__7208 = ((x10_long)0ll);
-            x10_long i__6959max__7209 = (((-(::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            x10_long i__7079min__7328 = ((x10_long)0ll);
+            x10_long i__7079max__7329 = (((-(::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                                i, j)))) - (((x10_long)1ll)));
             {
-                x10_long i__7210;
-                for (i__7210 = i__6959min__7208; ((i__7210) <= (i__6959max__7209));
-                     i__7210 = ((i__7210) + (((x10_long)1ll))))
+                x10_long i__7330;
+                for (i__7330 = i__7079min__7328; ((i__7330) <= (i__7079max__7329));
+                     i__7330 = ((i__7330) + (((x10_long)1ll))))
                 {
-                    x10_long k__7211 = i__7210;
+                    x10_long k__7331 = i__7330;
                     
                     //#line 76 "MemoizedSW.x10"
                     result1->x10::lang::Rail< x10_char >::__set(
@@ -582,7 +582,7 @@ void MemoizedSW::railBacktrack(::x10::lang::String* string1,
                     //#line 77 "MemoizedSW.x10"
                     result2->x10::lang::Rail< x10_char >::__set(
                       resultSize, ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                    ((x10_int) (((((j) - (k__7211))) - (((x10_long)1ll)))))));
+                                    ((x10_int) (((((j) - (k__7331))) - (((x10_long)1ll)))))));
                     
                     //#line 78 "MemoizedSW.x10"
                     resultSize = ((resultSize) + (((x10_long)1ll)));
@@ -605,31 +605,31 @@ void MemoizedSW::railBacktrack(::x10::lang::String* string1,
     
     //#line 85 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7292), matchCount), (&::MemoizedSW_Strings::sl__7293)), stringLength)));
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7412), matchCount), (&::MemoizedSW_Strings::sl__7413)), stringLength)));
     
     //#line 86 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7294), gapCount), (&::MemoizedSW_Strings::sl__7293)), stringLength)));
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7414), gapCount), (&::MemoizedSW_Strings::sl__7413)), stringLength)));
     
     //#line 87 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7295), ::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7415), ::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
                                                                                                             maxCoordinates->FMGL(first),
                                                                                                             maxCoordinates->FMGL(second)))));
     
     //#line 89 "MemoizedSW.x10"
-    x10_long i__6977min__7212 = ((x10_long)0ll);
-    x10_long i__6977max__7213 = ((resultSize) - (((x10_long)1ll)));
+    x10_long i__7097min__7332 = ((x10_long)0ll);
+    x10_long i__7097max__7333 = ((resultSize) - (((x10_long)1ll)));
     {
-        x10_long i__7214;
-        for (i__7214 = i__6977min__7212; ((i__7214) <= (i__6977max__7213));
-             i__7214 = ((i__7214) + (((x10_long)1ll)))) {
-            x10_long k__7215 = i__7214;
+        x10_long i__7334;
+        for (i__7334 = i__7097min__7332; ((i__7334) <= (i__7097max__7333));
+             i__7334 = ((i__7334) + (((x10_long)1ll)))) {
+            x10_long k__7335 = i__7334;
             
             //#line 90 "MemoizedSW.x10"
             ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::print(
               ::x10aux::class_cast_unchecked< ::x10::lang::Any*>(result1->x10::lang::Rail< x10_char >::__apply(
-                                                                   k__7215)));
+                                                                   k__7335)));
         }
     }
     
@@ -637,18 +637,18 @@ void MemoizedSW::railBacktrack(::x10::lang::String* string1,
     ::x10::io::Console::FMGL(OUT__get)()->println();
     
     //#line 93 "MemoizedSW.x10"
-    x10_long i__6995min__7216 = ((x10_long)0ll);
-    x10_long i__6995max__7217 = ((resultSize) - (((x10_long)1ll)));
+    x10_long i__7115min__7336 = ((x10_long)0ll);
+    x10_long i__7115max__7337 = ((resultSize) - (((x10_long)1ll)));
     {
-        x10_long i__7218;
-        for (i__7218 = i__6995min__7216; ((i__7218) <= (i__6995max__7217));
-             i__7218 = ((i__7218) + (((x10_long)1ll)))) {
-            x10_long k__7219 = i__7218;
+        x10_long i__7338;
+        for (i__7338 = i__7115min__7336; ((i__7338) <= (i__7115max__7337));
+             i__7338 = ((i__7338) + (((x10_long)1ll)))) {
+            x10_long k__7339 = i__7338;
             
             //#line 94 "MemoizedSW.x10"
             ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::print(
               ::x10aux::class_cast_unchecked< ::x10::lang::Any*>(result2->x10::lang::Rail< x10_char >::__apply(
-                                                                   k__7219)));
+                                                                   k__7339)));
         }
     }
     
@@ -669,10 +669,10 @@ void MemoizedSW::backtrack(::x10::lang::String* string1, ::x10::lang::String* st
     x10_long j = maxCoordinates->FMGL(second);
     
     //#line 103 "MemoizedSW.x10"
-    ::x10::lang::String* result1 = (&::MemoizedSW_Strings::sl__7290);
+    ::x10::lang::String* result1 = (&::MemoizedSW_Strings::sl__7410);
     
     //#line 104 "MemoizedSW.x10"
-    ::x10::lang::String* result2 = (&::MemoizedSW_Strings::sl__7290);
+    ::x10::lang::String* result2 = (&::MemoizedSW_Strings::sl__7410);
     
     //#line 106 "MemoizedSW.x10"
     x10_long stringLength = ((x10_long)0ll);
@@ -726,22 +726,22 @@ void MemoizedSW::backtrack(::x10::lang::String* string1, ::x10::lang::String* st
                 i, j)) > (((x10_long)0ll)))) {
             
             //#line 120 "MemoizedSW.x10"
-            x10_long i__7013min__7220 = ((x10_long)0ll);
-            x10_long i__7013max__7221 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            x10_long i__7133min__7340 = ((x10_long)0ll);
+            x10_long i__7133max__7341 = ((::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                             i, j)) - (((x10_long)1ll)));
             {
-                x10_long i__7222;
-                for (i__7222 = i__7013min__7220; ((i__7222) <= (i__7013max__7221));
-                     i__7222 = ((i__7222) + (((x10_long)1ll))))
+                x10_long i__7342;
+                for (i__7342 = i__7133min__7340; ((i__7342) <= (i__7133max__7341));
+                     i__7342 = ((i__7342) + (((x10_long)1ll))))
                 {
-                    x10_long k__7223 = i__7222;
+                    x10_long k__7343 = i__7342;
                     
                     //#line 121 "MemoizedSW.x10"
                     result2 = ::x10::lang::String::__plus(((x10_char)'-'), result2);
                     
                     //#line 122 "MemoizedSW.x10"
                     result1 = ::x10::lang::String::__plus(::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                                            ((x10_int) (((((i) - (k__7223))) - (((x10_long)1ll)))))), result1);
+                                                            ((x10_int) (((((i) - (k__7343))) - (((x10_long)1ll)))))), result1);
                     
                     //#line 123 "MemoizedSW.x10"
                     stringLength = ((stringLength) + (((x10_long)1ll)));
@@ -758,22 +758,22 @@ void MemoizedSW::backtrack(::x10::lang::String* string1, ::x10::lang::String* st
         } else {
             
             //#line 128 "MemoizedSW.x10"
-            x10_long i__7031min__7224 = ((x10_long)0ll);
-            x10_long i__7031max__7225 = (((-(::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
+            x10_long i__7151min__7344 = ((x10_long)0ll);
+            x10_long i__7151max__7345 = (((-(::x10aux::nullCheck(directions)->x10::array::Array_2<x10_long>::__apply(
                                                i, j)))) - (((x10_long)1ll)));
             {
-                x10_long i__7226;
-                for (i__7226 = i__7031min__7224; ((i__7226) <= (i__7031max__7225));
-                     i__7226 = ((i__7226) + (((x10_long)1ll))))
+                x10_long i__7346;
+                for (i__7346 = i__7151min__7344; ((i__7346) <= (i__7151max__7345));
+                     i__7346 = ((i__7346) + (((x10_long)1ll))))
                 {
-                    x10_long k__7227 = i__7226;
+                    x10_long k__7347 = i__7346;
                     
                     //#line 129 "MemoizedSW.x10"
                     result1 = ::x10::lang::String::__plus(((x10_char)'-'), result1);
                     
                     //#line 130 "MemoizedSW.x10"
                     result2 = ::x10::lang::String::__plus(::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                                            ((x10_int) (((((j) - (k__7227))) - (((x10_long)1ll)))))), result2);
+                                                            ((x10_int) (((((j) - (k__7347))) - (((x10_long)1ll)))))), result2);
                     
                     //#line 131 "MemoizedSW.x10"
                     stringLength = ((stringLength) + (((x10_long)1ll)));
@@ -793,15 +793,15 @@ void MemoizedSW::backtrack(::x10::lang::String* string1, ::x10::lang::String* st
     
     //#line 137 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7292), matchCount), (&::MemoizedSW_Strings::sl__7293)), stringLength)));
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7412), matchCount), (&::MemoizedSW_Strings::sl__7413)), stringLength)));
     
     //#line 138 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7294), gapCount), (&::MemoizedSW_Strings::sl__7293)), stringLength)));
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7414), gapCount), (&::MemoizedSW_Strings::sl__7413)), stringLength)));
     
     //#line 139 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7295), ::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7415), ::x10aux::nullCheck(matrix)->x10::array::Array_2<x10_long>::__apply(
                                                                                                             maxCoordinates->FMGL(first),
                                                                                                             maxCoordinates->FMGL(second)))));
     
@@ -848,177 +848,177 @@ void MemoizedSW::match(::x10::lang::String* string1, ::x10::lang::String* string
                                                    ((x10_long)0ll));
     
     //#line 154 "MemoizedSW.x10"
-    x10_long i__7067min__7236 = ((x10_long)1ll);
-    x10_long i__7067max__7237 = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
+    x10_long i__7187min__7356 = ((x10_long)1ll);
+    x10_long i__7187max__7357 = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
     {
-        x10_long i__7238;
-        for (i__7238 = i__7067min__7236; ((i__7238) <= (i__7067max__7237));
-             i__7238 = ((i__7238) + (((x10_long)1ll)))) {
-            x10_long i__7239 = i__7238;
+        x10_long i__7358;
+        for (i__7358 = i__7187min__7356; ((i__7358) <= (i__7187max__7357));
+             i__7358 = ((i__7358) + (((x10_long)1ll)))) {
+            x10_long i__7359 = i__7358;
             
             //#line 155 "MemoizedSW.x10"
-            x10_long i__7049min__7232 = ((x10_long)1ll);
-            x10_long i__7049max__7233 = ((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length()));
+            x10_long i__7169min__7352 = ((x10_long)1ll);
+            x10_long i__7169max__7353 = ((x10_long)(::x10aux::nullCheck(string2)->x10::lang::String::length()));
             {
-                x10_long i__7234;
-                for (i__7234 = i__7049min__7232; ((i__7234) <= (i__7049max__7233));
-                     i__7234 = ((i__7234) + (((x10_long)1ll))))
+                x10_long i__7354;
+                for (i__7354 = i__7169min__7352; ((i__7354) <= (i__7169max__7353));
+                     i__7354 = ((i__7354) + (((x10_long)1ll))))
                 {
-                    x10_long j__7235 = i__7234;
+                    x10_long j__7355 = i__7354;
                     
                     //#line 156 "MemoizedSW.x10"
-                    x10_long max__7228 = (x10_long)0x8000000000000000LL;
+                    x10_long max__7348 = (x10_long)0x8000000000000000LL;
                     
                     //#line 158 "MemoizedSW.x10"
-                    x10_char firstChar__7229 = ::x10aux::nullCheck(string1)->x10::lang::String::charAt(
-                                                 ((x10_int) (((i__7239) - (((x10_long)1ll))))));
+                    x10_char firstChar__7349 = ::x10aux::nullCheck(string1)->x10::lang::String::charAt(
+                                                 ((x10_int) (((i__7359) - (((x10_long)1ll))))));
                     
                     //#line 159 "MemoizedSW.x10"
-                    x10_char secondChar__7230 = ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
-                                                  ((x10_int) (((j__7235) - (((x10_long)1ll))))));
+                    x10_char secondChar__7350 = ::x10aux::nullCheck(string2)->x10::lang::String::charAt(
+                                                  ((x10_int) (((j__7355) - (((x10_long)1ll))))));
                     
                     //#line 161 "MemoizedSW.x10"
-                    x10_long diagScore__7231 = ::MemoizedSW::max(
+                    x10_long diagScore__7351 = ::MemoizedSW::max(
                                                  bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                   ((i__7239) - (((x10_long)1ll))),
-                                                   ((j__7235) - (((x10_long)1ll)))),
+                                                   ((i__7359) - (((x10_long)1ll))),
+                                                   ((j__7355) - (((x10_long)1ll)))),
                                                  bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                   ((i__7239) - (((x10_long)1ll))),
-                                                   ((j__7235) - (((x10_long)1ll)))),
+                                                   ((i__7359) - (((x10_long)1ll))),
+                                                   ((j__7355) - (((x10_long)1ll)))),
                                                  matrix->x10::array::Array_2<x10_long>::__apply(
-                                                   ((i__7239) - (((x10_long)1ll))),
-                                                   ((j__7235) - (((x10_long)1ll)))));
+                                                   ((i__7359) - (((x10_long)1ll))),
+                                                   ((j__7355) - (((x10_long)1ll)))));
                     
                     //#line 162 "MemoizedSW.x10"
                     matrix->x10::array::Array_2<x10_long>::__set(
-                      i__7239, j__7235, ((diagScore__7231) + (::x10aux::nullCheck(blosum)->x10::array::Array_2<x10_long>::__apply(
-                                                                ((x10_long)(((x10_int) (firstChar__7229).v))),
-                                                                ((x10_long)(((x10_int) (secondChar__7230).v)))))));
+                      i__7359, j__7355, ((diagScore__7351) + (::x10aux::nullCheck(blosum)->x10::array::Array_2<x10_long>::__apply(
+                                                                ((x10_long)(((x10_int) (firstChar__7349).v))),
+                                                                ((x10_long)(((x10_int) (secondChar__7350).v)))))));
                     
                     //#line 163 "MemoizedSW.x10"
                     if (((matrix->x10::array::Array_2<x10_long>::__apply(
-                            i__7239, j__7235)) < (((x10_long)0ll))))
+                            i__7359, j__7355)) < (((x10_long)0ll))))
                     {
                         matrix->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)0ll));
+                          i__7359, j__7355, ((x10_long)0ll));
                     }
                     
                     //#line 165 "MemoizedSW.x10"
                     bestUpwards->x10::array::Array_2<x10_long>::__set(
-                      i__7239, j__7235, ::MemoizedSW::max(
+                      i__7359, j__7355, ::MemoizedSW::max(
                                           ((gapOpening) + (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                             ((i__7239) - (((x10_long)1ll))),
-                                                             j__7235))),
+                                                             ((i__7359) - (((x10_long)1ll))),
+                                                             j__7355))),
                                           ((gapOpening) + (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                             ((i__7239) - (((x10_long)1ll))),
-                                                             j__7235))),
+                                                             ((i__7359) - (((x10_long)1ll))),
+                                                             j__7355))),
                                           ((gapExtension) + (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                               ((i__7239) - (((x10_long)1ll))),
-                                                               j__7235)))));
+                                                               ((i__7359) - (((x10_long)1ll))),
+                                                               j__7355)))));
                     
                     //#line 168 "MemoizedSW.x10"
                     bestUpwards->x10::array::Array_2<x10_long>::__set(
-                      i__7239, j__7235, ::x10::lang::Math::max(
+                      i__7359, j__7355, ::x10::lang::Math::max(
                                           bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                            i__7239, j__7235),
+                                            i__7359, j__7355),
                                           ((bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                              ((i__7239) - (((x10_long)1ll))),
-                                              j__7235)) + (gapOpening))));
+                                              ((i__7359) - (((x10_long)1ll))),
+                                              j__7355)) + (gapOpening))));
                     
                     //#line 169 "MemoizedSW.x10"
                     if (((bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                            i__7239, j__7235)) < (((x10_long)0ll))))
+                            i__7359, j__7355)) < (((x10_long)0ll))))
                     {
                         bestUpwards->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)0ll));
+                          i__7359, j__7355, ((x10_long)0ll));
                     }
                     
                     //#line 171 "MemoizedSW.x10"
                     bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                      i__7239, j__7235, ::MemoizedSW::max(
+                      i__7359, j__7355, ::MemoizedSW::max(
                                           ((gapOpening) + (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                             i__7239,
-                                                             ((j__7235) - (((x10_long)1ll)))))),
+                                                             i__7359,
+                                                             ((j__7355) - (((x10_long)1ll)))))),
                                           ((gapExtension) + (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                               i__7239,
-                                                               ((j__7235) - (((x10_long)1ll)))))),
+                                                               i__7359,
+                                                               ((j__7355) - (((x10_long)1ll)))))),
                                           ((gapOpening) + (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                             i__7239,
-                                                             ((j__7235) - (((x10_long)1ll))))))));
+                                                             i__7359,
+                                                             ((j__7355) - (((x10_long)1ll))))))));
                     
                     //#line 174 "MemoizedSW.x10"
                     bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                      i__7239, j__7235, ::x10::lang::Math::max(
+                      i__7359, j__7355, ::x10::lang::Math::max(
                                           bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                            i__7239, j__7235),
+                                            i__7359, j__7355),
                                           ((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                              i__7239, ((j__7235) - (((x10_long)1ll))))) + (gapOpening))));
+                                              i__7359, ((j__7355) - (((x10_long)1ll))))) + (gapOpening))));
                     
                     //#line 175 "MemoizedSW.x10"
                     if (((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                            i__7239, j__7235)) < (((x10_long)0ll))))
+                            i__7359, j__7355)) < (((x10_long)0ll))))
                     {
                         bestLeftwards->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)0ll));
+                          i__7359, j__7355, ((x10_long)0ll));
                     }
                     
                     //#line 177 "MemoizedSW.x10"
                     if ((((matrix->x10::array::Array_2<x10_long>::__apply(
-                             i__7239, j__7235)) >= (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                                      i__7239,
-                                                      j__7235))) &&
+                             i__7359, j__7355)) >= (bestLeftwards->x10::array::Array_2<x10_long>::__apply(
+                                                      i__7359,
+                                                      j__7355))) &&
                         ((matrix->x10::array::Array_2<x10_long>::__apply(
-                            i__7239, j__7235)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                     i__7239,
-                                                     j__7235)))))
+                            i__7359, j__7355)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                                     i__7359,
+                                                     j__7355)))))
                     {
                         
                         //#line 178 "MemoizedSW.x10"
                         directions->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)0ll));
+                          i__7359, j__7355, ((x10_long)0ll));
                         
                         //#line 179 "MemoizedSW.x10"
-                        max__7228 = matrix->x10::array::Array_2<x10_long>::__apply(
-                                      i__7239, j__7235);
+                        max__7348 = matrix->x10::array::Array_2<x10_long>::__apply(
+                                      i__7359, j__7355);
                     } else 
                     //#line 180 "MemoizedSW.x10"
                     if ((((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                             i__7239, j__7235)) >= (matrix->x10::array::Array_2<x10_long>::__apply(
-                                                      i__7239,
-                                                      j__7235))) &&
+                             i__7359, j__7355)) >= (matrix->x10::array::Array_2<x10_long>::__apply(
+                                                      i__7359,
+                                                      j__7355))) &&
                         ((bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                            i__7239, j__7235)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                                     i__7239,
-                                                     j__7235)))))
+                            i__7359, j__7355)) >= (bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                                     i__7359,
+                                                     j__7355)))))
                     {
                         
                         //#line 181 "MemoizedSW.x10"
                         directions->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)-1ll));
+                          i__7359, j__7355, ((x10_long)-1ll));
                         
                         //#line 182 "MemoizedSW.x10"
-                        max__7228 = bestLeftwards->x10::array::Array_2<x10_long>::__apply(
-                                      i__7239, j__7235);
+                        max__7348 = bestLeftwards->x10::array::Array_2<x10_long>::__apply(
+                                      i__7359, j__7355);
                     } else {
                         
                         //#line 184 "MemoizedSW.x10"
                         directions->x10::array::Array_2<x10_long>::__set(
-                          i__7239, j__7235, ((x10_long)1ll));
+                          i__7359, j__7355, ((x10_long)1ll));
                         
                         //#line 185 "MemoizedSW.x10"
-                        max__7228 = bestUpwards->x10::array::Array_2<x10_long>::__apply(
-                                      i__7239, j__7235);
+                        max__7348 = bestUpwards->x10::array::Array_2<x10_long>::__apply(
+                                      i__7359, j__7355);
                     }
                     
                     //#line 188 "MemoizedSW.x10"
-                    if (((max__7228) > (globalMax))) {
+                    if (((max__7348) > (globalMax))) {
                         
                         //#line 189 "MemoizedSW.x10"
-                        globalMax = max__7228;
+                        globalMax = max__7348;
                         
                         //#line 190 "MemoizedSW.x10"
-                        maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(i__7239,
-                                                                                      j__7235);
+                        maxCoordinates = ::x10::util::Pair<x10_long, x10_long>::_make(i__7359,
+                                                                                      j__7355);
                     }
                     
                 }
@@ -1063,10 +1063,8 @@ x10_long MemoizedSW::max(x10_long first, x10_long second,
 void MemoizedSW::parallelMatch(::x10::lang::String* string1,
                                ::x10::lang::String* string2,
                                ::x10::array::Array_2<x10_long>* blosum,
-                               x10_long gapOpening, x10_long gapExtension) {
-    
-    //#line 209 "MemoizedSW.x10"
-    x10_long cutoff = ((x10_long)15ll);
+                               x10_long gapOpening, x10_long gapExtension,
+                               x10_long cutoff) {
     
     //#line 210 "MemoizedSW.x10"
     x10_long maxRow = ((x10_long)(::x10aux::nullCheck(string1)->x10::lang::String::length()));
@@ -1109,50 +1107,50 @@ void MemoizedSW::parallelMatch(::x10::lang::String* string1,
                                                    ((x10_long)0ll));
     
     //#line 224 "MemoizedSW.x10"
-    x10_long i__7139min__7262 = ((x10_long)1ll);
-    x10_long i__7139max__7263 = ((maxRow) + (maxCol));
+    x10_long i__7259min__7382 = ((x10_long)1ll);
+    x10_long i__7259max__7383 = ((maxRow) + (maxCol));
     {
-        x10_long i__7264;
-        for (i__7264 = i__7139min__7262; ((i__7264) <= (i__7139max__7263));
-             i__7264 = ((i__7264) + (((x10_long)1ll)))) {
-            x10_long line__7265 = i__7264;
+        x10_long i__7384;
+        for (i__7384 = i__7259min__7382; ((i__7384) <= (i__7259max__7383));
+             i__7384 = ((i__7384) + (((x10_long)1ll)))) {
+            x10_long line__7385 = i__7384;
             
             //#line 226 "MemoizedSW.x10"
-            x10_long startCol__7260 = ((x10_long)0ll);
+            x10_long startCol__7380 = ((x10_long)0ll);
             
             //#line 227 "MemoizedSW.x10"
-            if (((((line__7265) - (maxRow))) > (((x10_long)0ll))))
+            if (((((line__7385) - (maxRow))) > (((x10_long)0ll))))
             {
                 
                 //#line 228 "MemoizedSW.x10"
-                startCol__7260 = ((line__7265) - (maxRow));
+                startCol__7380 = ((line__7385) - (maxRow));
             }
             
             //#line 231 "MemoizedSW.x10"
-            x10_long count__7261 = ((line__7265) < (((maxCol) - (startCol__7260))))
-              ? (line__7265) : (((maxCol) - (startCol__7260)));
+            x10_long count__7381 = ((line__7385) < (((maxCol) - (startCol__7380))))
+              ? (line__7385) : (((maxCol) - (startCol__7380)));
             
             //#line 232 "MemoizedSW.x10"
-            count__7261 = ((count__7261) < (maxRow)) ? (count__7261)
+            count__7381 = ((count__7381) < (maxRow)) ? (count__7381)
               : (maxRow);
             {
                 
                 //#line 235 "MemoizedSW.x10"
                 ::x10::xrx::Runtime::ensureNotInAtomic();
-                ::x10::xrx::FinishState* fs__7277 = ::x10::xrx::Runtime::startFinish();
+                ::x10::xrx::FinishState* fs__7397 = ::x10::xrx::Runtime::startFinish();
                 try {
                     {
-                        x10_long i__7121min__7256 = ((x10_long)0ll);
-                        x10_long i__7121max__7257 = ((count__7261) - (((x10_long)1ll)));
+                        x10_long i__7241min__7376 = ((x10_long)0ll);
+                        x10_long i__7241max__7377 = ((count__7381) - (((x10_long)1ll)));
                         {
-                            x10_long i__7258;
-                            for (i__7258 = i__7121min__7256;
-                                 ((i__7258) <= (i__7121max__7257));
-                                 i__7258 = ((i__7258) + (((x10_long)1ll))))
+                            x10_long i__7378;
+                            for (i__7378 = i__7241min__7376;
+                                 ((i__7378) <= (i__7241max__7377));
+                                 i__7378 = ((i__7378) + (((x10_long)1ll))))
                             {
-                                x10_long k__7259 = i__7258;
+                                x10_long k__7379 = i__7378;
                                 ::x10::xrx::Runtime::runAsync(
-                                  reinterpret_cast< ::x10::lang::VoidFun_0_0*>((new (::x10aux::alloc< ::x10::lang::VoidFun_0_0>(sizeof(MemoizedSW__closure__1)))MemoizedSW__closure__1(&(maxRow), line__7265, k__7259, &(startCol__7260), &(cutoff), string1, string2, bestLeftwards, bestUpwards, matrix, blosum, gapOpening, gapExtension, directions, &(globalMax), &(maxCoordinates)))));
+                                  reinterpret_cast< ::x10::lang::VoidFun_0_0*>((new (::x10aux::alloc< ::x10::lang::VoidFun_0_0>(sizeof(MemoizedSW__closure__1)))MemoizedSW__closure__1(&(maxRow), line__7385, k__7379, &(startCol__7380), cutoff, string1, string2, bestLeftwards, bestUpwards, matrix, blosum, gapOpening, gapExtension, directions, &(globalMax), &(maxCoordinates)))));
                             }
                         }
                         
@@ -1160,15 +1158,15 @@ void MemoizedSW::parallelMatch(::x10::lang::String* string1,
                 }
                 catch (::x10::lang::CheckedThrowable* __exc7) {
                     {
-                        ::x10::lang::CheckedThrowable* ct__7275 =
+                        ::x10::lang::CheckedThrowable* ct__7395 =
                           __exc7;
                         {
                             ::x10::xrx::Runtime::pushException(
-                              ct__7275);
+                              ct__7395);
                         }
                     }
                 }
-                ::x10::xrx::Runtime::stopFinish(fs__7277);
+                ::x10::xrx::Runtime::stopFinish(fs__7397);
             }
         }
     }
@@ -1201,31 +1199,35 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
     x10_long gapExtension = ((x10_long)((-(::x10::lang::IntNatives::parseInt(::x10aux::nullCheck(args)->x10::lang::Rail< ::x10::lang::String* >::__apply(
                                                                                ((x10_long)4ll)))))));
     
-    //#line 313 "MemoizedSW.x10"
-    ::x10::lang::String* string1 = (&::MemoizedSW_Strings::sl__7290);
+    //#line 312 "MemoizedSW.x10"
+    x10_long cutoff = ((x10_long)(::x10::lang::IntNatives::parseInt(::x10aux::nullCheck(args)->x10::lang::Rail< ::x10::lang::String* >::__apply(
+                                                                      ((x10_long)5ll)))));
     
     //#line 314 "MemoizedSW.x10"
-    ::x10::lang::String* string2 = (&::MemoizedSW_Strings::sl__7290);
+    ::x10::lang::String* string1 = (&::MemoizedSW_Strings::sl__7410);
     
-    //#line 316 "MemoizedSW.x10"
-    ::x10::io::File* FIRST_STRING_FILE = ::x10::io::File::_make(firstStringFile);
+    //#line 315 "MemoizedSW.x10"
+    ::x10::lang::String* string2 = (&::MemoizedSW_Strings::sl__7410);
     
     //#line 317 "MemoizedSW.x10"
-    ::x10::io::FileReader* reader1 = ::x10::io::FileReader::_make(FIRST_STRING_FILE);
+    ::x10::io::File* FIRST_STRING_FILE = ::x10::io::File::_make(firstStringFile);
     
     //#line 318 "MemoizedSW.x10"
-    ::x10::lang::String* line;
+    ::x10::io::FileReader* reader1 = ::x10::io::FileReader::_make(FIRST_STRING_FILE);
     
     //#line 319 "MemoizedSW.x10"
-    line = reader1->readLine();
+    ::x10::lang::String* line;
     
     //#line 320 "MemoizedSW.x10"
+    line = reader1->readLine();
+    
+    //#line 321 "MemoizedSW.x10"
     while (true) {
         
-        //#line 321 "MemoizedSW.x10"
+        //#line 322 "MemoizedSW.x10"
         try {
             
-            //#line 322 "MemoizedSW.x10"
+            //#line 323 "MemoizedSW.x10"
             line = reader1->readLine();
         }
         catch (::x10::lang::CheckedThrowable* __exc9) {
@@ -1233,7 +1235,7 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
                 ::x10::lang::Exception* id__0 = static_cast< ::x10::lang::Exception*>(__exc9);
                 {
                     
-                    //#line 325 "MemoizedSW.x10"
+                    //#line 326 "MemoizedSW.x10"
                     break;
                 }
             } else {
@@ -1241,26 +1243,26 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
             }
         }
         
-        //#line 327 "MemoizedSW.x10"
+        //#line 328 "MemoizedSW.x10"
         string1 = ::x10::lang::String::__plus(string1, ::x10aux::nullCheck(line)->x10::lang::String::trim());
     }
     
-    //#line 329 "MemoizedSW.x10"
+    //#line 330 "MemoizedSW.x10"
     ::x10::io::File* SECOND_STRING_FILE = ::x10::io::File::_make(secondStringFile);
     
-    //#line 330 "MemoizedSW.x10"
+    //#line 331 "MemoizedSW.x10"
     ::x10::io::FileReader* reader2 = ::x10::io::FileReader::_make(SECOND_STRING_FILE);
     
-    //#line 331 "MemoizedSW.x10"
+    //#line 332 "MemoizedSW.x10"
     line = reader2->readLine();
     
-    //#line 332 "MemoizedSW.x10"
+    //#line 333 "MemoizedSW.x10"
     while (true) {
         
-        //#line 333 "MemoizedSW.x10"
+        //#line 334 "MemoizedSW.x10"
         try {
             
-            //#line 334 "MemoizedSW.x10"
+            //#line 335 "MemoizedSW.x10"
             line = reader2->readLine();
         }
         catch (::x10::lang::CheckedThrowable* __exc10) {
@@ -1268,7 +1270,7 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
                 ::x10::lang::Exception* id__1 = static_cast< ::x10::lang::Exception*>(__exc10);
                 {
                     
-                    //#line 337 "MemoizedSW.x10"
+                    //#line 338 "MemoizedSW.x10"
                     break;
                 }
             } else {
@@ -1276,28 +1278,28 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
             }
         }
         
-        //#line 339 "MemoizedSW.x10"
+        //#line 340 "MemoizedSW.x10"
         string2 = ::x10::lang::String::__plus(string2, ::x10aux::nullCheck(line)->x10::lang::String::trim());
     }
     
-    //#line 342 "MemoizedSW.x10"
+    //#line 343 "MemoizedSW.x10"
     ::x10::lang::Rail< x10_long >* indexMap = ::x10::lang::Rail< x10_long >::_make(((x10_long)100ll));
     
-    //#line 343 "MemoizedSW.x10"
+    //#line 344 "MemoizedSW.x10"
     ::x10::array::Array_2<x10_long>* blosum = ::x10::array::Array_2<x10_long>::_make(((x10_long)127ll),
                                                                                      ((x10_long)127ll),
                                                                                      ((x10_long)0ll));
     
-    //#line 345 "MemoizedSW.x10"
+    //#line 346 "MemoizedSW.x10"
     ::x10::io::File* MATCH_FILE = ::x10::io::File::_make(matchFile);
     
-    //#line 346 "MemoizedSW.x10"
+    //#line 347 "MemoizedSW.x10"
     ::x10::io::FileReader* matchReader = ::x10::io::FileReader::_make(MATCH_FILE);
     
-    //#line 347 "MemoizedSW.x10"
+    //#line 348 "MemoizedSW.x10"
     ::x10::util::ArrayList<x10_char>* headerOrder = ::x10::util::ArrayList<x10_char>::_make();
     
-    //#line 348 "MemoizedSW.x10"
+    //#line 349 "MemoizedSW.x10"
     while (((!::x10aux::struct_equals((line = matchReader->readLine()),
                                       reinterpret_cast< ::x10::lang::NullType*>(X10_NULL))) &&
            (::x10aux::struct_equals(::x10aux::nullCheck(::x10aux::nullCheck(line)->x10::lang::String::trim())->x10::lang::String::charAt(
@@ -1306,33 +1308,33 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
         ;
     }
     
-    //#line 350 "MemoizedSW.x10"
+    //#line 351 "MemoizedSW.x10"
     ::x10::util::ArrayList< ::x10::lang::String*>* headerLine =
       ::MemoizedSW::splitString(::x10aux::nullCheck(line)->x10::lang::String::trim());
     
-    //#line 351 "MemoizedSW.x10"
-    x10_long i__7157min__7270 = ((x10_long)0ll);
-    x10_long i__7157max__7271 = ((headerLine->size()) - (((x10_long)1ll)));
+    //#line 352 "MemoizedSW.x10"
+    x10_long i__7277min__7390 = ((x10_long)0ll);
+    x10_long i__7277max__7391 = ((headerLine->size()) - (((x10_long)1ll)));
     {
-        x10_long i__7272;
-        for (i__7272 = i__7157min__7270; ((i__7272) <= (i__7157max__7271));
-             i__7272 = ((i__7272) + (((x10_long)1ll)))) {
-            x10_long i__7273 = i__7272;
+        x10_long i__7392;
+        for (i__7392 = i__7277min__7390; ((i__7392) <= (i__7277max__7391));
+             i__7392 = ((i__7392) + (((x10_long)1ll)))) {
+            x10_long i__7393 = i__7392;
             
-            //#line 352 "MemoizedSW.x10"
+            //#line 353 "MemoizedSW.x10"
             headerOrder->add(::x10aux::nullCheck(headerLine->get(
-                                                   i__7273))->x10::lang::String::charAt(
+                                                   i__7393))->x10::lang::String::charAt(
                                ((x10_int) (((x10_long)0ll)))));
         }
     }
     
-    //#line 354 "MemoizedSW.x10"
+    //#line 355 "MemoizedSW.x10"
     while (true) {
         
-        //#line 355 "MemoizedSW.x10"
+        //#line 356 "MemoizedSW.x10"
         try {
             
-            //#line 356 "MemoizedSW.x10"
+            //#line 357 "MemoizedSW.x10"
             line = matchReader->readLine();
         }
         catch (::x10::lang::CheckedThrowable* __exc11) {
@@ -1340,7 +1342,7 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
                 ::x10::lang::Exception* id__2 = static_cast< ::x10::lang::Exception*>(__exc11);
                 {
                     
-                    //#line 359 "MemoizedSW.x10"
+                    //#line 360 "MemoizedSW.x10"
                     break;
                 }
             } else {
@@ -1348,68 +1350,73 @@ void MemoizedSW::main(::x10::lang::Rail< ::x10::lang::String* >* args) {
             }
         }
         
-        //#line 361 "MemoizedSW.x10"
+        //#line 362 "MemoizedSW.x10"
         ::x10::util::ArrayList< ::x10::lang::String*>* currLine =
           ::MemoizedSW::splitString(::x10aux::nullCheck(line)->x10::lang::String::trim());
         
-        //#line 362 "MemoizedSW.x10"
+        //#line 363 "MemoizedSW.x10"
         x10_char currChar = ::x10aux::nullCheck(currLine->get(
                                                   ((x10_long)0ll)))->x10::lang::String::charAt(
                               ((x10_int) (((x10_long)0ll))));
         
-        //#line 363 "MemoizedSW.x10"
-        x10_long i__7175min__7266 = ((x10_long)1ll);
-        x10_long i__7175max__7267 = ((currLine->size()) - (((x10_long)1ll)));
+        //#line 364 "MemoizedSW.x10"
+        x10_long i__7295min__7386 = ((x10_long)1ll);
+        x10_long i__7295max__7387 = ((currLine->size()) - (((x10_long)1ll)));
         {
-            x10_long i__7268;
-            for (i__7268 = i__7175min__7266; ((i__7268) <= (i__7175max__7267));
-                 i__7268 = ((i__7268) + (((x10_long)1ll))))
+            x10_long i__7388;
+            for (i__7388 = i__7295min__7386; ((i__7388) <= (i__7295max__7387));
+                 i__7388 = ((i__7388) + (((x10_long)1ll))))
             {
-                x10_long i__7269 = i__7268;
+                x10_long i__7389 = i__7388;
                 
-                //#line 364 "MemoizedSW.x10"
+                //#line 365 "MemoizedSW.x10"
                 blosum->x10::array::Array_2<x10_long>::__set(
                   ((x10_long)(((x10_int) (currChar).v))),
                   ((x10_long)(((x10_int) (headerOrder->get(
-                                            ((i__7269) - (((x10_long)1ll))))).v))),
+                                            ((i__7389) - (((x10_long)1ll))))).v))),
                   ((x10_long)(::x10::lang::IntNatives::parseInt(currLine->get(
-                                                                  i__7269)))));
+                                                                  i__7389)))));
             }
         }
         
     }
     
-    //#line 368 "MemoizedSW.x10"
+    //#line 369 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>((&::MemoizedSW_Strings::sl__7296)));
+      reinterpret_cast< ::x10::lang::Any*>((&::MemoizedSW_Strings::sl__7416)));
     
     //#line 370 "MemoizedSW.x10"
-    x10_long startTime = ::x10::lang::System::nanoTime();
+    ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7417), cutoff), (&::MemoizedSW_Strings::sl__7418)), ::x10aux::nullCheck(string1)->x10::lang::String::length())));
     
     //#line 371 "MemoizedSW.x10"
-    ::MemoizedSW::parallelMatch(string1, string2, blosum,
-                                gapOpening, gapExtension);
+    x10_long startTime = ::x10::lang::System::nanoTime();
     
     //#line 372 "MemoizedSW.x10"
-    x10_long finalTime = ((::x10::lang::System::nanoTime()) - (startTime));
+    ::MemoizedSW::parallelMatch(string1, string2, blosum,
+                                gapOpening, gapExtension,
+                                cutoff);
     
     //#line 373 "MemoizedSW.x10"
-    ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7297), ((((x10_double) (finalTime))) / (1000000.0))), (&::MemoizedSW_Strings::sl__7298))));
+    x10_long finalTime = ((::x10::lang::System::nanoTime()) - (startTime));
     
-    //#line 375 "MemoizedSW.x10"
-    startTime = ::x10::lang::System::nanoTime();
+    //#line 374 "MemoizedSW.x10"
+    ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7419), ((((x10_double) (finalTime))) / (1000000.0))), (&::MemoizedSW_Strings::sl__7420))));
     
     //#line 376 "MemoizedSW.x10"
+    startTime = ::x10::lang::System::nanoTime();
+    
+    //#line 377 "MemoizedSW.x10"
     ::MemoizedSW::match(string1, string2, blosum, gapOpening,
                         gapExtension);
     
-    //#line 377 "MemoizedSW.x10"
+    //#line 378 "MemoizedSW.x10"
     finalTime = ((::x10::lang::System::nanoTime()) - (startTime));
     
-    //#line 378 "MemoizedSW.x10"
+    //#line 379 "MemoizedSW.x10"
     ::x10::io::Console::FMGL(OUT__get)()->x10::io::Printer::println(
-      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7299), ((((x10_double) (finalTime))) / (1000000.0))), (&::MemoizedSW_Strings::sl__7298))));
+      reinterpret_cast< ::x10::lang::Any*>(::x10::lang::String::__plus(::x10::lang::String::__plus((&::MemoizedSW_Strings::sl__7421), ((((x10_double) (finalTime))) / (1000000.0))), (&::MemoizedSW_Strings::sl__7420))));
 }
 
 //#line 11 "MemoizedSW.x10"
@@ -1456,16 +1463,18 @@ void MemoizedSW::_initRTT() {
     rtt.initStageTwo("MemoizedSW",::x10aux::RuntimeType::class_kind, 0, parents, 0, NULL, NULL);
 }
 
-::x10::lang::String MemoizedSW_Strings::sl__7290("");
-::x10::lang::String MemoizedSW_Strings::sl__7291(" ");
-::x10::lang::String MemoizedSW_Strings::sl__7294("Gaps: ");
-::x10::lang::String MemoizedSW_Strings::sl__7292("Identity: ");
-::x10::lang::String MemoizedSW_Strings::sl__7298("ms");
-::x10::lang::String MemoizedSW_Strings::sl__7297("Parallel Runtime: ");
-::x10::lang::String MemoizedSW_Strings::sl__7295("Score: ");
-::x10::lang::String MemoizedSW_Strings::sl__7293("/");
-::x10::lang::String MemoizedSW_Strings::sl__7296("==================== Memoized Smith Waterman ==================");
-::x10::lang::String MemoizedSW_Strings::sl__7299("Sequential Runtime: ");
+::x10::lang::String MemoizedSW_Strings::sl__7410("");
+::x10::lang::String MemoizedSW_Strings::sl__7411(" ");
+::x10::lang::String MemoizedSW_Strings::sl__7414("Gaps: ");
+::x10::lang::String MemoizedSW_Strings::sl__7418(" ----- Size = ");
+::x10::lang::String MemoizedSW_Strings::sl__7412("Identity: ");
+::x10::lang::String MemoizedSW_Strings::sl__7420("ms");
+::x10::lang::String MemoizedSW_Strings::sl__7419("Parallel Runtime: ");
+::x10::lang::String MemoizedSW_Strings::sl__7417("Cutoff = ");
+::x10::lang::String MemoizedSW_Strings::sl__7415("Score: ");
+::x10::lang::String MemoizedSW_Strings::sl__7413("/");
+::x10::lang::String MemoizedSW_Strings::sl__7416("==================== Memoized Smith Waterman ==================");
+::x10::lang::String MemoizedSW_Strings::sl__7421("Sequential Runtime: ");
 
 ::x10::lang::VoidFun_0_0::itable<MemoizedSW__closure__1>MemoizedSW__closure__1::_itable(&::x10::lang::Reference::equals, &::x10::lang::Closure::hashCode, &MemoizedSW__closure__1::__apply, &MemoizedSW__closure__1::toString, &::x10::lang::Closure::typeName);
 ::x10aux::itable_entry MemoizedSW__closure__1::_itables[2] = {::x10aux::itable_entry(&::x10aux::getRTT< ::x10::lang::VoidFun_0_0>, &MemoizedSW__closure__1::_itable),::x10aux::itable_entry(NULL, NULL)};

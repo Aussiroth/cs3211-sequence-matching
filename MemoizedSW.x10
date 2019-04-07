@@ -205,8 +205,8 @@ public class MemoizedSW {
   }
 
   public static def parallelMatch(string1:String, string2:String,
-      blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
-    var cutoff:Long = 15;
+      blosum:Array_2[Long], gapOpening:Long, gapExtension:Long, cutoff:Long) {
+    //var cutoff:Long = ;
     var maxRow:Long = string1.length();
     var maxCol:Long = string2.length();
 
@@ -309,6 +309,7 @@ public class MemoizedSW {
     var matchFile:String = args(2);
     var gapOpening:Long = -Int.parse(args(3));
     var gapExtension:Long = -Int.parse(args(4));
+    var cutoff:Long = Int.parse(args(5));
 
     var string1:String = "";
     var string2:String = "";
@@ -366,9 +367,9 @@ public class MemoizedSW {
     }
     
     Console.OUT.println("==================== Memoized Smith Waterman ==================");
-
+    Console.OUT.println("Cutoff = " + cutoff + " ----- Size = " + string1.length());
     var startTime:Long = System.nanoTime();
-    parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
+    parallelMatch(string1, string2, blosum, gapOpening, gapExtension, cutoff);
     var finalTime:Long = System.nanoTime() - startTime;
     Console.OUT.println("Parallel Runtime: " + finalTime/1000000.0 + "ms");
 
@@ -376,5 +377,5 @@ public class MemoizedSW {
     match(string1, string2, blosum, gapOpening, gapExtension);
     finalTime = System.nanoTime() - startTime;
     Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");
-  }
+    }
 }

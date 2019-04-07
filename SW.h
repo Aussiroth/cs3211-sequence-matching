@@ -70,8 +70,8 @@ class SW_Strings {
     static ::x10::lang::String sl__5070;
     static ::x10::lang::String sl__5071;
     static ::x10::lang::String sl__5074;
-    static ::x10::lang::String sl__5072;
     static ::x10::lang::String sl__5076;
+    static ::x10::lang::String sl__5072;
     static ::x10::lang::String sl__5078;
     static ::x10::lang::String sl__5077;
     static ::x10::lang::String sl__5075;

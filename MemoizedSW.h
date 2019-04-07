@@ -67,16 +67,18 @@ class Synthetic;
 
 class MemoizedSW_Strings {
   public:
-    static ::x10::lang::String sl__7290;
-    static ::x10::lang::String sl__7291;
-    static ::x10::lang::String sl__7294;
-    static ::x10::lang::String sl__7292;
-    static ::x10::lang::String sl__7298;
-    static ::x10::lang::String sl__7297;
-    static ::x10::lang::String sl__7295;
-    static ::x10::lang::String sl__7293;
-    static ::x10::lang::String sl__7296;
-    static ::x10::lang::String sl__7299;
+    static ::x10::lang::String sl__7410;
+    static ::x10::lang::String sl__7411;
+    static ::x10::lang::String sl__7414;
+    static ::x10::lang::String sl__7418;
+    static ::x10::lang::String sl__7412;
+    static ::x10::lang::String sl__7420;
+    static ::x10::lang::String sl__7419;
+    static ::x10::lang::String sl__7417;
+    static ::x10::lang::String sl__7415;
+    static ::x10::lang::String sl__7413;
+    static ::x10::lang::String sl__7416;
+    static ::x10::lang::String sl__7421;
 };
 
 class MemoizedSW : public ::x10::lang::X10Class   {
@@ -101,7 +103,8 @@ class MemoizedSW : public ::x10::lang::X10Class   {
     static void parallelMatch(::x10::lang::String* string1,
                               ::x10::lang::String* string2,
                               ::x10::array::Array_2<x10_long>* blosum,
-                              x10_long gapOpening, x10_long gapExtension);
+                              x10_long gapOpening, x10_long gapExtension,
+                              x10_long cutoff);
     static void main(::x10::lang::Rail< ::x10::lang::String* >* args);
     virtual ::MemoizedSW* MemoizedSW____this__MemoizedSW(
       );

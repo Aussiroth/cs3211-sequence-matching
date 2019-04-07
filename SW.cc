@@ -1408,8 +1408,8 @@ void SW::_initRTT() {
 ::x10::lang::String SW_Strings::sl__5070("");
 ::x10::lang::String SW_Strings::sl__5071(" ");
 ::x10::lang::String SW_Strings::sl__5074("Gaps: ");
+::x10::lang::String SW_Strings::sl__5076("==================== Non-Memoized Smith Waterman ====================");
 ::x10::lang::String SW_Strings::sl__5072("Identity: ");
-::x10::lang::String SW_Strings::sl__5076("==================== Non-Memoized String Waterman ====================");
 ::x10::lang::String SW_Strings::sl__5078("ms");
 ::x10::lang::String SW_Strings::sl__5077("Parallel Runtime: ");
 ::x10::lang::String SW_Strings::sl__5075("Score: ");
