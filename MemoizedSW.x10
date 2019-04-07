@@ -8,7 +8,7 @@ import x10.io.FileReader;
 import x10.io.File;
 import x10.lang.Math;
 
-public class SW {
+public class MemoizedSW {
 
   public static def splitString(lineToSplit:String) {
     val tokens = new ArrayList[String]();
@@ -37,50 +37,6 @@ public class SW {
       }
       Console.OUT.println();
     }
-  }
-
-  public static def checkUpwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
-      gapExtension:Long, row:Long, col: Long) {
-
-    var max:Long = Long.MIN_VALUE;
-    var gap:Long = 0;
-
-    for (i in 0..(row - 1)) {
-      var score:Long = 0;
-      score = matrix(i, col) + gapExtension * (row - i - 1);
-
-      // if (directions(i, col) <= 0) {
-      score += gapOpening;  
-      // }
-
-      if (score > max) {
-        max = score;
-        gap = row - i;
-      }
-    }
-    return new Pair[Long, Long](max, gap);
-  }
-
-  public static def checkLeftwards(matrix:Array_2[Long], directions:Array_2[Long], gapOpening:Long, 
-      gapExtension:Long, row:Long, col: Long) {
-
-    var max:Long = Long.MIN_VALUE;
-    var gap:Long = 0;
-
-    for (j in 0..(col - 1)) {
-      var score:Long = 0;
-      score = matrix(row, j) + gapExtension * (col - j - 1);
-
-      // if (directions(row, j) >= 0) {
-      score += gapOpening;  
-      // }
-
-      if (score > max) {
-        max = score;
-        gap = j - col;
-      }
-    }
-    return new Pair[Long, Long](max, gap);
   }
 
   public static def railBacktrack(string1:String, string2:String,
@@ -188,8 +144,8 @@ public class SW {
   public static def match(string1:String, string2:String, 
       blosum:Array_2[Long], 
       gapOpening:Long, gapExtension:Long) {
-    val S1_SIZE = string1.length();
-    val S2_SIZE = string2.length();
+    val bestLeftwards = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
+    val bestUpwards = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
     val matrix = new Array_2[Long](string1.length() + 1, string2.length() + 1, 0);
     val directions = new Array_2[Long](string1.length() + 1, string2.length() + 1, -1);
     var globalMax:Long = Long.MIN_VALUE;
@@ -198,48 +154,64 @@ public class SW {
     for (i in 1..(string1.length())) {
       for (j in 1..(string2.length())) {
         var max:Long = Long.MIN_VALUE;
-        var dir:Long = 0;
-        var diagScore:Long;
+
         var firstChar:Char = string1.charAt(Int.operator_as(i - 1));
         var secondChar:Char = string2.charAt(Int.operator_as(j - 1));
-        diagScore = matrix(i-1,j-1) + blosum(firstChar.ord(), secondChar.ord());
-        if (diagScore > max) {
-          max = diagScore;
-          dir = 0;
-        }
 
-        var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, i, j);
-        var upScore:Long = upResult.first;
-        if (upScore > max) {
-          max = upScore;
-          dir = upResult.second;
+        var diagScore:Long = max(bestLeftwards(i - 1, j - 1), bestUpwards(i - 1, j - 1), matrix(i - 1, j - 1));
+        matrix(i, j) = diagScore + blosum(firstChar.ord(), secondChar.ord());
+        if (matrix(i, j) < 0) matrix(i, j) = 0;
+
+        bestUpwards(i, j) = max(gapOpening + matrix(i - 1, j),
+            gapOpening + bestLeftwards(i - 1, j),
+            gapExtension + bestUpwards(i - 1, j));
+        bestUpwards(i, j) = Math.max(bestUpwards(i, j), bestUpwards(i - 1, j) + gapOpening);
+        if (bestUpwards(i, j) < 0) bestUpwards(i, j) = 0;
+
+        bestLeftwards(i, j) = max(gapOpening + matrix(i, j - 1),
+            gapExtension + bestLeftwards(i, j - 1),
+            gapOpening + bestUpwards(i, j - 1));
+        bestLeftwards(i, j) = Math.max(bestLeftwards(i, j), bestLeftwards(i, j - 1) + gapOpening);
+        if (bestLeftwards(i, j) < 0) bestLeftwards(i, j) = 0;
+
+        if (matrix(i, j) >= bestLeftwards(i, j) && matrix(i, j) >= bestUpwards(i, j)) {
+          directions(i, j) = 0;
+          max = matrix(i, j);
+        } else if (bestLeftwards(i, j) >= matrix(i, j) && bestLeftwards(i, j) >= bestUpwards(i, j)) {
+          directions(i, j) = -1;
+          max = bestLeftwards(i, j);
+        } else {
+          directions(i, j) = 1;
+          max = bestUpwards(i, j);
         }
-        var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, i, j);
-        var leftScore:Long = leftResult.first;
-        if (leftScore > max) {
-          max = leftScore;
-          dir = leftResult.second;
-        }
-        max = max < 0 ? 0 : max;
 
         if (max > globalMax) {
           globalMax = max;
           maxCoordinates = new Pair[Long, Long](i, j);
         }
-
-        matrix(i, j) = max;
-        directions(i, j) = dir;
       }
     }
     backtrack(string1, string2, matrix, directions, maxCoordinates);
   }
 
+  public static def max(first:Long, second:Long, third:Long) {
+    if (first >= second && first >= third) {
+      return first;
+    } else if (second >= third && second >= first) {
+      return second;
+    } else {
+      return third;
+    }
+  }
+
   public static def parallelMatch(string1:String, string2:String,
       blosum:Array_2[Long], gapOpening:Long, gapExtension:Long) {
-    var cutoff:Long = 5;
+    var cutoff:Long = 15;
     var maxRow:Long = string1.length();
     var maxCol:Long = string2.length();
 
+    val bestLeftwards = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
+    val bestUpwards = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
     val matrix = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
     val directions = new Array_2[Long](maxRow + 1, maxCol + 1, 0);
 
@@ -249,7 +221,6 @@ public class SW {
     var globalMax:Long = Long.MIN_VALUE;
     var maxCoordinates:Pair[Long, Long] = new Pair[Long, Long](0, 0);
 
-    var visited:Long =0;
     for(line in 1..(maxRow + maxCol))
     {
       var startCol:Long = 0;
@@ -270,8 +241,6 @@ public class SW {
         i = i - k ;
         var j:Long = startCol + k + 1 ;
 
-        var max:Long = Long.MIN_VALUE;
-        var dir:Long = 0;
 
         // scale i and j
         i = (i - 1) * cutoff + 1;
@@ -290,42 +259,43 @@ public class SW {
 
         for (a in i..(cellMaxRow)) {
           for (b in j..(cellMaxCol)) {
-            max = Long.MIN_VALUE;
-            dir = 0;
+            var max:Long = Long.MIN_VALUE;
 
-            visited += 1;
-
-            var diagScore:Long;
             var firstChar:Char = string1.charAt(Int.operator_as(a - 1));
             var secondChar:Char = string2.charAt(Int.operator_as(b - 1));
-            diagScore = matrix(a - 1, b - 1) + blosum(firstChar.ord(), secondChar.ord());
-            if (diagScore > max) {
-              max = diagScore;
-              dir = 0;
-            }
 
-            var upResult:Pair[Long, Long] = checkUpwards(matrix, directions, gapOpening, gapExtension, a, b);
-            var upScore:Long = upResult.first;
-            if (upScore > max) {
-              max = upScore;
-              dir = upResult.second;
-            }
+            var diagScore:Long = max(bestLeftwards(a - 1, b - 1), bestUpwards(a - 1, b - 1), matrix(a - 1, b - 1));
+            matrix(a, b) = diagScore + blosum(firstChar.ord(), secondChar.ord());
+            if (matrix(a, b) < 0) matrix(a, b) = 0;
 
-            var leftResult:Pair[Long, Long] = checkLeftwards(matrix, directions, gapOpening, gapExtension, a, b);
-            var leftScore:Long = leftResult.first;
-            if (leftScore > max) {
-              max = leftScore;
-              dir = leftResult.second;
-            }
+            bestUpwards(a, b) = max(gapOpening + matrix(a - 1, b),
+                gapOpening + bestLeftwards(a - 1, b),
+                gapExtension + bestUpwards(a - 1, b));
+            bestUpwards(a, b) = Math.max(bestUpwards(a, b), bestUpwards(a - 1, b) + gapOpening);
+            if (bestUpwards(a, b) < 0) bestUpwards(a, b) = 0;
 
-            max = max < 0 ? 0 : max;
+            bestLeftwards(a, b) = max(gapOpening + matrix(a, b - 1),
+                gapExtension + bestLeftwards(a, b - 1),
+                gapOpening + bestUpwards(a, b - 1));
+            bestLeftwards(a, b) = Math.max(bestLeftwards(a, b), bestLeftwards(a, b - 1) + gapOpening);
+            if (bestLeftwards(a, b) < 0) bestLeftwards(a, b) = 0;
+
+
+            if (matrix(a, b) >= bestLeftwards(a, b) && matrix(a, b) >= bestUpwards(a, b)) {
+              directions(a, b) = 0;
+              max = matrix(a, b);
+            } else if (bestLeftwards(a, b) >= matrix(a, b) && bestLeftwards(a, b) >= bestUpwards(a, b)) {
+              directions(a, b) = -1;
+              max = bestLeftwards(a, b);
+            } else {
+              directions(a, b) = 1;
+              max = bestUpwards(a, b);
+            }
 
             if (max > globalMax) {
               globalMax = max;
               maxCoordinates = new Pair[Long, Long](a, b);
             }
-            matrix(a, b) = max;
-            directions(a, b) = dir;
           }
         }
       }
@@ -394,7 +364,8 @@ public class SW {
         blosum(currChar.ord(), headerOrder.get(i-1).ord()) = Int.parse(currLine.get(i));
       }
     }
-    Console.OUT.println("==================== Non-Memoized Smith Waterman ====================");
+    
+    Console.OUT.println("==================== Memoized Smith Waterman ==================");
 
     var startTime:Long = System.nanoTime();
     parallelMatch(string1, string2, blosum, gapOpening, gapExtension);
