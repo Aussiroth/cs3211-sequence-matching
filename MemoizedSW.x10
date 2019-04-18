@@ -100,11 +100,11 @@ public class MemoizedSW {
     /**
      * Performs sequential Smith-Waterman scoring on {@code string1} and {@code string 2}.
      * Memoization adapted from <a href="https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/gaps.pdf">here</a>
-     * @params string1 the first string
-     * @params string2 the second string
-     * @params substitution the substitution matrix
-     * @params gapOpening the gap opening cost (negative value)
-     * @params gapExtension the gap extension cost (negative value)
+     * @param string1 the first string
+     * @param string2 the second string
+     * @param substitution the substitution matrix
+     * @param gapOpening the gap opening cost (negative value)
+     * @param gapExtension the gap extension cost (negative value)
      */ 
     public static def match(string1:String, string2:String, 
             substitution:Array_2[Long], 
@@ -182,12 +182,12 @@ public class MemoizedSW {
     /**
      * Performs parallel Smith-Waterman scoring on {@code string1} and {@code string 2}.
      * Memoization adapted from <a href="https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/gaps.pdf">here</a>
-     * @params string1 the first string
-     * @params string2 the second string
-     * @params substitution the substitution matrix
-     * @params gapOpening the gap opening cost (negative value)
-     * @params gapExtension the gap extension cost (negative value)
-     * @params cutoff the block length and width equating to workload of one thread
+     * @param string1 the first string
+     * @param string2 the second string
+     * @param substitution the substitution matrix
+     * @param gapOpening the gap opening cost (negative value)
+     * @param gapExtension the gap extension cost (negative value)
+     * @param cutoff the block length and width equating to workload of one thread
      */ 
     public static def parallelMatch(string1:String, string2:String,
             substitution:Array_2[Long],
@@ -310,11 +310,11 @@ public class MemoizedSW {
     /**
      * Performs the backtrack of the Smith-Waterman algorithm.
      * Prints the identity, gaps, score and resultant strings.
-     * @params string1 the first string
-     * @params string2 the second string
-     * @params matrix the score matrix
-     * @params directions the direction matrix
-     * @params maxCoordinates the (i, j) of the highest score in {@code matrix}
+     * @param string1 the first string
+     * @param string2 the second string
+     * @param matrix the score matrix
+     * @param directions the direction matrix
+     * @param maxCoordinates the (i, j) of the highest score in {@code matrix}
      */
     public static def backtrack(string1:String, string2:String,
             matrix:Array_2[Long], directions:Array_2[Long],
