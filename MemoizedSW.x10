@@ -97,65 +97,6 @@ public class MemoizedSW {
         Console.OUT.println("Sequential Runtime: " + finalTime/1000000.0 + "ms");
     }
     
-
-    public static def railBacktrack(string1:String, string2:String,
-            matrix:Array_2[Long], directions:Array_2[Long], maxCoordinates:Pair[Long, Long]) {
-        var i:Long = maxCoordinates.first;
-        var j:Long = maxCoordinates.second;
-        val result1 = new Rail[Char](string1.length() + string2.length());
-        val result2 = new Rail[Char](string1.length() + string2.length());
-        var resultSize:Long = 0;
-
-        var stringLength:Long = 0;
-        var matchCount:Long = 0;
-        var gapCount:Long = 0;
-        while (matrix(i, j) != 0) {
-            if (directions(i,j) == 0) {
-                result1(resultSize) = string1.charAt(Int.operator_as(i - 1));
-                result2(resultSize) = string2.charAt(Int.operator_as(j - 1));
-                resultSize += 1;
-
-                if (string1.charAt(Int.operator_as(i - 1)) == string2.charAt(Int.operator_as(j - 1))) {
-                    matchCount += 1;
-                }
-                i -= 1;
-                j -= 1;
-                stringLength += 1;
-            } else if (directions(i, j) > 0) {
-                for (k in (0..(directions(i, j) - 1))) {
-                    result1(resultSize) = string1.charAt(Int.operator_as(i - k - 1));
-                    result2(resultSize) = '-';
-                    resultSize += 1;
-                    stringLength += 1;
-                }
-                gapCount += directions(i, j);
-                i -= directions(i, j);
-            } else {
-                for (k in (0..(-directions(i, j) - 1))) {
-                    result1(resultSize) = '-';
-                    result2(resultSize) = string2.charAt(Int.operator_as(j - k - 1));
-                    resultSize += 1;
-                    stringLength += 1;        
-                }
-                gapCount -= directions(i, j);
-                j += directions(i, j); 
-            }
-        }
-        Console.OUT.println("Identity: " + matchCount + "/" + stringLength);
-        Console.OUT.println("Gaps: " + gapCount + "/" + stringLength);
-        Console.OUT.println("Score: " + matrix(maxCoordinates.first, maxCoordinates.second));
-
-        for (k in (0..(resultSize - 1))) {
-            Console.OUT.print(result1(k));
-        }
-        Console.OUT.println();
-        for (k in (0..(resultSize - 1))) {
-            Console.OUT.print(result2(k));
-        }
-        Console.OUT.println();
-    }
-
-
     /**
      * Performs sequential Smith-Waterman scoring on {@code string1} and {@code string 2}.
      * Memoization adapted from <a href="https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/gaps.pdf">here</a>
