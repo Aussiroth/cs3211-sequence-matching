@@ -9,6 +9,9 @@ import x10.lang.Math;
 
 public class MemoizedSW {
 
+    /** Global constant setting the default block length */
+    static val DEFAULT_CUTOFF = 20;
+
     /**
      * Parses arguments to obtain strings, substitution matrix and gap costs and runs parallel and
      * sequential implementations of the Smith-Waterman algorithm.
@@ -22,8 +25,14 @@ public class MemoizedSW {
         var matchFileName:String = args(2);
         var gapOpening:Long = -Int.parse(args(3));
         var gapExtension:Long = -Int.parse(args(4));
-        var cutoff:Long = Int.parse(args(5));
-
+        var cutoff:Long;
+        try {
+            cutoff = Int.parse(args(5));
+        } catch (Exception) {
+            Console.OUT.println("No cutoff provided, setting default of " + DEFAULT_CUTOFF);
+            cutoff = DEFAULT_CUTOFF;    
+        }
+        
         // get strings from files
         var string1:String = "";
         var string2:String = "";
@@ -79,6 +88,8 @@ public class MemoizedSW {
                 substitution(currChar.ord(), headerOrder.get(i-1).ord()) = Int.parse(currLine.get(i));
             }
         }
+
+        
 
         // run algorithm and print results
         Console.OUT.println("==================== Memoized Smith-Waterman ==================");
@@ -174,8 +185,8 @@ public class MemoizedSW {
             }
         }
 
-        // run backtrack
-        backtrack(string1, string2, bestDiagonal, directions, maxCoordinates);
+        // run traceback
+        traceback(string1, string2, bestDiagonal, directions, maxCoordinates);
     }
 
 
@@ -303,12 +314,12 @@ public class MemoizedSW {
             }
         }
 
-        // run backtrack
-        backtrack(string1, string2, bestDiagonal, directions, maxCoordinates);
+        // run traceback
+        traceback(string1, string2, bestDiagonal, directions, maxCoordinates);
     }
     
     /**
-     * Performs the backtrack of the Smith-Waterman algorithm.
+     * Performs the traceback of the Smith-Waterman algorithm.
      * Prints the identity, gaps, score and resultant strings.
      * @param string1 the first string
      * @param string2 the second string
@@ -316,7 +327,7 @@ public class MemoizedSW {
      * @param directions the direction matrix
      * @param maxCoordinates the (i, j) of the highest score in {@code matrix}
      */
-    public static def backtrack(string1:String, string2:String,
+    public static def traceback(string1:String, string2:String,
             matrix:Array_2[Long], directions:Array_2[Long],
             maxCoordinates:Pair[Long, Long]) {
         var i:Long = maxCoordinates.first;
@@ -385,7 +396,8 @@ public class MemoizedSW {
     }
     
     /**
-     * Helper method that delimits a space-separated string {@code lineToSplit} and returns an array of tokens.
+     * Helper method that delimits a space-separated string {@code lineToSplit} and 
+     * returns an array of tokens.
      */
     private static def splitString(lineToSplit:String) {
         val tokens = new ArrayList[String]();
@@ -405,6 +417,31 @@ public class MemoizedSW {
             tokens.add(currToken);
         }
         return tokens;
+    }
+   
+    /**
+     * Helper methods that generates two random strings of {@code length} and returns them
+     * in a {@code Pair} object.
+     */
+    private static def generateRandomString(length:Long) {
+        val DNA = new Rail[String](4);
+        DNA(0) = "A";
+        DNA(1) = "T";
+        DNA(2) = "C";
+        DNA(3) = "G";
+        val random = new Random();
+        var string1:String = "";
+        var string2:String = "";
+        for (i in (0 ..(length - 1))) {
+            var j:Long = random.nextInt() % 4;
+            if (j < 0) j *= -1;
+            string1 += DNA(j % 4);
+
+            j = random.nextInt() % 4;
+            if (j < 0) j *= -1;
+            string2 += DNA(j % 4);
+        }
+        return new Pair[String, String](string1, string2);
     }
 
     /**
